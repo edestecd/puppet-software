@@ -23,13 +23,13 @@ Puppet Module to install various Desktop Software
 
 ##Module Description
 
-The software module provides various classes to install many commonly needed Desktop Applications.  
-Many of these applications require little or no configuration and are mostly Graphical.
+The software module provides classes to install many commonly needed Desktop Applications.  
+Many of these applications require little or no configuration and are mostly Graphical.  
 This module provides a quick way to get many repetitive apps installed.
 
-Other modules exist for many of these applications and I have used some of them  
-as examples, but I prefer to manage these in one module.
-Each application has a class, which you may include separately to install  
+Other modules exist for many of these applications and I have used some of them
+as examples, but I prefer to manage these in one module.  
+Each application has a class, which you may include separately to install
 exactly the applications you desire.
 
 ##Setup

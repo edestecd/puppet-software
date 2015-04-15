@@ -1,0 +1,24 @@
+# RuboCop config file
+# Configure cops
+# https://github.com/bbatsov/rubocop
+# https://github.com/bbatsov/rubocop/blob/master/config/default.yml
+# https://github.com/bbatsov/ruby-style-guide
+#
+
+AllCops:
+  Include:
+    - '**/*.gemspec'
+    - '**/*.rake'
+    - '**/Gemfile'
+    - '**/Rakefile'
+    - '**/Guardfile'
+  Exclude:
+    - 'pkg/**/*'
+  RunRailsCops: false
+  DisplayCopNames: true
+
+# Cop supports --auto-correct.
+# Configuration parameters: SupportedStyles.
+# Support ruby 1.8.7
+Style/HashSyntax:
+  EnforcedStyle: hash_rockets

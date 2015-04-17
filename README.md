@@ -27,6 +27,9 @@ The software module provides classes to install many commonly needed Desktop App
 Many of these applications require little or no configuration and are mostly Graphical.  
 This module provides a quick way to get many repetitive apps installed.
 
+This module currently supports only Apple Mac OS X.  
+Ubuntu Desktop support is being added very soon.
+
 Other modules exist for many of these applications and I have used some of them
 as examples, but I prefer to manage these in one module.  
 Each application has a class, which you may include separately to install
@@ -113,7 +116,7 @@ You may need to pass these license keys and possibly urls to use those classes.
 This module has been built on and tested against Puppet 3.2.4 and higher.  
 While I am sure other versions work, I have not tested them.
 
-This module supports modern OS X and Ubuntu systems.  
+This module supports modern OS X and (coming soon) Ubuntu systems.  
 This module has been tested on OS X 10.9 "Mavericks" and Ubuntu 14.04.
 
 No plans to support other versions (unless you add it :)..

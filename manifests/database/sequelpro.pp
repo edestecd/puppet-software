@@ -4,22 +4,26 @@
 #
 
 class software::database::sequelpro (
-  $applications_path = $software::params::applications_path,
-  $version           = $software::params::sequelpro_version,
-  $url               = $software::params::sequelpro_url,
+  $ensure  = $software::params::software_ensure,
+  $version = $software::params::sequelpro_version,
+  $url     = $software::params::sequelpro_url,
 ) inherits software::params {
 
-  validate_absolute_path($applications_path)
+  validate_string($ensure)
   validate_string($version)
   validate_string($url)
 
-  $app      = 'Sequel Pro.app'
-  $app_path = file_join($applications_path, $app)
-
-  package { "Sequel-Pro-${version}":
-    ensure   => installed,
-    provider => appdmg,
-    source   => $url,
+  case $::operatingsystem {
+    'Darwin': {
+      package { "Sequel-Pro-${version}":
+        ensure   => $ensure,
+        provider => appdmg,
+        source   => $url,
+      }
+    }
+    default: {
+      fail("The ${name} class is not supported on ${::operatingsystem}.")
+    }
   }
 
 }

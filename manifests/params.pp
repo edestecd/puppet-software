@@ -26,10 +26,10 @@ class software::params (
 
 
     #### database ####
-    $sequelpro_version   = '1.0.2'
-    $sequelpro_url       = "https://sequel-pro.googlecode.com/files/sequel-pro-${sequelpro_version}.dmg"
     $pgcommander_version = '1.5.5'
     $pgcommander_url     = "https://eggerapps.at/pgcommander/download/pgcommander-${pgcommander_version}.zip"
+    $sequelpro_version   = '1.0.2'
+    $sequelpro_url       = "https://sequel-pro.googlecode.com/files/sequel-pro-${sequelpro_version}.dmg"
 
 
     #### drivers ####
@@ -70,18 +70,18 @@ class software::params (
 
 
     #### storage ####
+    $drive_url     = 'https://dl.google.com/drive/installgoogledrive.dmg'
     $fetch_version = '5.7.5'
     $fetch_url     = "http://getfetch.com/Fetch_${fetch_version}.dmg"
-    $drive_url     = 'https://dl.google.com/drive/installgoogledrive.dmg'
 
 
     #### utilities ####
-    $iterm_version        = '2_0'
-    $iterm_url            = "https://iterm2.com/downloads/stable/iTerm2_v${iterm_version}.zip"
-    $controlplane_version = '1.5.6'
-    $controlplane_url     = "https://dl.dropboxusercontent.com/u/12850/ControlPlane/ControlPlane-${controlplane_version}.dmg"
     $alfred_version       = '2.6_374'
     $alfred_url           = "https://cachefly.alfredapp.com/Alfred_${alfred_version}.zip"
+    $controlplane_version = '1.5.6'
+    $controlplane_url     = "https://dl.dropboxusercontent.com/u/12850/ControlPlane/ControlPlane-${controlplane_version}.dmg"
+    $iterm_version        = '2_0'
+    $iterm_url            = "https://iterm2.com/downloads/stable/iTerm2_v${iterm_version}.zip"
 
 
     #### virtualization ####
@@ -91,8 +91,8 @@ class software::params (
 
 
     #### webstack ####
-    $pow_url   = 'get.pow.cx'
     $anvil_url = 'http://s3.amazonaws.com/sparkler_versions/versions/uploads/000/000/114/original/Anvil.zip'
+    $pow_url   = 'get.pow.cx'
 
 
     if versioncmp($::macosx_productversion_major, '10.8') == 0 {

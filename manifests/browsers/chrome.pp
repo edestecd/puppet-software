@@ -1,23 +1,41 @@
 # chrome.pp
-# Install Google Chrome for osx
-# https://www.google.com/intl/en_US/chrome/browser
+# Install Google Chrome for OS X or Ubuntu
+# https://www.google.com/chrome/browser/desktop
+# https://www.google.com/linuxrepositories
 #
 
 class software::browsers::chrome (
-  $applications_path = $software::params::applications_path,
-  $url               = $software::params::chrome_url,
+  $ensure = $software::params::software_ensure,
+  $url    = $software::params::chrome_url,
 ) inherits software::params {
 
-  validate_absolute_path($applications_path)
+  validate_string($ensure)
   validate_string($url)
 
-  $app      = 'Google Chrome.app'
-  $app_path = file_join($applications_path, $app)
-
-  package { 'GoogleChrome':
-    ensure   => installed,
-    provider => appdmg,
-    source   => $url,
+  case $::operatingsystem {
+    'Darwin': {
+      package { 'GoogleChrome':
+        ensure   => $ensure,
+        provider => appdmg,
+        source   => $url,
+      }
+    }
+    'Ubuntu': {
+      apt::source { 'google-chrome':
+        location    => $url,
+        release     => 'stable',
+        repos       => 'main',
+        key         => '4CCA1EAF950CEE4AB83976DCA040830F7FAC5991',
+        key_source  => 'https://dl.google.com/linux/linux_signing_key.pub',
+        include_src => false,
+      } ->
+      package { 'google-chrome-stable':
+        ensure => $ensure,
+      }
+    }
+    default: {
+      fail("The ${name} class is not supported on ${::operatingsystem}.")
+    }
   }
 
 }

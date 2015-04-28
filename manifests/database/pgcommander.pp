@@ -1,5 +1,5 @@
 # pgcommander.pp
-# Install PG Commander for osx
+# Install PG Commander for OS X
 # https://eggerapps.at/pgcommander
 #
 # The next version (in beta currently):
@@ -13,11 +13,12 @@ class software::database::pgcommander (
 ) inherits software::params {
 
   validate_string($ensure)
-  validate_string($version)
-  validate_string($url)
 
   case $::operatingsystem {
     'Darwin': {
+      validate_string($version)
+      validate_string($url)
+
       package { "PGCommander-${version}":
         ensure   => $ensure,
         provider => appcompressed,

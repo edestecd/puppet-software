@@ -26,10 +26,12 @@ class software::params (
 
 
     #### database ####
-    $pgcommander_version = '1.5.5'
-    $pgcommander_url     = "https://eggerapps.at/pgcommander/download/pgcommander-${pgcommander_version}.zip"
-    $sequelpro_version   = '1.0.2'
-    $sequelpro_url       = "https://sequel-pro.googlecode.com/files/sequel-pro-${sequelpro_version}.dmg"
+    $mysqlworkbench_version = '6.3.3'
+    $mysqlworkbench_url     = "http://cdn.mysql.com/Downloads/MySQLGUITools/mysql-workbench-community-${mysqlworkbench_version}-osx-x86_64.dmg"
+    $pgcommander_version    = '1.5.5'
+    $pgcommander_url        = "https://eggerapps.at/pgcommander/download/pgcommander-${pgcommander_version}.zip"
+    $sequelpro_version      = '1.0.2'
+    $sequelpro_url          = "https://sequel-pro.googlecode.com/files/sequel-pro-${sequelpro_version}.dmg"
 
 
     #### drivers ####

@@ -1,5 +1,5 @@
 # sequelpro.pp
-# Install Sequel Pro for osx
+# Install Sequel Pro for OS X
 # http://www.sequelpro.com
 #
 
@@ -10,11 +10,12 @@ class software::database::sequelpro (
 ) inherits software::params {
 
   validate_string($ensure)
-  validate_string($version)
-  validate_string($url)
 
   case $::operatingsystem {
     'Darwin': {
+      validate_string($version)
+      validate_string($url)
+
       package { "Sequel-Pro-${version}":
         ensure   => $ensure,
         provider => appdmg,

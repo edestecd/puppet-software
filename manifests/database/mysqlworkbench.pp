@@ -1,12 +1,13 @@
-# firefox.pp
-# Install Firefox for OS X or Ubuntu
-# http://www.mozilla.org/en-US/firefox/new
+# mysqlworkbench.pp
+# Install MySQL Workbench for OS X or Ubuntu
+# https://www.mysql.com/products/workbench
+# https://dev.mysql.com/downloads/workbench
 #
 
-class software::browsers::firefox (
+class software::database::mysqlworkbench (
   $ensure  = $software::params::software_ensure,
-  $version = $software::params::firefox_version,
-  $url     = $software::params::firefox_url,
+  $version = $software::params::mysqlworkbench_version,
+  $url     = $software::params::mysqlworkbench_url,
 ) inherits software::params {
 
   validate_string($ensure)
@@ -16,14 +17,14 @@ class software::browsers::firefox (
       validate_string($version)
       validate_string($url)
 
-      package { "Firefox-${version}":
+      package { "MySQLWorkbench-${version}":
         ensure   => $ensure,
         provider => appdmg,
         source   => $url,
       }
     }
     'Ubuntu': {
-      package { 'firefox':
+      package { 'mysql-workbench':
         ensure => $ensure,
       }
     }

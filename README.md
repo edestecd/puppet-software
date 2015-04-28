@@ -62,7 +62,6 @@ include software::browsers::chrome
 include software::browsers::firefox
 include software::database::pgcommander
 include software::database::sequelpro
-include software::editors::sourcetree
 include software::editors::textmate
 include software::entertainment::vlc
 include software::idesdk::android_sdk
@@ -75,6 +74,7 @@ include software::utilities::alfred
 include software::utilities::controlplane
 include software::utilities::iterm
 include software::utilities::onyx
+include software::vcsscm::sourcetree
 include software::virtualization::virtualbox
 include software::webstack::anvil
 ```

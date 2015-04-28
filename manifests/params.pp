@@ -40,8 +40,7 @@ class software::params (
 
 
     #### editors ####
-    $sourcetree_version   = '2.0.5.2'
-    $sourcetree_url       = "https://downloads.atlassian.com/software/sourcetree/SourceTree_${sourcetree_version}.dmg"
+    $atom_url             = 'https://atom.io/download/mac'
     $textmate_url         = 'https://api.textmate.org/downloads/release'
     $textwrangler_version = '4.5.12'
     $textwrangler_url     = "https://s3.amazonaws.com/BBSW-download/TextWrangler_${textwrangler_version}.dmg"
@@ -86,6 +85,11 @@ class software::params (
     $iterm_url            = "https://iterm2.com/downloads/stable/iTerm2_v${iterm_version}.zip"
 
 
+    #### vcsscm ####
+    $sourcetree_version = '2.0.5.2'
+    $sourcetree_url     = "https://downloads.atlassian.com/software/sourcetree/SourceTree_${sourcetree_version}.dmg"
+
+
     #### virtualization ####
     $virtualbox_version = '4.3.24'
     $virtualbox_build   = '98716'
@@ -119,6 +123,10 @@ class software::params (
 
     #### browsers ####
     $chrome_url = 'http://dl.google.com/linux/chrome/deb/'
+
+
+    #### editors ####
+    $atom_url = 'https://atom.io/download/deb'
 
 
   } else {

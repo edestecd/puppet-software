@@ -30,6 +30,7 @@ class software::drivers::lanier_mpc5503 (
         provider => pkgdmg,
         source   => $url,
       } ->
+
       printer { 'BIO-PBD009-mpc5503':
         ensure      => $printer_ensure,
         enabled     => true,

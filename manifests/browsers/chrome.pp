@@ -36,6 +36,7 @@ class software::browsers::chrome (
         key_source  => 'https://dl.google.com/linux/linux_signing_key.pub',
         include_src => false,
       } ->
+
       package { 'google-chrome-stable':
         ensure => $ensure,
       }

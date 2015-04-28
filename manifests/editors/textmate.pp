@@ -1,26 +1,31 @@
 # textmate.pp
-# Install TextMate 2 for osx
+# Install TextMate 2 for OS X
 # http://macromates.com
 #
 # Gets the latest release version...
 #
 
 class software::editors::textmate (
-  $applications_path = $software::params::applications_path,
-  $url               = $software::params::textmate_url,
+  $ensure = $software::params::software_ensure,
+  $url    = $software::params::textmate_url,
 ) inherits software::params {
 
-  validate_absolute_path($applications_path)
-  validate_string($url)
+  validate_string($ensure)
 
-  $app      = 'TextMate.app'
-  $app_path = file_join($applications_path, $app)
+  case $::operatingsystem {
+    'Darwin': {
+      validate_string($url)
 
-  package { 'TextMate':
-    ensure   => installed,
-    provider => appcompressed,
-    flavor   => tbz,
-    source   => $url,
+      package { 'TextMate':
+        ensure   => $ensure,
+        provider => appcompressed,
+        flavor   => tbz,
+        source   => $url,
+      }
+    }
+    default: {
+      fail("The ${name} class is not supported on ${::operatingsystem}.")
+    }
   }
 
 }

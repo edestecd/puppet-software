@@ -1,12 +1,12 @@
-# textwrangler.pp
-# Install TextWrangler for OS X
-# http://www.barebones.com/products/textwrangler
+# sourcetree.pp
+# Install SourceTree for OS X
+# http://www.sourcetreeapp.com
 #
 
-class software::editors::textwrangler (
+class software::vcsscm::sourcetree (
   $ensure  = $software::params::software_ensure,
-  $version = $software::params::textwrangler_version,
-  $url     = $software::params::textwrangler_url,
+  $version = $software::params::sourcetree_version,
+  $url     = $software::params::sourcetree_url,
 ) inherits software::params {
 
   validate_string($ensure)
@@ -16,7 +16,7 @@ class software::editors::textwrangler (
       validate_string($version)
       validate_string($url)
 
-      package { "TextWrangler-${version}":
+      package { "SourceTree-${version}":
         ensure   => $ensure,
         provider => appdmg,
         source   => $url,

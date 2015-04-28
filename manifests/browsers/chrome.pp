@@ -21,7 +21,14 @@ class software::browsers::chrome (
       }
     }
     'Ubuntu': {
+      $apt_source_ensure = $ensure ? {
+        installed => present,
+        latest    => present,
+        default   => $ensure,
+      }
+
       apt::source { 'google-chrome':
+        ensure      => $apt_source_ensure,
         location    => $url,
         release     => 'stable',
         repos       => 'main',

@@ -64,7 +64,7 @@ include software::database::pgcommander
 include software::database::sequelpro
 include software::editors::textmate
 include software::entertainment::vlc
-include software::idesdk::android_sdk
+include software::idesdk::android_studio
 include software::prefpanes::hosts
 include software::prefpanes::launchrocket
 include software::social::skype

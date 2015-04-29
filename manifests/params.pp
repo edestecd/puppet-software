@@ -52,10 +52,8 @@ class software::params (
 
 
     #### idesdk ####
-    $android_sdk_version    = '20140702'
-    $android_sdk_url        = "https://dl.google.com/android/adt/adt-bundle-mac-x86_64-${android_sdk_version}.zip"
-    $android_studio_version = '135.1339820'
-    $android_studio_url     = "https://dl.google.com/android/studio/install/0.8.6/android-studio-bundle-${android_studio_version}-mac.dmg"
+    $android_studio_version = '135.1740770'
+    $android_studio_url     = "https://dl.google.com/dl/android/studio/install/1.1.0/android-studio-ide-${android_studio_version}-mac.dmg"
 
 
     #### prefpanes ####

@@ -1,25 +1,30 @@
 # android_studio.pp
-# Install the Early Access Preview of Android Studio for osx
-# http://developer.android.com/sdk/installing/studio.html
+# Install Android Studio for OS X
+# https://developer.android.com/sdk/index.html
 #
 
 class software::idesdk::android_studio (
-  $applications_path = $software::params::applications_path,
-  $version           = $software::params::android_studio_version,
-  $url               = $software::params::android_studio_url,
+  $ensure  = $software::params::software_ensure,
+  $version = $software::params::android_studio_version,
+  $url     = $software::params::android_studio_url,
 ) inherits software::params {
 
-  validate_absolute_path($applications_path)
-  validate_string($version)
-  validate_string($url)
+  validate_string($ensure)
 
-  $app      = 'Android Studio.app'
-  $app_path = file_join($applications_path, $app)
+  case $::operatingsystem {
+    'Darwin': {
+      validate_string($version)
+      validate_string($url)
 
-  package { "Android-Studio-${version}":
-    ensure   => installed,
-    provider => appdmg,
-    source   => $url,
+      package { "Android-Studio-${version}":
+        ensure   => $ensure,
+        provider => appdmg,
+        source   => $url,
+      }
+    }
+    default: {
+      fail("The ${name} class is not supported on ${::operatingsystem}.")
+    }
   }
 
 }

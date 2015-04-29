@@ -9,15 +9,15 @@
 #
 
 class software::entertainment (
-  $applications_path = $software::params::applications_path,
-  $vlc_version       = $software::params::vlc_version,
-  $vlc_url           = $software::params::vlc_url,
+  $ensure      = $software::params::software_ensure,
+  $vlc_version = $software::params::vlc_version,
+  $vlc_url     = $software::params::vlc_url,
 ) inherits software::params {
 
   class { 'software::entertainment::vlc':
-    applications_path => $applications_path,
-    version           => $vlc_version,
-    url               => $vlc_url,
+    ensure  => $ensure,
+    version => $vlc_version,
+    url     => $vlc_url,
   }
 
 }

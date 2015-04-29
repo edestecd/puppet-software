@@ -4,22 +4,32 @@
 #
 
 class software::entertainment::vlc (
-  $applications_path = $software::params::applications_path,
-  $version           = $software::params::vlc_version,
-  $url               = $software::params::vlc_url,
+  $ensure  = $software::params::software_ensure,
+  $version = $software::params::vlc_version,
+  $url     = $software::params::vlc_url,
 ) inherits software::params {
 
-  validate_absolute_path($applications_path)
-  validate_string($version)
-  validate_string($url)
+  validate_string($ensure)
 
-  $app      = 'VLC.app'
-  $app_path = file_join($applications_path, $app)
+  case $::operatingsystem {
+    'Darwin': {
+      validate_string($version)
+      validate_string($url)
 
-  package { "VLC-${version}":
-    ensure   => installed,
-    provider => appdmg,
-    source   => $url,
+      package { "VLC-${version}":
+        ensure   => $ensure,
+        provider => appdmg,
+        source   => $url,
+      }
+    }
+    'Ubuntu': {
+      package { 'vlc':
+        ensure => $ensure,
+      }
+    }
+    default: {
+      fail("The ${name} class is not supported on ${::operatingsystem}.")
+    }
   }
 
 }

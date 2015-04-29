@@ -1,25 +1,30 @@
 # hosts.pp
-# Install specialunderwear/Hosts.prefpane for osx
+# Install specialunderwear/Hosts.prefpane for OS X
 # https://github.com/specialunderwear/Hosts.prefpane
 #
 
 class software::prefpanes::hosts (
-  $preference_panes_path = $software::params::preference_panes_path,
-  $version               = $software::params::hosts_version,
-  $url                   = $software::params::hosts_url,
+  $ensure  = $software::params::software_ensure,
+  $version = $software::params::hosts_version,
+  $url     = $software::params::hosts_url,
 ) inherits software::params {
 
-  validate_absolute_path($preference_panes_path)
-  validate_string($version)
-  validate_string($url)
+  validate_string($ensure)
 
-  $pane      = 'Hosts.prefPane'
-  $pane_path = file_join($preference_panes_path, $pane)
+  case $::operatingsystem {
+    'Darwin': {
+      validate_string($version)
+      validate_string($url)
 
-  package { "Hosts-${version}":
-    ensure   => installed,
-    provider => pkgdmg,
-    source   => $url,
+      package { "Hosts-${version}":
+        ensure   => $ensure,
+        provider => pkgdmg,
+        source   => $url,
+      }
+    }
+    default: {
+      fail("The ${name} class is not supported on ${::operatingsystem}.")
+    }
   }
 
 }

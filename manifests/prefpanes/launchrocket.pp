@@ -1,25 +1,30 @@
 # launchrocket.pp
-# Install jimbojsb/launchrocket for osx
+# Install jimbojsb/launchrocket for OS X
 # https://github.com/jimbojsb/launchrocket
 #
 
 class software::prefpanes::launchrocket (
-  $preference_panes_path = $software::params::preference_panes_path,
-  $version               = $software::params::launchrocket_version,
-  $url                   = $software::params::launchrocket_url,
+  $ensure  = $software::params::software_ensure,
+  $version = $software::params::launchrocket_version,
+  $url     = $software::params::launchrocket_url,
 ) inherits software::params {
 
-  validate_absolute_path($preference_panes_path)
-  validate_string($version)
-  validate_string($url)
+  validate_string($ensure)
 
-  $pane      = 'LaunchRocket.prefPane'
-  $pane_path = file_join($preference_panes_path, $pane)
+  case $::operatingsystem {
+    'Darwin': {
+      validate_string($version)
+      validate_string($url)
 
-  package { "LaunchRocket-${version}":
-    ensure   => installed,
-    provider => prefpanecompressed,
-    source   => $url,
+      package { "LaunchRocket-${version}":
+        ensure   => $ensure,
+        provider => prefpanecompressed,
+        source   => $url,
+      }
+    }
+    default: {
+      fail("The ${name} class is not supported on ${::operatingsystem}.")
+    }
   }
 
 }

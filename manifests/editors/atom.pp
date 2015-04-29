@@ -6,15 +6,21 @@
 #
 
 class software::editors::atom (
-  $user,
   $ensure   = $software::params::software_ensure,
   $url      = $software::params::atom_url,
   $packages = [],
   $themes   = [],
+  $user     = undef,
 ) inherits software::params {
 
   validate_string($ensure)
   validate_string($url)
+  validate_array($packages)
+  validate_array($themes)
+
+  unless empty(concat($packages, $themes)) {
+    validate_string($user)
+  }
 
   case $::operatingsystem {
     'Darwin': {

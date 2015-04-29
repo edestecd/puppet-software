@@ -64,8 +64,8 @@ class software::params (
 
 
     #### social ####
-    $skype_version = '7.5.738'
-    $skype_url     = "http://download.skype.com/macosx/36ef3be64252e5a4a2db5ba4aa6c0df3/Skype_${skype_version}.dmg"
+    $skype_version = '7.7.335'
+    $skype_url     = "http://download.skype.com/macosx/f7bfbd2489fd90e643c40ce418b05fc3/Skype_${skype_version}.dmg"
 
 
     #### storage ####

@@ -6,17 +6,17 @@
 #
 
 class software::virtualization (
-  $applications_path    = $software::params::applications_path,
-  $virtualbox_version   = $software::params::virtualbox_version,
-  $virtualbox_build     = $software::params::virtualbox_build,
-  $virtualbox_url       = $software::params::virtualbox_url,
+  $ensure             = $software::params::software_ensure,
+  $virtualbox_version = $software::params::virtualbox_version,
+  $virtualbox_build   = $software::params::virtualbox_build,
+  $virtualbox_url     = $software::params::virtualbox_url,
 ) inherits software::params {
 
   class { 'software::virtualization::virtualbox':
-    applications_path => $applications_path,
-    version           => $virtualbox_version,
-    build             => $virtualbox_build,
-    url               => $virtualbox_url,
+    ensure  => $ensure,
+    version => $virtualbox_version,
+    build   => $virtualbox_build,
+    url     => $virtualbox_url,
   }
 
 }

@@ -1,25 +1,30 @@
 # fetch.pp
-# Install Fetch for osx
+# Install Fetch for OS X
 # http://fetchsoftworks.com
 #
 
 class software::storage::fetch (
-  $applications_path = $software::params::applications_path,
-  $version           = $software::params::fetch_version,
-  $url               = $software::params::fetch_url,
+  $ensure  = $software::params::software_ensure,
+  $version = $software::params::fetch_version,
+  $url     = $software::params::fetch_url,
 ) inherits software::params {
 
-  validate_absolute_path($applications_path)
-  validate_string($version)
-  validate_string($url)
+  validate_string($ensure)
 
-  $app      = 'Fetch.app'
-  $app_path = file_join($applications_path, $app)
+  case $::operatingsystem {
+    'Darwin': {
+      validate_string($version)
+      validate_string($url)
 
-  package { "Fetch-${version}":
-    ensure   => installed,
-    provider => appdmg,
-    source   => $url,
+      package { "Fetch-${version}":
+        ensure   => $ensure,
+        provider => appdmg,
+        source   => $url,
+      }
+    }
+    default: {
+      fail("The ${name} class is not supported on ${::operatingsystem}.")
+    }
   }
 
 }

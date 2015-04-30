@@ -1,23 +1,48 @@
 # drive.pp
-# Install Google Drive for osx
-# https://tools.google.com/dlpage/drive/?hl=en
+# Install Google Drive for OS X or Ubuntu
+# https://www.google.com/drive/download
+#
+# Some third party solutions exist for linux
+# http://www.howtogeek.com/196635/an-official-google-drive-for-linux-is-here-sort-of-maybe-this-is-all-well-ever-get
+# I choose the most official command line solution:
+# https://github.com/odeke-em/drive
 #
 
 class software::storage::drive (
-  $applications_path = $software::params::applications_path,
-  $url               = $software::params::drive_url,
+  $ensure = $software::params::software_ensure,
+  $url    = $software::params::drive_url,
 ) inherits software::params {
 
-  validate_absolute_path($applications_path)
-  validate_string($url)
+  validate_string($ensure)
 
-  $app      = 'Google Drive.app'
-  $app_path = file_join($applications_path, $app)
+  case $::operatingsystem {
+    'Darwin': {
+      validate_string($url)
 
-  package { 'GoogleDrive':
-    ensure   => installed,
-    provider => appdmg,
-    source   => $url,
+      package { 'GoogleDrive':
+        ensure   => $ensure,
+        provider => appdmg,
+        source   => $url,
+      }
+    }
+    'Ubuntu': {
+      $apt_ppa_ensure = $ensure ? {
+        installed => present,
+        latest    => present,
+        default   => $ensure,
+      }
+
+      apt::ppa { 'ppa:twodopeshaggy/drive':
+        ensure => $apt_ppa_ensure,
+      } ->
+
+      package { 'drive':
+        ensure => $ensure,
+      }
+    }
+    default: {
+      fail("The ${name} class is not supported on ${::operatingsystem}.")
+    }
   }
 
 }

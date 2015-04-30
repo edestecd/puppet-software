@@ -69,9 +69,11 @@ class software::params (
 
 
     #### storage ####
-    $drive_url     = 'https://dl.google.com/drive/installgoogledrive.dmg'
-    $fetch_version = '5.7.5'
-    $fetch_url     = "http://getfetch.com/Fetch_${fetch_version}.dmg"
+    $drive_url         = 'https://dl.google.com/drive/installgoogledrive.dmg'
+    $fetch_version     = '5.7.5'
+    $fetch_url         = "http://getfetch.com/Fetch_${fetch_version}.dmg"
+    $filezilla_version = '3.10.3'
+    $filezilla_url     = "https://sourceforge.net/projects/filezilla/files/FileZilla_Client/${filezilla_version}/FileZilla_${filezilla_version}_macosx-x86.app.tar.bz2/download"
 
 
     #### utilities ####

@@ -4,20 +4,25 @@
 #
 
 class software::webstack::anvil (
-  $applications_path = $software::params::applications_path,
-  $url               = $software::params::anvil_url,
+  $ensure = $software::params::software_ensure,
+  $url    = $software::params::anvil_url,
 ) inherits software::params {
 
-  validate_absolute_path($applications_path)
-  validate_string($url)
+  validate_string($ensure)
 
-  $app      = 'Anvil.app'
-  $app_path = file_join($applications_path, $app)
+  case $::operatingsystem {
+    'Darwin': {
+      validate_string($url)
 
-  package { 'Anvil':
-    ensure   => installed,
-    provider => appcompressed,
-    source   => $url,
+      package { 'Anvil':
+        ensure   => $ensure,
+        provider => appcompressed,
+        source   => $url,
+      }
+    }
+    default: {
+      fail("The ${name} class is not supported on ${::operatingsystem}.")
+    }
   }
 
 }

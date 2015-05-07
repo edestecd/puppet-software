@@ -1,3 +1,9 @@
+2015-05-06 (0.3.0)  Chris Edester
+        * Ubuntu Desktop support
+        * Add MySQL Workbench
+        * Add Atom
+        * Add FileZilla
+
 2015-04-17 (0.2.1)  Chris Edester
         * Updated doc and initial public release
 

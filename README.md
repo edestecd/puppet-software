@@ -118,9 +118,12 @@ This module has been built on and tested against Puppet 3.2.4 and higher.
 While I am sure other versions work, I have not tested them.
 
 This module supports modern OS X and Ubuntu systems.  
-This module has been tested on OS X 10.9 "Mavericks" and Ubuntu 14.04.
+This module has been heavily tested on:
+* OS X 10.9 Mavericks
+* OS X 10.10 Yosemite
+* Ubuntu Desktop 14.04
 
-No plans to support other versions (unless you add it :)..
+Many classes also support older versions of OS X and Ubuntu.
 
 ##Development
 

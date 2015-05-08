@@ -21,7 +21,7 @@ class software::params (
 
     #### browsers ####
     $chrome_url      = 'https://dl.google.com/chrome/mac/stable/GGRO/googlechrome.dmg'
-    $firefox_version = '36.0.1'
+    $firefox_version = '37.0.2'
     $firefox_url     = "https://download-installer.cdn.mozilla.net/pub/firefox/releases/${firefox_version}/mac/en-US/Firefox%20${firefox_version}.dmg"
 
 
@@ -47,7 +47,7 @@ class software::params (
 
 
     #### entertainment ####
-    $vlc_version = '2.2.0'
+    $vlc_version = '2.2.1'
     $vlc_url     = "https://get.videolan.org/vlc/${vlc_version}/macosx/vlc-${vlc_version}.dmg"
 
 
@@ -77,9 +77,9 @@ class software::params (
 
 
     #### utilities ####
-    $alfred_version       = '2.6_374'
+    $alfred_version       = '2.7.1_387'
     $alfred_url           = "https://cachefly.alfredapp.com/Alfred_${alfred_version}.zip"
-    $controlplane_version = '1.5.6'
+    $controlplane_version = '1.5.7'
     $controlplane_url     = "https://dl.dropboxusercontent.com/u/12850/ControlPlane/ControlPlane-${controlplane_version}.dmg"
     $iterm_version        = '2_0'
     $iterm_url            = "https://iterm2.com/downloads/stable/iTerm2_v${iterm_version}.zip"
@@ -91,8 +91,8 @@ class software::params (
 
 
     #### virtualization ####
-    $virtualbox_version = '4.3.24'
-    $virtualbox_build   = '98716'
+    $virtualbox_version = '4.3.26'
+    $virtualbox_build   = '98988'
     $virtualbox_url     = "http://download.virtualbox.org/virtualbox/${virtualbox_version}/VirtualBox-${virtualbox_version}-${virtualbox_build}-OSX.dmg"
 
 

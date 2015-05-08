@@ -47,11 +47,19 @@ class software::editors::atom (
     }
     'Ubuntu': {
       $apm_require = Package['atom']
+      $apt_ppa_ensure = $ensure ? {
+        installed => present,
+        latest    => present,
+        default   => $ensure,
+      }
+
+      include '::apt'
+      apt::ppa { 'ppa:webupd8team/atom':
+        ensure => $apt_ppa_ensure,
+      } ->
 
       package { 'atom':
-        ensure   => $ensure,
-        provider => dpkg,
-        source   => $url,
+        ensure => $ensure,
       }
     }
     default: {
@@ -61,10 +69,10 @@ class software::editors::atom (
 
   $apm_ensure = $ensure ? { installed => latest, default => $ensure }
   ensure_resource('package', concat($packages, $themes), {
-    ensure           => $apm_ensure,
-    provider         => apm,
-    package_settings => { 'user' => $user },
-    require          => $apm_require,
+    ensure   => $apm_ensure,
+    provider => apm,
+    source   => $user,
+    require  => $apm_require,
   })
 
 }

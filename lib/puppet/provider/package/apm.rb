@@ -9,20 +9,21 @@ Puppet::Type.type(:package).provide(:apm, :parent => Puppet::Provider::Package) 
 
   commands :apm => 'apm'
 
-  def self.parse(line)
-    if line.chomp =~ /── (\S+)@(\d+\.\d+\.\d+)/
-      { :ensure => Regexp.last_match(2), :name => Regexp.last_match(1), :provider => :apm }
+  def self.parse(line, user)
+    if line.chomp =~ / (\S+)@(\d+\.\d+\.\d+)/
+      { :name => Regexp.last_match(1), :provider => :apm,
+        :ensure => Regexp.last_match(2), :source => user }
     end
   end
 
-  def self.instances
+  def self.instances_by_user(user)
     command = [command(:apm), :list, '--no-color']
 
     begin
-      output = execute(command, command_opts)
+      output = execute(command, command_opts(user))
       [].tap do |a|
         output.lines.each do |line|
-          next unless (package = parse(line))
+          next unless (package = parse(line, user))
           a << new(package)
         end
       end.compact
@@ -31,18 +32,26 @@ Puppet::Type.type(:package).provide(:apm, :parent => Puppet::Provider::Package) 
     end
   end
 
+  def self.instances
+    Dir.entries(home_prefix).reject { |u| u.start_with?('.') }.collect do |user|
+      instances_by_user(user)
+    end.flatten
+  end
+
   def query
     self.class.instances.each do |pkg|
-      return pkg.properties if @resource.name == pkg.name
+      if @resource.name.eql?(pkg.name) && @resource.source.eql?(pkg.source)
+        return pkg.properties
+      end
     end
     nil
   end
 
   def latest
     command = [command(:apm), :upgrade, '--list', '--no-color']
-    output = execute(command, self.class.command_opts)
+    output = execute(command, self.class.command_opts(@resource[:source]))
 
-    if output =~ /── #{Regexp.escape @resource[:name]} (\d+\.\d+\.\d+) -> (\d+\.\d+\.\d+)/
+    if output =~ / #{Regexp.escape @resource[:name]} (\d+\.\d+\.\d+) -> (\d+\.\d+\.\d+)/
       Regexp.last_match(2)
     else
       @property_hash[:ensure]
@@ -61,7 +70,7 @@ Puppet::Type.type(:package).provide(:apm, :parent => Puppet::Provider::Package) 
 
     command << '--no-color'
 
-    execute(command, self.class.command_opts)
+    execute(command, self.class.command_opts(@resource[:source]))
   end
 
   def update
@@ -70,37 +79,35 @@ Puppet::Type.type(:package).provide(:apm, :parent => Puppet::Provider::Package) 
 
   def uninstall
     command = [command(:apm), :uninstall, @resource[:name], '--no-color']
-    execute(command, self.class.command_opts)
+    execute(command, self.class.command_opts(@resource[:source]))
   end
 
-  def self.default_user
-    @resource[:package_settings] && @resource[:package_settings][:user] ||
-      Facter.value(:id) ||
-      'root'
+  def self.default_user(user)
+    user || Facter.value(:id) || 'root'
   end
 
-  def self.home
-    File.join('', homedir_prefix, default_user)
+  def self.home(user)
+    File.join(home_prefix, default_user(user))
   end
 
-  def self.homedir_prefix
-    case Facter[:osfamily].value
-    when 'Darwin' then 'Users'
-    when 'Linux' then 'home'
+  def self.home_prefix
+    case Facter.value(:kernel)
+    when 'Darwin' then File.join('', 'Users')
+    when 'Linux' then File.join('', 'home')
     else
       fail 'unsupported'
     end
   end
 
-  def self.command_opts
+  def self.command_opts(user)
     @command_opts ||= {
       :combine            => true,
       :custom_environment => {
-        'HOME'            => "#{home}",
+        'HOME'            => "#{home(user)}",
         'PATH'            => '/usr/local/bin:/usr/bin:/usr/sbin:/bin:/sbin'
       },
       :failonfail         => true,
-      :uid                => default_user
+      :uid                => default_user(user)
     }
   end
 end

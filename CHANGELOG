@@ -1,4 +1,10 @@
-2015-05-06 (0.3.0)  Chris Edester
+2015-05-08 (0.3.0)  Chris Edester
+        * Bug fixes for Ubuntu/apt
+        * Bug fixes for Atom on Ubuntu
+        * Use apt ppa for Atom on Ubuntu
+        * Bug fixes for Atom package provider (apm)
+
+2015-05-06 (0.3.0-rc1)  Chris Edester
         * Ubuntu Desktop support
         * Add MySQL Workbench
         * Add Atom

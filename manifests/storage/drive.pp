@@ -32,6 +32,7 @@ class software::storage::drive (
         default   => $ensure,
       }
 
+      include '::apt'
       apt::ppa { 'ppa:twodopeshaggy/drive':
         ensure => $apt_ppa_ensure,
       } ->

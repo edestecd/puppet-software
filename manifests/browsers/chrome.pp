@@ -27,6 +27,7 @@ class software::browsers::chrome (
         default   => $ensure,
       }
 
+      include '::apt'
       apt::source { 'google-chrome':
         ensure      => $apt_source_ensure,
         location    => $url,

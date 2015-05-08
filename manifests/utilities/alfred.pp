@@ -48,6 +48,7 @@ class software::utilities::alfred (
         default   => $ensure,
       }
 
+      include '::apt'
       apt::ppa { 'ppa:mutate/ppa':
         ensure => $apt_ppa_ensure,
       } ->

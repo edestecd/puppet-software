@@ -29,6 +29,7 @@ class software::social::skype (
         default   => $ensure,
       }
 
+      include '::apt'
       apt::source { 'skype-partner':
         ensure      => $apt_source_ensure,
         location    => 'http://archive.canonical.com/ubuntu',

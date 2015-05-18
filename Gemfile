@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.1.2', :engine => 'ruby', :engine_version => '2.1.2'
+ruby '2.1.5', :engine => 'ruby', :engine_version => '2.1.5'
 
 gem 'facter'
 gem 'hiera'

@@ -21,8 +21,8 @@ class software::drivers::lanier_mpc5503 (
       validate_string($url)
 
       $printer_ensure = $ensure ? {
-        installed => present,
-        default   => $ensure,
+        'installed' => present,
+        default     => $ensure,
       }
 
       package { "Lanier-MPC5503-${version}":

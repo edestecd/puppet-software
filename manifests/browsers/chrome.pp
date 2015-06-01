@@ -22,9 +22,9 @@ class software::browsers::chrome (
     }
     'Ubuntu': {
       $apt_source_ensure = $ensure ? {
-        installed => present,
-        latest    => present,
-        default   => $ensure,
+        'installed' => present,
+        'latest'    => present,
+        default     => $ensure,
       }
 
       include '::apt'

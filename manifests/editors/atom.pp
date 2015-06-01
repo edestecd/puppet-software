@@ -48,9 +48,9 @@ class software::editors::atom (
     'Ubuntu': {
       $apm_require = Package['atom']
       $apt_ppa_ensure = $ensure ? {
-        installed => present,
-        latest    => present,
-        default   => $ensure,
+        'installed' => present,
+        'latest'    => present,
+        default     => $ensure,
       }
 
       include '::apt'
@@ -67,12 +67,19 @@ class software::editors::atom (
     }
   }
 
-  $apm_ensure = $ensure ? { installed => latest, default => $ensure }
+  $apm_ensure = $ensure ? {
+    'installed' => latest,
+    default     => $ensure,
+  }
+
+  # strict indent is wrong here...
+  # lint:ignore:strict_indent
   ensure_resource('package', concat($packages, $themes), {
     ensure   => $apm_ensure,
     provider => apm,
     source   => $user,
     require  => $apm_require,
   })
+  # lint:endignore
 
 }

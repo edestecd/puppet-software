@@ -11,21 +11,24 @@ Thumbs.db
 
 # Bundler #
 ###########
-/.bundle
+.bundle
+Gemfile.lock
+
+# puppet module build #
+#######################
 /pkg
 
-# Librarian #
-#############
+# Librarian Puppet #
+####################
 .tmp/
-/modules/external/*
+modules/
 
-# Rails config #
-################
-/config/unicorn.rb
-/config/hiera.yaml
+# Puppet testing #
+##################
+/manifests/test/*.pp
 
-# Rails tmp & log contents #
-############################
+# tmp & log contents #
+######################
 /log/*
 /tmp/*
 

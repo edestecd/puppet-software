@@ -5,8 +5,9 @@
 #
 
 class software::browsers::chrome (
-  $ensure = $software::params::software_ensure,
-  $url    = $software::params::chrome_url,
+  $ensure  = $software::params::software_ensure,
+  $url     = $software::params::chrome_url,
+  $channel = $software::params::chrome_channel,
 ) inherits software::params {
 
   validate_string($ensure)
@@ -21,6 +22,8 @@ class software::browsers::chrome (
       }
     }
     'Ubuntu': {
+      validate_string($channel)
+
       $apt_source_ensure = $ensure ? {
         'installed' => present,
         'latest'    => present,
@@ -38,7 +41,7 @@ class software::browsers::chrome (
         include_src => false,
       } ->
 
-      package { 'google-chrome-stable':
+      package { "google-chrome-${channel}":
         ensure => $ensure,
       }
     }

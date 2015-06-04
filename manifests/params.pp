@@ -122,7 +122,8 @@ class software::params (
 
 
     #### browsers ####
-    $chrome_url = 'http://dl.google.com/linux/chrome/deb/'
+    $chrome_url     = 'http://dl.google.com/linux/chrome/deb/'
+    $chrome_channel = 'stable'
 
 
     #### editors ####

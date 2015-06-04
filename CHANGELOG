@@ -1,3 +1,6 @@
+2015-06-04 (0.3.3)  Chris Edester
+        * Allow to set chrome channel
+
 2015-06-01 (0.3.2)  Chris Edester
         * Stop overriding package providers
         * lint fixes

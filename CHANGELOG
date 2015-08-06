@@ -1,3 +1,7 @@
+2015-08-05 (0.4.0)  Chris Edester
+        * Add spec tests
+        * Bump software versions
+
 2015-06-04 (0.3.3)  Chris Edester
         * Allow to set chrome channel
 

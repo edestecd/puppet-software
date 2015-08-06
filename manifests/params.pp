@@ -21,14 +21,14 @@ class software::params (
 
     #### browsers ####
     $chrome_url      = 'https://dl.google.com/chrome/mac/stable/GGRO/googlechrome.dmg'
-    $firefox_version = '37.0.2'
+    $firefox_version = '39.0'
     $firefox_url     = "https://download-installer.cdn.mozilla.net/pub/firefox/releases/${firefox_version}/mac/en-US/Firefox%20${firefox_version}.dmg"
 
 
     #### database ####
-    $mysqlworkbench_version = '6.3.3'
+    $mysqlworkbench_version = '6.3.4'
     $mysqlworkbench_url     = "http://cdn.mysql.com/Downloads/MySQLGUITools/mysql-workbench-community-${mysqlworkbench_version}-osx-x86_64.dmg"
-    $pgcommander_version    = '1.5.5'
+    $pgcommander_version    = '1.5.7'
     $pgcommander_url        = "https://eggerapps.at/pgcommander/download/pgcommander-${pgcommander_version}.zip"
     $sequelpro_version      = '1.0.2'
     $sequelpro_url          = "https://sequel-pro.googlecode.com/files/sequel-pro-${sequelpro_version}.dmg"
@@ -52,8 +52,8 @@ class software::params (
 
 
     #### idesdk ####
-    $android_studio_version = '135.1740770'
-    $android_studio_url     = "https://dl.google.com/dl/android/studio/install/1.1.0/android-studio-ide-${android_studio_version}-mac.dmg"
+    $android_studio_version = '141.2117773'
+    $android_studio_url     = "https://dl.google.com/dl/android/studio/install/1.3.0.10/android-studio-ide-${android_studio_version}-mac.dmg"
 
 
     #### prefpanes ####
@@ -64,22 +64,22 @@ class software::params (
 
 
     #### social ####
-    $skype_version = '7.7.335'
-    $skype_url     = "http://download.skype.com/macosx/f7bfbd2489fd90e643c40ce418b05fc3/Skype_${skype_version}.dmg"
+    $skype_version = '7.10.777'
+    $skype_url     = "http://download.skype.com/macosx/f435d17c106dfeb4de01bbed7c428d7e/Skype_${skype_version}.dmg"
 
 
     #### storage ####
     $drive_url         = 'https://dl.google.com/drive/installgoogledrive.dmg'
     $fetch_version     = '5.7.5'
     $fetch_url         = "http://getfetch.com/Fetch_${fetch_version}.dmg"
-    $filezilla_version = '3.10.3'
+    $filezilla_version = '3.12.0.2'
     $filezilla_url     = "https://sourceforge.net/projects/filezilla/files/FileZilla_Client/${filezilla_version}/FileZilla_${filezilla_version}_macosx-x86.app.tar.bz2/download"
 
 
     #### utilities ####
     $alfred_version       = '2.7.1_387'
     $alfred_url           = "https://cachefly.alfredapp.com/Alfred_${alfred_version}.zip"
-    $controlplane_version = '1.5.7'
+    $controlplane_version = '1.5.8'
     $controlplane_url     = "https://dl.dropboxusercontent.com/u/12850/ControlPlane/ControlPlane-${controlplane_version}.dmg"
     $iterm_version        = '2_0'
     $iterm_url            = "https://iterm2.com/downloads/stable/iTerm2_v${iterm_version}.zip"
@@ -91,8 +91,8 @@ class software::params (
 
 
     #### virtualization ####
-    $virtualbox_version = '4.3.26'
-    $virtualbox_build   = '98988'
+    $virtualbox_version = '5.0.0'
+    $virtualbox_build   = '101573'
     $virtualbox_url     = "http://download.virtualbox.org/virtualbox/${virtualbox_version}/VirtualBox-${virtualbox_version}-${virtualbox_build}-OSX.dmg"
 
 

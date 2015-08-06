@@ -13,23 +13,23 @@ class software::editors (
   $textwrangler_url     = $software::params::textwrangler_url,
 ) inherits software::params {
 
-  class { 'software::editors::atom':
+  class { '::software::editors::atom':
     ensure => $ensure,
     url    => $atom_url,
   }
 
-  class { 'software::editors::textmate':
+  class { '::software::editors::textmate':
     ensure => $ensure,
     url    => $textmate_url,
   }
 
-  class { 'software::editors::textwrangler':
+  class { '::software::editors::textwrangler':
     ensure  => $ensure,
     version => $textwrangler_version,
     url     => $textwrangler_url,
   }
 
-  class { 'software::editors::vim':
+  class { '::software::editors::vim':
     ensure => $ensure,
   }
 

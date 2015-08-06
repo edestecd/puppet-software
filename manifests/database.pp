@@ -15,19 +15,19 @@ class software::database (
   $sequelpro_url          = $software::params::sequelpro_url,
 ) inherits software::params {
 
-  class { 'software::database::mysqlworkbench':
+  class { '::software::database::mysqlworkbench':
     ensure  => $ensure,
     version => $mysqlworkbench_version,
     url     => $mysqlworkbench_url,
   }
 
-  class { 'software::database::pgcommander':
+  class { '::software::database::pgcommander':
     ensure  => $ensure,
     version => $pgcommander_version,
     url     => $pgcommander_url,
   }
 
-  class { 'software::database::sequelpro':
+  class { '::software::database::sequelpro':
     ensure  => $ensure,
     version => $sequelpro_version,
     url     => $sequelpro_url,

@@ -25,7 +25,9 @@ modules/
 
 # Puppet testing #
 ##################
-/manifests/test/*.pp
+spec/fixtures/
+.vagrant
+coverage/
 
 # tmp & log contents #
 ######################

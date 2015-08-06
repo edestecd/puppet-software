@@ -13,13 +13,13 @@ class software::browsers (
   $firefox_url     = $software::params::firefox_url,
 ) inherits software::params {
 
-  class { 'software::browsers::chrome':
+  class { '::software::browsers::chrome':
     ensure  => $ensure,
     url     => $chrome_url,
     channel => $chrome_channel,
   }
 
-  class { 'software::browsers::firefox':
+  class { '::software::browsers::firefox':
     ensure  => $ensure,
     version => $firefox_version,
     url     => $firefox_url,

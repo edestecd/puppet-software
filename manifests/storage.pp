@@ -15,18 +15,18 @@ class software::storage (
   $filezilla_url     = $software::params::filezilla_url,
 ) inherits software::params {
 
-  class { 'software::storage::drive':
+  class { '::software::storage::drive':
     ensure => $ensure,
     url    => $drive_url,
   }
 
-  class { 'software::storage::fetch':
+  class { '::software::storage::fetch':
     ensure  => $ensure,
     version => $fetch_version,
     url     => $fetch_url,
   }
 
-  class { 'software::storage::filezilla':
+  class { '::software::storage::filezilla':
     ensure  => $ensure,
     version => $filezilla_version,
     url     => $filezilla_url,

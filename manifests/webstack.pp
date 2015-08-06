@@ -18,7 +18,7 @@ class software::webstack (
   #   url    => $pow_url,
   # }
 
-  class { 'software::webstack::anvil':
+  class { '::software::webstack::anvil':
     ensure => $ensure,
     url    => $anvil_url,
   }

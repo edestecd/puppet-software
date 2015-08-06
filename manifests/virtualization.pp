@@ -12,7 +12,7 @@ class software::virtualization (
   $virtualbox_url     = $software::params::virtualbox_url,
 ) inherits software::params {
 
-  class { 'software::virtualization::virtualbox':
+  class { '::software::virtualization::virtualbox':
     ensure  => $ensure,
     version => $virtualbox_version,
     build   => $virtualbox_build,

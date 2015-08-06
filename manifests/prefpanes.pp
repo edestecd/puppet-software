@@ -13,13 +13,13 @@ class software::prefpanes (
   $launchrocket_url     = $software::params::launchrocket_url,
 ) inherits software::params {
 
-  class { 'software::prefpanes::hosts':
+  class { '::software::prefpanes::hosts':
     ensure  => $ensure,
     version => $hosts_version,
     url     => $hosts_url,
   }
 
-  class { 'software::prefpanes::launchrocket':
+  class { '::software::prefpanes::launchrocket':
     ensure  => $ensure,
     version => $launchrocket_version,
     url     => $launchrocket_url,

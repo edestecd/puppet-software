@@ -18,7 +18,7 @@ class software::utilities (
   $onyx_url             = $software::params::onyx_url,
 ) inherits software::params {
 
-  class { 'software::utilities::alfred':
+  class { '::software::utilities::alfred':
     ensure            => $ensure,
     applications_path => $applications_path,
     utilities_path    => $utilities_path,
@@ -26,7 +26,7 @@ class software::utilities (
     url               => $alfred_url,
   }
 
-  class { 'software::utilities::controlplane':
+  class { '::software::utilities::controlplane':
     ensure            => $ensure,
     applications_path => $applications_path,
     utilities_path    => $utilities_path,
@@ -34,7 +34,7 @@ class software::utilities (
     url               => $controlplane_url,
   }
 
-  class { 'software::utilities::iterm':
+  class { '::software::utilities::iterm':
     ensure            => $ensure,
     applications_path => $applications_path,
     utilities_path    => $utilities_path,
@@ -42,7 +42,7 @@ class software::utilities (
     url               => $iterm_url,
   }
 
-  class { 'software::utilities::onyx':
+  class { '::software::utilities::onyx':
     ensure            => $ensure,
     applications_path => $applications_path,
     utilities_path    => $utilities_path,

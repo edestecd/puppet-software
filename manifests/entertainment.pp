@@ -14,7 +14,7 @@ class software::entertainment (
   $vlc_url     = $software::params::vlc_url,
 ) inherits software::params {
 
-  class { 'software::entertainment::vlc':
+  class { '::software::entertainment::vlc':
     ensure  => $ensure,
     version => $vlc_version,
     url     => $vlc_url,

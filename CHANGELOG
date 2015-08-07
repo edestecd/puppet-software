@@ -1,3 +1,7 @@
+2015-08-07 (0.5.0)  Chris Edester
+        * Allow to specify ensure on atom packages and themes
+        * Breaking change: You must now specify atom packages and themes as hashes
+
 2015-08-07 (0.4.2)  Chris Edester
         * Bug fixes for apm provider
 

@@ -106,12 +106,12 @@ class software::params (
       $onyx_url = 'http://www.titanium.free.fr/download/108/OnyX.dmg'
     } elsif versioncmp($::macosx_productversion_major, '10.9') == 0 {
       #### utilities ####
-      $onyx_url = 'http://joel.barriere.pagesperso-orange.fr/dl/109/OnyX.dmg'
+      $onyx_url = 'http://www.titanium.free.fr/download/109/OnyX.dmg'
     } elsif versioncmp($::macosx_productversion_major, '10.10') == 0 {
       #### utilities ####
-      $onyx_url = 'http://joel.barriere.pagesperso-orange.fr/dl/1010/OnyX.dmg'
+      $onyx_url = 'http://joel.barriere.pagesperso-orange.fr/download/1010/OnyX.dmg'
     } else {
-      fail("The ${module_name} module only supports 'Mountain Lion', 'Mavericks', 'Yosemite‎'.")
+      fail("The ${module_name} module only supports 'Mountain Lion', 'Mavericks', 'Yosemite'.")
     }
   } elsif ($::operatingsystem == 'Ubuntu') and (versioncmp($::operatingsystemrelease, '12.04') >= 0) {
     #### init ####

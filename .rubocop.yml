@@ -26,7 +26,7 @@ Metrics/MethodLength:
 
 Metrics/LineLength:
   # Ruduce this... Max: 80
-  Max: 100
+  Max: 101
 
 Metrics/AbcSize:
   # Ruduce this... Max: 15

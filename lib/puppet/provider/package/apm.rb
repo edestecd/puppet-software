@@ -33,7 +33,7 @@ Puppet::Type.type(:package).provide(:apm, :parent => Puppet::Provider::Package) 
   end
 
   def self.instances
-    Dir.entries(home_prefix).reject { |u| u.start_with?('.') }.collect do |user|
+    Dir.entries(home_prefix).reject { |u| u.start_with?('.') || u.eql?('Shared') }.collect do |user|
       instances_by_user(user)
     end.flatten
   end
@@ -100,6 +100,7 @@ Puppet::Type.type(:package).provide(:apm, :parent => Puppet::Provider::Package) 
   end
 
   def self.command_opts(user)
+    Dir.chdir("#{home(user)}")
     @command_opts ||= {
       :combine            => true,
       :custom_environment => {

@@ -8,17 +8,15 @@
 class software::editors::atom (
   $ensure   = $software::params::software_ensure,
   $url      = $software::params::atom_url,
-  $packages = [],
-  $themes   = [],
+  $packages = {},
+  $themes   = {},
   $user     = undef,
 ) inherits software::params {
 
-  validate_string($ensure)
-  validate_string($url)
-  validate_array($packages)
-  validate_array($themes)
+  validate_string($ensure, $url)
+  validate_hash($packages, $themes)
 
-  unless empty(concat($packages, $themes)) {
+  unless empty(merge($packages, $themes)) {
     validate_string($user)
   }
 
@@ -74,7 +72,7 @@ class software::editors::atom (
 
   # strict indent is wrong here...
   # lint:ignore:strict_indent
-  ensure_resource('package', concat($packages, $themes), {
+  create_resources('package', merge($packages, $themes), {
     ensure   => $apm_ensure,
     provider => apm,
     source   => $user,

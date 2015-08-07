@@ -25,8 +25,8 @@ class software::utilities::alfred (
       validate_string($url)
 
       $app       = 'Alfred 2.app'
-      $app_path  = file_join($applications_path, $app)
-      $util_path = file_join($utilities_path, $app)
+      $app_path  = "${applications_path}/${app}"
+      $util_path = "${utilities_path}/${app}"
 
       package { "Alfred-${version}":
         ensure   => $ensure,

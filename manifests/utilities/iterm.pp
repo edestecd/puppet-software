@@ -21,8 +21,8 @@ class software::utilities::iterm (
       validate_string($url)
 
       $app       = 'iTerm.app'
-      $app_path  = file_join($applications_path, $app)
-      $util_path = file_join($utilities_path, $app)
+      $app_path  = "${applications_path}/${app}"
+      $util_path = "${utilities_path}/${app}"
 
       package { "iTerm-${version}":
         ensure   => $ensure,

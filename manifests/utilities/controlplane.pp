@@ -21,8 +21,8 @@ class software::utilities::controlplane (
       validate_string($url)
 
       $app       = 'ControlPlane.app'
-      $app_path  = file_join($applications_path, $app)
-      $util_path = file_join($utilities_path, $app)
+      $app_path  = "${applications_path}/${app}"
+      $util_path = "${utilities_path}/${app}"
 
       package { "ControlPlane-${version}":
         ensure   => $ensure,

@@ -14,9 +14,9 @@ class software::params (
       undef   => installed,
       default => $ensure,
     }
-    $applications_path     = file_join('', 'Applications')
-    $utilities_path        = file_join($applications_path, 'Utilities')
-    $preference_panes_path = file_join('', 'Library', 'PreferencePanes')
+    $applications_path     = '/Applications'
+    $utilities_path        = "${applications_path}/Utilities"
+    $preference_panes_path = '/Library/PreferencePanes'
 
 
     #### browsers ####

@@ -11,14 +11,10 @@ class software::virtualization::virtualbox (
   $url     = $software::params::virtualbox_url,
 ) inherits software::params {
 
-  validate_string($ensure)
+  validate_string($ensure, $version, $build, $url)
 
   case $::operatingsystem {
     'Darwin': {
-      validate_string($version)
-      validate_string($build)
-      validate_string($url)
-
       exec { 'KillVirtualBoxProcesses':
         command     => 'pkill "VBoxXPCOMIPCD" || true && pkill "VBoxSVC" || true && pkill "VBoxHeadless" || true',
         path        => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
@@ -33,9 +29,25 @@ class software::virtualization::virtualbox (
       }
     }
     'Ubuntu': {
-      package { 'virtualbox-qt':
-        ensure => $ensure,
+      $apt_source_ensure = $ensure ? {
+        'installed' => present,
+        'latest'    => present,
+        default     => $ensure,
       }
+
+      include '::apt'
+      apt::source { 'virtualbox':
+        ensure   => $apt_source_ensure,
+        location => $url,
+        repos    => 'contrib',
+        key      => {
+          'id'     => '7B0FAB3A13B907435925D9C954422A4B98AB5139',
+          'source' => 'https://www.virtualbox.org/download/oracle_vbox.asc',
+        },
+      } ->
+
+      package { 'dkms': } ->
+      package { "virtualbox-${version}": ensure => $ensure }
     }
     default: {
       fail("The ${name} class is not supported on ${::operatingsystem}.")

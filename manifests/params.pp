@@ -130,6 +130,12 @@ class software::params (
     $atom_url = 'https://atom.io/download/deb'
 
 
+    #### virtualization ####
+    $virtualbox_version = '5.0'
+    $virtualbox_build   = '101573'
+    $virtualbox_url     = 'http://download.virtualbox.org/virtualbox/debian'
+
+
   } else {
     fail("The ${module_name} module is not supported on ${::operatingsystem} with version ${::operatingsystemrelease}.")
   }

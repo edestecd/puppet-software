@@ -91,8 +91,8 @@ class software::params (
 
 
     #### virtualization ####
-    $virtualbox_version = '5.0.0'
-    $virtualbox_build   = '101573'
+    $virtualbox_version = '5.0.2'
+    $virtualbox_build   = '102096'
     $virtualbox_url     = "http://download.virtualbox.org/virtualbox/${virtualbox_version}/VirtualBox-${virtualbox_version}-${virtualbox_build}-OSX.dmg"
 
 
@@ -132,7 +132,7 @@ class software::params (
 
     #### virtualization ####
     $virtualbox_version = '5.0'
-    $virtualbox_build   = '101573'
+    $virtualbox_build   = '102096'
     $virtualbox_url     = 'http://download.virtualbox.org/virtualbox/debian'
 
 

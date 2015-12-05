@@ -67,6 +67,7 @@ include software::browsers::chrome
 include software::browsers::firefox
 include software::database::pgcommander
 include software::database::sequelpro
+include software::editors::atom
 include software::editors::textmate
 include software::entertainment::vlc
 include software::idesdk::android_studio
@@ -75,6 +76,7 @@ include software::prefpanes::launchrocket
 include software::social::skype
 include software::storage::drive
 include software::storage::fetch
+include software::storage::filezilla
 include software::utilities::alfred
 include software::utilities::controlplane
 include software::utilities::iterm
@@ -99,8 +101,20 @@ hiera_include('classes')
 ---
 classes:
 - software::browsers::chrome
+- software::editors::atom
 - software::entertainment::vlc
 - software::social::skype
+
+software::browsers::chrome::channel: stable
+
+software::editors::atom::packages:
+  language-puppet: {}
+  linter: {}
+  linter-puppet-lint: {}
+  linter-rubocop: {}
+software::editors::atom::themes:
+  twilight-syntax: {}
+software::editors::atom::user: username
 ```
 
 ##Reference

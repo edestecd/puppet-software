@@ -121,6 +121,7 @@ This module supports modern OS X and Ubuntu systems.
 This module has been heavily tested on:
 * OS X 10.9 Mavericks
 * OS X 10.10 Yosemite
+* OS X 10.11 El Capitan
 * Ubuntu Desktop 14.04
 
 Many classes also support older versions of OS X and Ubuntu.

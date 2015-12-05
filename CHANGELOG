@@ -1,3 +1,8 @@
+2015-08-07 (1.0.0)  Chris Edester
+        * Ubuntu - Use official virtualbox repo for latest version
+        * Support OS X 10.11 El Capitan
+        * Bump software versions
+
 2015-08-07 (0.5.0)  Chris Edester
         * Allow to specify ensure on atom packages and themes
         * Breaking change: You must now specify atom packages and themes as hashes

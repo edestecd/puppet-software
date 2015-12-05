@@ -17,6 +17,7 @@ AllCops:
     - 'modules/**/*'
     - 'pkg/**/*'
     - 'spec/fixtures/**/*'
+    - 'vendor/**/*'
   RunRailsCops: false
   DisplayCopNames: true
 

@@ -1,8 +1,8 @@
 software
 =============
 
-[![Puppet Forge](http://img.shields.io/puppetforge/v/edestecd/software.svg)](https://forge.puppetlabs.com/edestecd/software)
-[![Issue stats](http://issuestats.com/github/edestecd/puppet-software/badge/pr?style=flat)](http://issuestats.com/github/edestecd/puppet-software)
+[![Puppet Forge](https://img.shields.io/puppetforge/v/edestecd/software.svg)](https://forge.puppetlabs.com/edestecd/software)
+[![Issue Stats](http://issuestats.com/github/edestecd/puppet-software/badge/pr?style=flat)](http://issuestats.com/github/edestecd/puppet-software)
 
 ####Table of Contents
 
@@ -16,6 +16,7 @@ software
 5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
 5. [Limitations - OS compatibility, etc.](#limitations)
 6. [Development - Guide for contributing to the module](#development)
+7. [Contributors](#contributors)
 
 ##Overview
 

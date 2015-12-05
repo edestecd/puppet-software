@@ -1,7 +1,7 @@
 source ENV['GEM_SOURCE'] || 'https://rubygems.org'
 
 group :unit_tests do
-  gem 'rubocop',                                          :require => false
+  gem 'rubocop', '0.34.2',                                :require => false
   gem 'puppetlabs_spec_helper',                           :require => false
   gem 'rspec-puppet-facts',                               :require => false
   gem 'metadata-json-lint',                               :require => false

@@ -1,5 +1,3 @@
-ENV['FUTURE_PARSER'] = 'no'
-
 require 'rubygems' if RUBY_VERSION < '1.9.0'
 # require 'rubocop/rake_task'
 require 'puppetlabs_spec_helper/rake_tasks'
@@ -12,7 +10,8 @@ require 'metadata-json-lint/rake_task'
 exclude_paths = [
   'modules/**/*',
   'pkg/**/*',
-  'spec/**/*'
+  'spec/**/*',
+  'vendor/**/*'
 ]
 
 PuppetLint.configuration.fail_on_warnings = true

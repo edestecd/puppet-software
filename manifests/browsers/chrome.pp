@@ -32,14 +32,15 @@ class software::browsers::chrome (
 
       include '::apt'
       apt::source { 'google-chrome':
-        ensure   => $apt_source_ensure,
-        location => $url,
-        release  => 'stable',
-        repos    => 'main',
-        key      => {
+        ensure       => $apt_source_ensure,
+        location     => $url,
+        release      => 'stable',
+        repos        => 'main',
+        key          => {
           'id'     => '4CCA1EAF950CEE4AB83976DCA040830F7FAC5991',
           'source' => 'https://dl.google.com/linux/linux_signing_key.pub',
         },
+        architecture => 'amd64',
       } ->
 
       package { "google-chrome-${channel}":

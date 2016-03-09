@@ -1,6 +1,6 @@
 {
   "name": "edestecd-software",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Chris Edester",
   "summary": "Puppet Module to install various Desktop Software",
   "license": "GPL-3.0+",

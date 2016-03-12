@@ -1,3 +1,6 @@
+2016-03-12 (1.0.2)  Chris Edester
+        * Bump versions
+
 2016-03-09 (1.0.1)  Chris Edester
         * Explicitly set 64-bit for chrome apt repo to avoid error
 

@@ -21,18 +21,17 @@ class software::params (
 
     #### browsers ####
     $chrome_url      = 'https://dl.google.com/chrome/mac/stable/GGRM/googlechrome.dmg'
-    $firefox_version = '42.0'
+    $firefox_version = '45.0'
     $firefox_url     = "https://download-installer.cdn.mozilla.net/pub/firefox/releases/${firefox_version}/mac/en-US/Firefox%20${firefox_version}.dmg"
 
 
     #### database ####
-    $mysqlworkbench_version = '6.3.5'
+    $mysqlworkbench_version = '6.3.6'
     $mysqlworkbench_url     = "http://cdn.mysql.com/Downloads/MySQLGUITools/mysql-workbench-community-${mysqlworkbench_version}-osx-x86_64.dmg"
-    $pgcommander_version    = '1.5.7'
-    $pgcommander_url        = "https://eggerapps.at/pgcommander/download/pgcommander-${pgcommander_version}.zip"
-    $sequelpro_version      = '1.1'
-    $sequelpro_url          = "https://github.com/sequelpro/sequelpro/releases/download/release-${sequelpro_version}/sequel-pro-${sequelpro_version}.dmg"
-
+    $pgcommander_version    = '1.5.9'
+    $pgcommander_url        = "https://eggerapps-downloads.s3.amazonaws.com/pgcommander-${pgcommander_version}.zip"
+    $sequelpro_version      = '1.1.1'
+    $sequelpro_url          = "https://github.com/sequelpro/sequelpro/releases/download/${sequelpro_version}/sequel-pro-${sequelpro_version}.dmg"
 
     #### drivers ####
     $lanier_mpc5503_version = '2.2.0.0'
@@ -47,13 +46,13 @@ class software::params (
 
 
     #### entertainment ####
-    $vlc_version = '2.2.1'
+    $vlc_version = '2.2.2'
     $vlc_url     = "https://get.videolan.org/vlc/${vlc_version}/macosx/vlc-${vlc_version}.dmg"
 
 
     #### idesdk ####
-    $android_studio_version = '141.2422023'
-    $android_studio_url     = "https://dl.google.com/dl/android/studio/install/1.5.0.4/android-studio-ide-${android_studio_version}-mac.dmg"
+    $android_studio_version = '141.2456560'
+    $android_studio_url     = "https://dl.google.com/dl/android/studio/install/1.5.1.0/android-studio-ide-${android_studio_version}-mac.dmg"
 
 
     #### prefpanes ####
@@ -64,20 +63,20 @@ class software::params (
 
 
     #### social ####
-    $skype_version = '7.17.377'
-    $skype_url     = "http://download.skype.com/macosx/8e715ff36029b3b8a040a2ed96812ab3/Skype_${skype_version}.dmg"
+    $skype_version = '7.21.350'
+    $skype_url     = "http://download.skype.com/macosx/d5410ef3de6d9f31d74f1f684db3dfdf/Skype_${skype_version}.dmg"
 
 
     #### storage ####
     $drive_url         = 'https://dl.google.com/drive/installgoogledrive.dmg'
     $fetch_version     = '5.7.5'
     $fetch_url         = "http://getfetch.com/Fetch_${fetch_version}.dmg"
-    $filezilla_version = '3.14.1'
+    $filezilla_version = '3.16.0'
     $filezilla_url     = "https://sourceforge.net/projects/filezilla/files/FileZilla_Client/${filezilla_version}/FileZilla_${filezilla_version}_macosx-x86.app.tar.bz2/download"
 
 
     #### utilities ####
-    $alfred_version       = '2.8.1_425'
+    $alfred_version       = '2.8.3_435'
     $alfred_url           = "https://cachefly.alfredapp.com/Alfred_${alfred_version}.zip"
     $controlplane_version = '1.6.1'
     $controlplane_url     = "https://dl.dropboxusercontent.com/u/12850/ControlPlane/ControlPlane-${controlplane_version}.dmg"
@@ -86,18 +85,18 @@ class software::params (
 
 
     #### vcsscm ####
-    $sourcetree_version = '2.0.5.8'
+    $sourcetree_version = '2.2.3'
     $sourcetree_url     = "https://downloads.atlassian.com/software/sourcetree/SourceTree_${sourcetree_version}.dmg"
 
 
     #### virtualization ####
-    $virtualbox_version = '5.0.10'
-    $virtualbox_build   = '104061'
+    $virtualbox_version = '5.0.16'
+    $virtualbox_build   = '105871'
     $virtualbox_url     = "http://download.virtualbox.org/virtualbox/${virtualbox_version}/VirtualBox-${virtualbox_version}-${virtualbox_build}-OSX.dmg"
 
 
     #### webstack ####
-    $anvil_url = 'http://s3.amazonaws.com/sparkler_versions/versions/uploads/000/000/120/original/Anvil_2015-09-30_10-05-46.zip'
+    $anvil_url = 'http://s3.amazonaws.com/sparkler_versions/versions/uploads/000/000/129/original/Anvil_2016-02-24_11-50-56.zip'
     $pow_url   = 'get.pow.cx'
 
 
@@ -135,7 +134,7 @@ class software::params (
 
     #### virtualization ####
     $virtualbox_version = '5.0'
-    $virtualbox_build   = '104061'
+    $virtualbox_build   = '105871'
     $virtualbox_url     = 'http://download.virtualbox.org/virtualbox/debian'
 
 

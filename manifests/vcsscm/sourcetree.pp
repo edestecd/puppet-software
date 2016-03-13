@@ -1,5 +1,5 @@
 # sourcetree.pp
-# Install SourceTree for OS X
+# Install SourceTree for OS X or Windows
 # http://www.sourcetreeapp.com
 #
 
@@ -20,6 +20,12 @@ class software::vcsscm::sourcetree (
         ensure   => $ensure,
         provider => appdmg,
         source   => $url,
+      }
+    }
+    'windows': {
+      package { 'sourcetree':
+        ensure   => $ensure,
+        provider => chocolatey,
       }
     }
     default: {

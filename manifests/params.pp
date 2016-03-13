@@ -136,8 +136,13 @@ class software::params (
     $virtualbox_version = '5.0'
     $virtualbox_build   = '105871'
     $virtualbox_url     = 'http://download.virtualbox.org/virtualbox/debian'
-
-
+  } elsif ($::operatingsystem == 'windows') and (versioncmp($::operatingsystemrelease, '7.0') >= 0) {
+    #### init ####
+    include '::chocolatey'
+    $software_ensure = $ensure ? {
+      undef   => latest,
+      default => $ensure,
+    }
   } else {
     fail("The ${module_name} module is not supported on ${::operatingsystem} with version ${::operatingsystemrelease}.")
   }

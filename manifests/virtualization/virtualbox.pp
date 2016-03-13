@@ -1,5 +1,5 @@
 # virtualbox.pp
-# Install Virtual Box for OS X or Ubuntu
+# Install Virtual Box for OS X, Ubuntu, or Windows
 # https://www.virtualbox.org
 #
 #
@@ -11,10 +11,12 @@ class software::virtualization::virtualbox (
   $url     = $software::params::virtualbox_url,
 ) inherits software::params {
 
-  validate_string($ensure, $version, $build, $url)
+  validate_string($ensure)
 
   case $::operatingsystem {
     'Darwin': {
+      validate_string($version, $build, $url)
+
       exec { 'KillVirtualBoxProcesses':
         command     => 'pkill "VBoxXPCOMIPCD" || true && pkill "VBoxSVC" || true && pkill "VBoxHeadless" || true',
         path        => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
@@ -29,6 +31,7 @@ class software::virtualization::virtualbox (
       }
     }
     'Ubuntu': {
+      validate_string($version, $build, $url)
       $apt_source_ensure = $ensure ? {
         'installed' => present,
         'latest'    => present,
@@ -48,6 +51,12 @@ class software::virtualization::virtualbox (
 
       package { 'dkms': } ->
       package { "virtualbox-${version}": ensure => $ensure }
+    }
+    'windows': {
+      package { 'virtualbox':
+        ensure   => $ensure,
+        provider => chocolatey,
+      }
     }
     default: {
       fail("The ${name} class is not supported on ${::operatingsystem}.")

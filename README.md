@@ -34,6 +34,7 @@ This module provides a quick way to get many repetitive apps installed.
 This module currently supports:
 * Apple Mac OS X
 * Ubuntu Desktop
+* Windows
 
 Other modules exist for many of these applications and I have used some of them
 as examples, but I prefer to manage these in one module.  
@@ -44,7 +45,7 @@ exactly the applications you desire.
 
 ###What software affects
 
-only installs apps (OS X) and packages (Ubuntu)
+only installs apps (OS X) and packages (Ubuntu, Windows)
 
 ###Setup Requirements
 
@@ -71,6 +72,7 @@ include software::editors::atom
 include software::editors::textmate
 include software::entertainment::vlc
 include software::idesdk::android_studio
+include software::idesdk::android_tools
 include software::prefpanes::hosts
 include software::prefpanes::launchrocket
 include software::social::skype
@@ -81,8 +83,10 @@ include software::utilities::alfred
 include software::utilities::controlplane
 include software::utilities::iterm
 include software::utilities::onyx
+include software::vcsscm::git
 include software::vcsscm::sourcetree
 include software::virtualization::virtualbox
+include software::virtualization::vagrant
 include software::webstack::anvil
 ```
 
@@ -125,7 +129,13 @@ software::editors::atom::user: username
 * database
 * editors
 * entertainment
+* idesdk
 * social
+* storage
+* utilities
+* vcsscm
+* virtualization
+* webstack
 
 ##Limitations
 
@@ -135,19 +145,20 @@ You may need to pass these license keys and possibly urls to use those classes.
 This module has been built on and tested against Puppet 3.2.4 and higher.  
 While I am sure other versions work, I have not tested them.
 
-This module supports modern OS X and Ubuntu systems.  
+This module supports modern OS X, Ubuntu, and Windows systems.  
 This module has been heavily tested on:
 * OS X 10.9 Mavericks
 * OS X 10.10 Yosemite
 * OS X 10.11 El Capitan
 * Ubuntu Desktop 14.04
+* Windows 10
 
-Many classes also support older versions of OS X and Ubuntu.
+Many classes also support older versions of OS X, Ubuntu, and Windows.
 
 ##Development
 
 Pull Requests welcome  
-Please at least make sure puppet-lint passes.
+Please at least make sure ```rake test``` passes.
 
 ##Contributors
 

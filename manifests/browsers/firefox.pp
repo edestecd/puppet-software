@@ -1,5 +1,5 @@
 # firefox.pp
-# Install Firefox for OS X or Ubuntu
+# Install Firefox for OS X, Ubuntu, or Windows
 # http://www.mozilla.org/en-US/firefox/new
 #
 
@@ -25,6 +25,12 @@ class software::browsers::firefox (
     'Ubuntu': {
       package { 'firefox':
         ensure => $ensure,
+      }
+    }
+    'windows': {
+      package { 'firefox':
+        ensure   => $ensure,
+        provider => chocolatey,
       }
     }
     default: {

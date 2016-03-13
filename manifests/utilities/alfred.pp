@@ -1,5 +1,5 @@
 # alfred.pp
-# Install Alfred 2 for OS X or Ubuntu
+# Install Alfred 2 for OS X, Ubuntu, or Windows
 # http://www.alfredapp.com
 #
 # Ubuntu gets an alternative:
@@ -55,6 +55,12 @@ class software::utilities::alfred (
 
       package { 'mutate':
         ensure => $ensure,
+      }
+    }
+    'windows': {
+      package { 'wox':
+        ensure   => $ensure,
+        provider => chocolatey,
       }
     }
     default: {

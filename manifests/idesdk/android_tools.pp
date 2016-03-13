@@ -15,6 +15,12 @@ class software::idesdk::android_tools (
         ensure => $ensure,
       }
     }
+    'windows': {
+      package { 'adb':
+        ensure   => $ensure,
+        provider => chocolatey,
+      }
+    }
     default: {
       fail("The ${name} class is not supported on ${::operatingsystem}.")
     }

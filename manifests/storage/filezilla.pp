@@ -1,5 +1,5 @@
 # filezilla.pp
-# Install FileZilla for OS X or Ubuntu
+# Install FileZilla for OS X, Ubuntu, or Windows
 # https://filezilla-project.org
 #
 
@@ -26,6 +26,12 @@ class software::storage::filezilla (
     'Ubuntu': {
       package { 'filezilla':
         ensure => $ensure,
+      }
+    }
+    'windows': {
+      package { 'filezilla':
+        ensure   => $ensure,
+        provider => chocolatey,
       }
     }
     default: {

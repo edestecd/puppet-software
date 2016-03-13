@@ -27,6 +27,12 @@ class software::entertainment::vlc (
         ensure => $ensure,
       }
     }
+    'windows': {
+      package { 'vlc':
+        ensure   => $ensure,
+        provider => chocolatey,
+      }
+    }
     default: {
       fail("The ${name} class is not supported on ${::operatingsystem}.")
     }

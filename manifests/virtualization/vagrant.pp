@@ -1,28 +1,21 @@
-# git.pp
-# Install git cli
+# vagrant.pp
+# Install Vagrant for OS X, Ubuntu, or Windows
+# https://www.vagrantup.com/
+#
 #
 
-class software::vcsscm::git (
+class software::virtualization::vagrant (
   $ensure = $software::params::software_ensure,
-  $gui    = false,
 ) inherits software::params {
 
   validate_string($ensure)
 
   case $::operatingsystem {
-    'Ubuntu': {
-      package { 'git':
-        ensure => $ensure,
-      }
-
-      if $gui {
-        package { ['gitk', 'git-gui']:
-          ensure => $ensure,
-        }
-      }
+    'Darwin', 'Ubuntu': {
+      include '::vagrant'
     }
     'windows': {
-      package { 'git':
+      package { 'vagrant':
         ensure   => $ensure,
         provider => chocolatey,
       }

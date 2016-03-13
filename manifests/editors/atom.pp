@@ -13,7 +13,7 @@ class software::editors::atom (
   $user     = undef,
 ) inherits software::params {
 
-  validate_string($ensure, $url)
+  validate_string($ensure)
   validate_hash($packages, $themes)
 
   unless empty(merge($packages, $themes)) {
@@ -22,6 +22,7 @@ class software::editors::atom (
 
   case $::operatingsystem {
     'Darwin': {
+      validate_string($url)
       $apm_require = File['/usr/local/bin/apm']
 
       package { 'Atom':
@@ -44,6 +45,7 @@ class software::editors::atom (
       }
     }
     'Ubuntu': {
+      validate_string($url)
       $apm_require = Package['atom']
       $apt_ppa_ensure = $ensure ? {
         'installed' => present,
@@ -58,6 +60,12 @@ class software::editors::atom (
 
       package { 'atom':
         ensure => $ensure,
+      }
+    }
+    'windows': {
+      package { 'atom':
+        ensure   => $ensure,
+        provider => chocolatey,
       }
     }
     default: {

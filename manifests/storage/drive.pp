@@ -1,5 +1,5 @@
 # drive.pp
-# Install Google Drive for OS X or Ubuntu
+# Install Google Drive for OS X, Ubuntu, or Windows
 # https://www.google.com/drive/download
 #
 # Some third party solutions exist for linux
@@ -39,6 +39,12 @@ class software::storage::drive (
 
       package { 'drive':
         ensure => $ensure,
+      }
+    }
+    'windows': {
+      package { 'googledrive':
+        ensure   => $ensure,
+        provider => chocolatey,
       }
     }
     default: {

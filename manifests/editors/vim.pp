@@ -14,6 +14,12 @@ class software::editors::vim (
         ensure => $ensure,
       }
     }
+    'windows': {
+      package { 'vim':
+        ensure   => $ensure,
+        provider => chocolatey,
+      }
+    }
     default: {
       fail("The ${name} class is not supported on ${::operatingsystem}.")
     }

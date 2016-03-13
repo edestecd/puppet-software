@@ -1,5 +1,5 @@
 # skype.pp
-# Install Skype for OS X or Ubuntu
+# Install Skype for OS X, Ubuntu, or Windows
 # http://www.skype.com/en
 #
 
@@ -39,6 +39,12 @@ class software::social::skype (
 
       package { 'skype':
         ensure => $ensure,
+      }
+    }
+    'windows': {
+      package { 'skype':
+        ensure   => $ensure,
+        provider => chocolatey,
       }
     }
     default: {

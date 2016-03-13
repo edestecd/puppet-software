@@ -1,5 +1,5 @@
 # mysqlworkbench.pp
-# Install MySQL Workbench for OS X or Ubuntu
+# Install MySQL Workbench for OS X, Ubuntu, or Windows
 # https://www.mysql.com/products/workbench
 # https://dev.mysql.com/downloads/workbench
 #
@@ -26,6 +26,12 @@ class software::database::mysqlworkbench (
     'Ubuntu': {
       package { 'mysql-workbench':
         ensure => $ensure,
+      }
+    }
+    'windows': {
+      package { 'mysql.workbench':
+        ensure   => $ensure,
+        provider => chocolatey,
       }
     }
     default: {

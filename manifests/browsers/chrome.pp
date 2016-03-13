@@ -1,5 +1,5 @@
 # chrome.pp
-# Install Google Chrome for OS X or Ubuntu
+# Install Google Chrome for OS X, Ubuntu, or Windows
 # https://www.google.com/chrome/browser/desktop
 # https://www.google.com/linuxrepositories
 #
@@ -11,10 +11,11 @@ class software::browsers::chrome (
 ) inherits software::params {
 
   validate_string($ensure)
-  validate_string($url)
 
   case $::operatingsystem {
     'Darwin': {
+      validate_string($url)
+
       package { 'GoogleChrome':
         ensure   => $ensure,
         provider => appdmg,
@@ -22,6 +23,7 @@ class software::browsers::chrome (
       }
     }
     'Ubuntu': {
+      validate_string($url)
       validate_string($channel)
 
       $apt_source_ensure = $ensure ? {
@@ -45,6 +47,12 @@ class software::browsers::chrome (
 
       package { "google-chrome-${channel}":
         ensure => $ensure,
+      }
+    }
+    'windows': {
+      package { 'googlechrome':
+        ensure   => $ensure,
+        provider => chocolatey,
       }
     }
     default: {

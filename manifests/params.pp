@@ -20,17 +20,17 @@ class software::params (
 
 
     #### browsers ####
-    $chrome_url      = 'https://dl.google.com/chrome/mac/stable/GGRM/googlechrome.dmg'
-    $firefox_version = '45.0'
+    $chrome_url      = 'https://dl.google.com/chrome/mac/stable/GGRO/googlechrome.dmg'
+    $firefox_version = '48.0'
     $firefox_url     = "https://download-installer.cdn.mozilla.net/pub/firefox/releases/${firefox_version}/mac/en-US/Firefox%20${firefox_version}.dmg"
 
 
     #### database ####
-    $mysqlworkbench_version = '6.3.6'
+    $mysqlworkbench_version = '6.3.7'
     $mysqlworkbench_url     = "http://cdn.mysql.com/Downloads/MySQLGUITools/mysql-workbench-community-${mysqlworkbench_version}-osx-x86_64.dmg"
     $pgcommander_version    = '1.5.9'
     $pgcommander_url        = "https://eggerapps-downloads.s3.amazonaws.com/pgcommander-${pgcommander_version}.zip"
-    $sequelpro_version      = '1.1.1'
+    $sequelpro_version      = '1.1.2'
     $sequelpro_url          = "https://github.com/sequelpro/sequelpro/releases/download/${sequelpro_version}/sequel-pro-${sequelpro_version}.dmg"
 
     #### drivers ####
@@ -41,18 +41,18 @@ class software::params (
     #### editors ####
     $atom_url             = 'https://atom.io/download/mac'
     $textmate_url         = 'https://api.textmate.org/downloads/release'
-    $textwrangler_version = '5.0.2'
+    $textwrangler_version = '5.5.1'
     $textwrangler_url     = "https://s3.amazonaws.com/BBSW-download/TextWrangler_${textwrangler_version}.dmg"
 
 
     #### entertainment ####
-    $vlc_version = '2.2.2'
+    $vlc_version = '2.2.4'
     $vlc_url     = "https://get.videolan.org/vlc/${vlc_version}/macosx/vlc-${vlc_version}.dmg"
 
 
     #### idesdk ####
-    $android_studio_version = '141.2456560'
-    $android_studio_url     = "https://dl.google.com/dl/android/studio/install/1.5.1.0/android-studio-ide-${android_studio_version}-mac.dmg"
+    $android_studio_version = '143.2915827'
+    $android_studio_url     = "https://dl.google.com/dl/android/studio/install/2.1.2.0/android-studio-ide-${android_studio_version}-mac.dmg"
 
 
     #### prefpanes ####
@@ -63,35 +63,35 @@ class software::params (
 
 
     #### social ####
-    $skype_version = '7.21.350'
-    $skype_url     = "http://download.skype.com/macosx/d5410ef3de6d9f31d74f1f684db3dfdf/Skype_${skype_version}.dmg"
+    $skype_version = '7.33.206'
+    $skype_url     = "http://download.skype.com/macosx/59bb2e5bac07f54c8d4ade192fa36d1c/Skype_${skype_version}.dmg"
 
 
     #### storage ####
     $drive_url         = 'https://dl.google.com/drive/installgoogledrive.dmg'
     $fetch_version     = '5.7.5'
     $fetch_url         = "http://getfetch.com/Fetch_${fetch_version}.dmg"
-    $filezilla_version = '3.16.0'
+    $filezilla_version = '3.20.1'
     $filezilla_url     = "https://sourceforge.net/projects/filezilla/files/FileZilla_Client/${filezilla_version}/FileZilla_${filezilla_version}_macosx-x86.app.tar.bz2/download"
 
 
     #### utilities ####
-    $alfred_version       = '2.8.3_435'
+    $alfred_version       = '3.0.3_694'
     $alfred_url           = "https://cachefly.alfredapp.com/Alfred_${alfred_version}.zip"
-    $controlplane_version = '1.6.1'
+    $controlplane_version = '1.6.4'
     $controlplane_url     = "https://dl.dropboxusercontent.com/u/12850/ControlPlane/ControlPlane-${controlplane_version}.dmg"
-    $iterm_version        = '2_1_4'
+    $iterm_version        = '3_0_5'
     $iterm_url            = "https://iterm2.com/downloads/stable/iTerm2-${iterm_version}.zip"
 
 
     #### vcsscm ####
-    $sourcetree_version = '2.2.3'
-    $sourcetree_url     = "https://downloads.atlassian.com/software/sourcetree/SourceTree_${sourcetree_version}.dmg"
+    $sourcetree_version = '2.3.1'
+    $sourcetree_url     = "https://downloads.atlassian.com/software/sourcetree/SourceTree_${sourcetree_version}.zip"
 
 
     #### virtualization ####
-    $virtualbox_version = '5.0.16'
-    $virtualbox_build   = '105871'
+    $virtualbox_version = '5.1.2'
+    $virtualbox_build   = '108956'
     $virtualbox_url     = "http://download.virtualbox.org/virtualbox/${virtualbox_version}/VirtualBox-${virtualbox_version}-${virtualbox_build}-OSX.dmg"
 
 
@@ -133,8 +133,8 @@ class software::params (
 
 
     #### virtualization ####
-    $virtualbox_version = '5.0'
-    $virtualbox_build   = '105871'
+    $virtualbox_version = '5.1'
+    $virtualbox_build   = '108956'
     $virtualbox_url     = 'http://download.virtualbox.org/virtualbox/debian'
   } elsif ($::operatingsystem == 'windows') and (versioncmp($::operatingsystemrelease, '7.0') >= 0) {
     #### init ####

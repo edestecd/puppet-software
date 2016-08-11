@@ -18,7 +18,7 @@ class software::vcsscm::sourcetree (
 
       package { "SourceTree-${version}":
         ensure   => $ensure,
-        provider => appdmg,
+        provider => appcompressed,
         source   => $url,
       }
     }

@@ -62,11 +62,11 @@ Puppet::Type.type(:package).provide(:apm, :parent => Puppet::Provider::Package) 
     command = [command(:apm), :install]
 
     should = @resource.should(:ensure)
-    if [:latest, :installed, :present].include?(should)
-      command << @resource[:name]
-    else
-      command << "#{@resource[:name]}@#{should}"
-    end
+    command << if [:latest, :installed, :present].include?(should)
+                 @resource[:name]
+               else
+                 "#{@resource[:name]}@#{should}"
+               end
 
     command << '--no-color'
 
@@ -95,16 +95,16 @@ Puppet::Type.type(:package).provide(:apm, :parent => Puppet::Provider::Package) 
     when 'Darwin' then File.join('', 'Users')
     when 'Linux' then File.join('', 'home')
     else
-      fail 'unsupported'
+      raise 'unsupported'
     end
   end
 
   def self.command_opts(user)
-    Dir.chdir("#{home(user)}")
+    Dir.chdir(home(user).to_s)
     @command_opts ||= {
       :combine            => true,
       :custom_environment => {
-        'HOME'            => "#{home(user)}",
+        'HOME'            => home(user).to_s,
         'PATH'            => '/usr/local/bin:/usr/bin:/usr/sbin:/bin:/sbin'
       },
       :failonfail         => true,

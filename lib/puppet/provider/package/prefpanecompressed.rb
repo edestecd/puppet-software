@@ -4,7 +4,7 @@ require 'puppet/provider/package'
 Puppet::Type.type(:package).provide(:prefpanecompressed, :parent => Puppet::Provider::Package) do
   desc 'Installs a compressed .prefPane. Supports zip, tar.gz, tar.bz2'
 
-  FLAVORZ = %w(zip tgz tar.gz tbz tbz2 tar.bz2)
+  FLAVORZ = %w(zip tgz tar.gz tbz tbz2 tar.bz2).freeze
 
   confine :operatingsystem => :darwin
 
@@ -42,9 +42,9 @@ Puppet::Type.type(:package).provide(:prefpanecompressed, :parent => Puppet::Prov
   end
 
   def install
-    fail('Mac OS X compressed prefPanes must specify a package name') unless @resource[:name]
-    fail('Mac OS X compressed prefPanes must specify a package source') unless @resource[:source]
-    fail("Unknown flavor #{flavor}") unless FLAVORZ.include?(flavor)
+    raise('Mac OS X compressed prefPanes must specify a package name') unless @resource[:name]
+    raise('Mac OS X compressed prefPanes must specify a package source') unless @resource[:source]
+    raise("Unknown flavor #{flavor}") unless FLAVORZ.include?(flavor)
 
     cached_source = @resource[:source]
     tmpdir = Dir.mktmpdir
@@ -66,7 +66,7 @@ Puppet::Type.type(:package).provide(:prefpanecompressed, :parent => Puppet::Prov
       when 'tar.bz2', 'tbz', 'tbz2'
         tar '-jxf', cached_source, '-C', '/Library/PreferencePanes'
       else
-        fail "Can't decompress flavor #{flavor}"
+        raise "Can't decompress flavor #{flavor}"
       end
 
       File.open(receipt_path, 'w') do |t|

@@ -4,7 +4,7 @@
 #
 
 class software::params (
-  $ensure = $::software_ensure,
+  $ensure = getvar('::software-ensure'),
 ) {
 
   # At least OSX 10.8 "Mountain Lion"

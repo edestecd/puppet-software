@@ -18,7 +18,6 @@ AllCops:
     - 'pkg/**/*'
     - 'spec/fixtures/**/*'
     - 'vendor/**/*'
-  RunRailsCops: false
   DisplayCopNames: true
 
 Metrics/MethodLength:
@@ -27,7 +26,7 @@ Metrics/MethodLength:
 
 Metrics/LineLength:
   # Ruduce this... Max: 80
-  Max: 101
+  Max: 111
 
 Metrics/AbcSize:
   # Ruduce this... Max: 15

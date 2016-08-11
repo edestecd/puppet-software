@@ -14,11 +14,15 @@ exclude_paths = [
   'vendor/**/*'
 ]
 
-PuppetLint.configuration.fail_on_warnings = true
+# Puppet-Lint 1.1.0
+Rake::Task[:lint].clear
+PuppetLint::RakeTask.new :lint do |config|
+  config.ignore_paths = exclude_paths
+  config.disable_checks = %w(class_inherits_from_params_class 80chars)
+  config.fail_on_warnings = true
+end
+# Puppet-Lint 1.1.0 as well ...
 PuppetLint.configuration.relative = true
-PuppetLint.configuration.send('disable_80chars')
-PuppetLint.configuration.send('disable_class_inherits_from_params_class')
-PuppetLint.configuration.ignore_paths = exclude_paths
 PuppetSyntax.exclude_paths = exclude_paths
 
 Rake::Task[:default].prerequisites.clear

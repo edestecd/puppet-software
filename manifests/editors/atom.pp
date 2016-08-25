@@ -30,7 +30,12 @@ class software::editors::atom (
         provider => appcompressed,
         flavor   => zip,
         source   => $url,
-      } ->
+      }
+
+      ensure_resource('file', '/usr/local/bin', {
+          ensure  => directory,
+          require => Package['Atom'],
+      })
 
       file { '/usr/local/bin/apm':
         ensure => link,

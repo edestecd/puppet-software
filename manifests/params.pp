@@ -136,6 +136,17 @@ class software::params (
     $virtualbox_version = '5.1'
     $virtualbox_build   = '108956'
     $virtualbox_url     = 'http://download.virtualbox.org/virtualbox/debian'
+    if versioncmp($::operatingsystemrelease, '16.04') >= 0 {
+      $virtualbox_key = {
+        'id'     => 'B9F8D658297AF3EFC18D5CDFA2F683C52980AECF',
+        'source' => 'https://www.virtualbox.org/download/oracle_vbox_2016.asc',
+      }
+    } else {
+      $virtualbox_key = {
+        'id'     => '7B0FAB3A13B907435925D9C954422A4B98AB5139',
+        'source' => 'https://www.virtualbox.org/download/oracle_vbox.asc',
+      }
+    }
   } elsif ($::operatingsystem == 'windows') and (versioncmp($::operatingsystemrelease, '7.0') >= 0) {
     #### init ####
     include '::chocolatey'

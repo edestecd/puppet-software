@@ -50,8 +50,9 @@ class software::utilities::alfred (
 
       include '::apt'
       apt::ppa { 'ppa:mutate/ppa':
-        ensure => $apt_ppa_ensure,
-      } ->
+        ensure         => $apt_ppa_ensure,
+        package_manage => true,
+      } -> Class['apt::update'] ->
 
       package { 'mutate':
         ensure => $ensure,

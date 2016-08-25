@@ -43,7 +43,7 @@ class software::browsers::chrome (
           'source' => 'https://dl.google.com/linux/linux_signing_key.pub',
         },
         architecture => 'amd64',
-      } ->
+      } -> Class['apt::update'] ->
 
       package { "google-chrome-${channel}":
         ensure => $ensure,

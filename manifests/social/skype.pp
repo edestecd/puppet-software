@@ -35,7 +35,7 @@ class software::social::skype (
         location    => 'http://archive.canonical.com/ubuntu',
         repos       => 'partner',
         include_src => false,
-      } ->
+      } -> Class['apt::update'] ->
 
       package { 'skype':
         ensure => $ensure,

@@ -9,6 +9,7 @@ class software::virtualization::virtualbox (
   $version = $software::params::virtualbox_version,
   $build   = $software::params::virtualbox_build,
   $url     = $software::params::virtualbox_url,
+  $key     = $software::params::virtualbox_key,
 ) inherits software::params {
 
   validate_string($ensure)
@@ -43,11 +44,8 @@ class software::virtualization::virtualbox (
         ensure   => $apt_source_ensure,
         location => $url,
         repos    => 'contrib',
-        key      => {
-          'id'     => '7B0FAB3A13B907435925D9C954422A4B98AB5139',
-          'source' => 'https://www.virtualbox.org/download/oracle_vbox.asc',
-        },
-      } ->
+        key      => $key,
+      } -> Class['apt::update'] ->
 
       package { 'dkms': } ->
       package { "virtualbox-${version}": ensure => $ensure }

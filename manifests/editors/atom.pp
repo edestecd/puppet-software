@@ -55,8 +55,9 @@ class software::editors::atom (
 
       include '::apt'
       apt::ppa { 'ppa:webupd8team/atom':
-        ensure => $apt_ppa_ensure,
-      } ->
+        ensure         => $apt_ppa_ensure,
+        package_manage => true,
+      } -> Class['apt::update'] ->
 
       package { 'atom':
         ensure => $ensure,

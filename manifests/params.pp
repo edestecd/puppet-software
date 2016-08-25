@@ -31,7 +31,7 @@ class software::params (
     $pgcommander_version    = '1.5.9'
     $pgcommander_url        = "https://eggerapps-downloads.s3.amazonaws.com/pgcommander-${pgcommander_version}.zip"
     $sequelpro_version      = '1.1.2'
-    $sequelpro_url          = "https://github.com/sequelpro/sequelpro/releases/download/${sequelpro_version}/sequel-pro-${sequelpro_version}.dmg"
+    $sequelpro_url          = "https://github.com/sequelpro/sequelpro/releases/download/release-${sequelpro_version}/sequel-pro-${sequelpro_version}.dmg"
 
     #### drivers ####
     $lanier_mpc5503_version = '2.2.0.0'

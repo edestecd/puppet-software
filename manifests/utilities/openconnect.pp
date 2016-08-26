@@ -11,7 +11,7 @@ class software::utilities::openconnect (
 
   case $::operatingsystem {
     'Ubuntu': {
-      package { 'network-manager-openconnect':
+      package { 'network-manager-openconnect-gnome':
         ensure => $ensure,
       }
     }

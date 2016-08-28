@@ -80,7 +80,7 @@ class software::params (
     $alfred_url           = "https://cachefly.alfredapp.com/Alfred_${alfred_version}.zip"
     $controlplane_version = '1.6.4'
     $controlplane_url     = "https://dl.dropboxusercontent.com/u/12850/ControlPlane/ControlPlane-${controlplane_version}.dmg"
-    $iterm_version        = '3_0_5'
+    $iterm_version        = '3_0_7'
     $iterm_url            = "https://iterm2.com/downloads/stable/iTerm2-${iterm_version}.zip"
 
 
@@ -90,8 +90,8 @@ class software::params (
 
 
     #### virtualization ####
-    $virtualbox_version = '5.1.2'
-    $virtualbox_build   = '108956'
+    $virtualbox_version = '5.1.4'
+    $virtualbox_build   = '110228'
     $virtualbox_url     = "http://download.virtualbox.org/virtualbox/${virtualbox_version}/VirtualBox-${virtualbox_version}-${virtualbox_build}-OSX.dmg"
 
 
@@ -134,7 +134,7 @@ class software::params (
 
     #### virtualization ####
     $virtualbox_version = '5.1'
-    $virtualbox_build   = '108956'
+    $virtualbox_build   = '110228'
     $virtualbox_url     = 'http://download.virtualbox.org/virtualbox/debian'
     if versioncmp($::operatingsystemrelease, '16.04') >= 0 {
       $virtualbox_key = {

@@ -24,7 +24,7 @@ class software::utilities::alfred (
       validate_string($version)
       validate_string($url)
 
-      $app       = 'Alfred 2.app'
+      $app       = 'Alfred 3.app'
       $app_path  = "${applications_path}/${app}"
       $util_path = "${utilities_path}/${app}"
 

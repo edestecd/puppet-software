@@ -1,3 +1,9 @@
+2016-08-28 (1.1.0)  Chris Edester
+        * Windows support
+        * Ubuntu 16.04 support
+        * Various bug fixes
+        * Bump versions to latest
+
 2016-03-12 (1.0.2)  Chris Edester
         * Bump versions
 

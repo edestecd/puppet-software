@@ -16,8 +16,9 @@ class software::virtualization::vagrant (
     }
     'windows': {
       package { 'vagrant':
-        ensure   => $ensure,
-        provider => chocolatey,
+        ensure          => $ensure,
+        provider        => chocolatey,
+        install_options => ['--allow-empty-checksums'],
       }
     }
     default: {

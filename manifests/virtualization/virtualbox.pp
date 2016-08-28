@@ -52,8 +52,9 @@ class software::virtualization::virtualbox (
     }
     'windows': {
       package { 'virtualbox':
-        ensure   => $ensure,
-        provider => chocolatey,
+        ensure          => $ensure,
+        provider        => chocolatey,
+        install_options => ['--allow-empty-checksums'],
       }
     }
     default: {

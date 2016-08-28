@@ -30,8 +30,9 @@ class software::database::mysqlworkbench (
     }
     'windows': {
       package { 'mysql.workbench':
-        ensure   => $ensure,
-        provider => chocolatey,
+        ensure          => $ensure,
+        provider        => chocolatey,
+        install_options => ['--allow-empty-checksums'],
       }
     }
     default: {

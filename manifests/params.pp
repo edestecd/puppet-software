@@ -20,13 +20,13 @@ class software::params (
 
 
     #### browsers ####
-    $chrome_url      = 'https://dl.google.com/chrome/mac/stable/GGRO/googlechrome.dmg'
-    $firefox_version = '48.0'
+    $chrome_url      = 'https://dl.google.com/chrome/mac/stable/CHFA/googlechrome.dmg'
+    $firefox_version = '50.1.0'
     $firefox_url     = "https://download-installer.cdn.mozilla.net/pub/firefox/releases/${firefox_version}/mac/en-US/Firefox%20${firefox_version}.dmg"
 
 
     #### database ####
-    $mysqlworkbench_version = '6.3.7'
+    $mysqlworkbench_version = '6.3.8'
     $mysqlworkbench_url     = "http://cdn.mysql.com/Downloads/MySQLGUITools/mysql-workbench-community-${mysqlworkbench_version}-osx-x86_64.dmg"
     $pgcommander_version    = '1.5.9'
     $pgcommander_url        = "https://eggerapps-downloads.s3.amazonaws.com/pgcommander-${pgcommander_version}.zip"
@@ -41,7 +41,7 @@ class software::params (
     #### editors ####
     $atom_url             = 'https://atom.io/download/mac'
     $textmate_url         = 'https://api.textmate.org/downloads/release'
-    $textwrangler_version = '5.5.1'
+    $textwrangler_version = '5.5.2'
     $textwrangler_url     = "https://s3.amazonaws.com/BBSW-download/TextWrangler_${textwrangler_version}.dmg"
 
 
@@ -51,8 +51,8 @@ class software::params (
 
 
     #### idesdk ####
-    $android_studio_version = '143.2915827'
-    $android_studio_url     = "https://dl.google.com/dl/android/studio/install/2.1.2.0/android-studio-ide-${android_studio_version}-mac.dmg"
+    $android_studio_version = '145.3537739'
+    $android_studio_url     = "https://dl.google.com/dl/android/studio/install/2.2.3.0/android-studio-ide-${android_studio_version}-mac.dmg"
 
 
     #### prefpanes ####
@@ -69,29 +69,29 @@ class software::params (
 
     #### storage ####
     $drive_url         = 'https://dl.google.com/drive/installgoogledrive.dmg'
-    $fetch_version     = '5.7.5'
+    $fetch_version     = '5.7.6'
     $fetch_url         = "http://getfetch.com/Fetch_${fetch_version}.dmg"
-    $filezilla_version = '3.20.1'
+    $filezilla_version = '3.23.0.2'
     $filezilla_url     = "https://sourceforge.net/projects/filezilla/files/FileZilla_Client/${filezilla_version}/FileZilla_${filezilla_version}_macosx-x86.app.tar.bz2/download"
 
 
     #### utilities ####
-    $alfred_version       = '3.0.3_694'
+    $alfred_version       = '3.2.1_768'
     $alfred_url           = "https://cachefly.alfredapp.com/Alfred_${alfred_version}.zip"
     $controlplane_version = '1.6.4'
     $controlplane_url     = "https://dl.dropboxusercontent.com/u/12850/ControlPlane/ControlPlane-${controlplane_version}.dmg"
-    $iterm_version        = '3_0_7'
+    $iterm_version        = '3_0_13'
     $iterm_url            = "https://iterm2.com/downloads/stable/iTerm2-${iterm_version}.zip"
 
 
     #### vcsscm ####
-    $sourcetree_version = '2.3.1'
+    $sourcetree_version = '2.4e'
     $sourcetree_url     = "https://downloads.atlassian.com/software/sourcetree/SourceTree_${sourcetree_version}.zip"
 
 
     #### virtualization ####
-    $virtualbox_version = '5.1.4'
-    $virtualbox_build   = '110228'
+    $virtualbox_version = '5.1.12'
+    $virtualbox_build   = '112440'
     $virtualbox_url     = "http://download.virtualbox.org/virtualbox/${virtualbox_version}/VirtualBox-${virtualbox_version}-${virtualbox_build}-OSX.dmg"
 
 
@@ -112,8 +112,11 @@ class software::params (
     } elsif versioncmp($::macosx_productversion_major, '10.11') == 0 {
       #### utilities ####
       $onyx_url = 'http://joel.barriere.pagesperso-orange.fr/download/1011/OnyX.dmg'
+    } elsif versioncmp($::macosx_productversion_major, '10.12') == 0 {
+      #### utilities ####
+      $onyx_url = 'http://joel.barriere.pagesperso-orange.fr/download/1012/OnyX.dmg'
     } else {
-      fail("The ${module_name} module only supports 'Mountain Lion', 'Mavericks', 'Yosemite', 'El Capitan'.")
+      fail("The ${module_name} module only supports 'Mountain Lion', 'Mavericks', 'Yosemite', 'El Capitan', 'Sierra'.")
     }
   } elsif ($::operatingsystem == 'Ubuntu') and (versioncmp($::operatingsystemrelease, '12.04') >= 0) {
     #### init ####
@@ -134,7 +137,7 @@ class software::params (
 
     #### virtualization ####
     $virtualbox_version = '5.1'
-    $virtualbox_build   = '110228'
+    $virtualbox_build   = '112440'
     $virtualbox_url     = 'http://download.virtualbox.org/virtualbox/debian'
     if versioncmp($::operatingsystemrelease, '16.04') >= 0 {
       $virtualbox_key = {

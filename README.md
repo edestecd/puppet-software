@@ -147,9 +147,9 @@ While I am sure other versions work, I have not tested them.
 
 This module supports modern OS X, Ubuntu, and Windows systems.  
 This module has been heavily tested on:
-* OS X 10.9 Mavericks
 * OS X 10.10 Yosemite
 * OS X 10.11 El Capitan
+* OS X 10.12 Sierra
 * Ubuntu Desktop 14.04
 * Ubuntu Desktop 16.04
 * Windows 10

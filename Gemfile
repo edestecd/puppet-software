@@ -1,12 +1,8 @@
 source ENV['GEM_SOURCE'] || 'https://rubygems.org'
 
 group :unit_tests do
-  gem 'rubocop', '~> 0.41.2',                                      :require => false if RUBY_VERSION =~ /^1\.9/
-  gem 'rubocop',                                                   :require => false if RUBY_VERSION =~ /^2\./
-  gem 'puppetlabs_spec_helper',                                    :require => false
-  gem 'rspec-puppet-facts',                                        :require => false
-  gem 'metadata-json-lint',                                        :require => false
   gem 'json',                                                      :require => false
+  gem 'metadata-json-lint',                                        :require => false
   gem 'puppet-lint-absolute_classname-check',                      :require => false
   gem 'puppet-lint-absolute_template_path',                        :require => false
   gem 'puppet-lint-alias-check',                                   :require => false
@@ -28,16 +24,27 @@ group :unit_tests do
   gem 'puppet-lint-usascii_format-check',                          :require => false
   gem 'puppet-lint-variable_contains_upcase',                      :require => false
   gem 'puppet-lint-version_comparison-check',                      :require => false
+  gem 'puppetlabs_spec_helper',                                    :require => false
+  gem 'rspec-puppet-facts',                                        :require => false
+  gem 'rubocop', '~> 0.41.2',                                      :require => false if RUBY_VERSION =~ /^1\.9/
+  gem 'rubocop',                                                   :require => false if RUBY_VERSION =~ /^2\./
 end
 
 group :development do
-  gem 'simplecov',        :require => false
   gem 'librarian-puppet', :require => false
+  gem 'simplecov',        :require => false
 end
 
 group :system_tests do
-  gem 'beaker-rspec', :require => false
-  gem 'serverspec',   :require => false
+  if RUBY_VERSION < '2.2.5'
+    # beaker 3.1+ requires ruby 2.2.5.  Lock to 2.0
+    gem 'beaker', '~> 2.0', :require => false
+    # beaker-rspec 6.0.0 requires beaker 3.0. Lock to 5.0
+    gem 'beaker-rspec', '~> 5.0', :require => false
+  else
+    gem 'beaker-rspec', :require => false
+  end
+  gem 'serverspec', :require => false
 end
 
 # json_pure 2.0.2 added a requirement on ruby >= 2. We pin to json_pure 2.0.1

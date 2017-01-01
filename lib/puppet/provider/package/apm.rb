@@ -10,10 +10,9 @@ Puppet::Type.type(:package).provide(:apm, :parent => Puppet::Provider::Package) 
   commands :apm => 'apm'
 
   def self.parse(line, user)
-    if line.chomp =~ / (\S+)@(\d+\.\d+\.\d+)/
-      { :name => Regexp.last_match(1), :provider => :apm,
-        :ensure => Regexp.last_match(2), :source => user }
-    end
+    return unless line.chomp =~ / (\S+)@(\d+\.\d+\.\d+)/
+    { :name => Regexp.last_match(1), :provider => :apm,
+      :ensure => Regexp.last_match(2), :source => user }
   end
 
   def self.instances_by_user(user)

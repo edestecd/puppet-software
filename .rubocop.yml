@@ -20,21 +20,7 @@ AllCops:
     - 'vendor/**/*'
   DisplayCopNames: true
 
-Metrics/MethodLength:
-  # Ruduce this... Max: 10
-  Max: 28
-
-Metrics/LineLength:
-  # Ruduce this... Max: 80
-  Max: 111
-
-Metrics/AbcSize:
-  # Ruduce this... Max: 15
-  Max: 30
-
-Metrics/CyclomaticComplexity:
-  # Ruduce this... Max: 6
-  Max: 8
+#################### Style ##################################
 
 # Cop supports --auto-correct.
 # Configuration parameters: SupportedStyles.
@@ -46,3 +32,30 @@ Style/HashSyntax:
 Style/LeadingCommentSpace:
   Exclude:
     - Puppetfile
+
+#################### Metrics ################################
+
+Metrics/AbcSize:
+  # Ruduce this... Max: 15
+  Max: 30
+
+Metrics/CyclomaticComplexity:
+  # Ruduce this... Max: 6
+  Max: 8
+
+Metrics/LineLength:
+  # Ruduce this... Max: 80
+  Max: 111
+
+Metrics/MethodLength:
+  # Ruduce this... Max: 10
+  Max: 28
+
+Metrics/BlockLength:
+  # Ruduce this... Max: 25
+  Max: 89
+
+##################### Bundler #############################
+
+Bundler/DuplicatedGem:
+  Enabled: false

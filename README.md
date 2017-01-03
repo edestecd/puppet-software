@@ -2,10 +2,9 @@ software
 =============
 
 [![Build Status](https://travis-ci.org/edestecd/puppet-software.svg)](https://travis-ci.org/edestecd/puppet-software)
-[![Puppet Forge](https://img.shields.io/puppetforge/v/edestecd/software.svg)](https://forge.puppetlabs.com/edestecd/software)
-[![Puppet Forge Downloads](https://img.shields.io/puppetforge/dt/edestecd/software.svg)](https://forge.puppetlabs.com/edestecd/software)
-[![Puppet Forge Score](https://img.shields.io/puppetforge/f/edestecd/software.svg)](https://forge.puppetlabs.com/edestecd/software/scores)
-[![Issue Stats](http://issuestats.com/github/edestecd/puppet-software/badge/pr?style=flat)](http://issuestats.com/github/edestecd/puppet-software)
+[![Puppet Forge](https://img.shields.io/puppetforge/v/edestecd/software.svg)](https://forge.puppet.com/edestecd/software)
+[![Puppet Forge Downloads](https://img.shields.io/puppetforge/dt/edestecd/software.svg)](https://forge.puppet.com/edestecd/software)
+[![Puppet Forge Score](https://img.shields.io/puppetforge/f/edestecd/software.svg)](https://forge.puppet.com/edestecd/software/scores)
 
 ####Table of Contents
 

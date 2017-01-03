@@ -32,21 +32,24 @@ class software::editors::atom (
         source   => $url,
       }
 
-      ensure_resource('file', '/usr/local/bin', {
-          ensure  => directory,
-          require => Package['Atom'],
-      })
+      # homebrew manages this now
+      # ensure_resource('file', '/usr/local/bin', {
+      #     ensure  => directory,
+      #     require => Package['Atom'],
+      # })
 
       file { '/usr/local/bin/apm':
-        ensure => link,
-        target => '/Applications/Atom.app/Contents/Resources/app/apm/node_modules/.bin/apm',
-        mode   => '0755',
+        ensure  => link,
+        target  => '/Applications/Atom.app/Contents/Resources/app/apm/node_modules/.bin/apm',
+        mode    => '0755',
+        require => Package['Atom'],
       } ->
 
       file { '/usr/local/bin/atom':
-        ensure => link,
-        target => '/Applications/Atom.app/Contents/Resources/app/atom.sh',
-        mode   => '0755',
+        ensure  => link,
+        target  => '/Applications/Atom.app/Contents/Resources/app/atom.sh',
+        mode    => '0755',
+        require => Package['Atom'],
       }
     }
     'Ubuntu': {

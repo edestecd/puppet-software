@@ -1,5 +1,5 @@
 # openconnect.pp
-# Install Open Client for Cisco AnyConnect VPN for Ubuntu
+# Install Open Client for Cisco AnyConnect VPN for OS X or Ubuntu
 # Also installs the Network Management Plugin for graphical configuration
 #
 
@@ -10,6 +10,13 @@ class software::utilities::openconnect (
   validate_string($ensure)
 
   case $::operatingsystem {
+    'Darwin': {
+      include '::homebrew'
+      package { 'openconnect':
+        ensure   => $ensure,
+        provider => brew,
+      }
+    }
     'Ubuntu': {
       package { 'network-manager-openconnect-gnome':
         ensure => $ensure,

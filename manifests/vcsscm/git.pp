@@ -6,6 +6,7 @@ class software::vcsscm::git (
   $ensure          = $software::params::software_ensure,
   $gui             = false,
   $bash_completion = false,
+  $bash_prompt     = false,
 ) inherits software::params {
 
   validate_string($ensure)
@@ -25,6 +26,25 @@ class software::vcsscm::git (
       if $bash_completion {
         package { 'bash-completion':
           ensure => $ensure,
+        }
+      }
+
+      if $bash_prompt {
+        $bash_prompt_template = @(END)
+# Show an informative bash prompt when working with Git repositories
+GIT_PROMPT_ONLY_IN_REPO=1
+. /opt/bash-git-prompt/gitprompt.sh
+END
+        vcsrepo { '/opt/bash-git-prompt/':
+          ensure   => present,
+          provider => git,
+          source   => 'https://github.com/magicmonty/bash-git-prompt.git',
+          depth    => 1,
+        }
+
+        file { '/etc/bash_completion.d/bash-git-prompt':
+          ensure  => file,
+          content => inline_template($bash_prompt_template),
         }
       }
     }

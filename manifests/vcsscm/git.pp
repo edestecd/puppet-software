@@ -30,11 +30,6 @@ class software::vcsscm::git (
       }
 
       if $bash_prompt {
-        $bash_prompt_template = @(END)
-# Show an informative bash prompt when working with Git repositories
-GIT_PROMPT_ONLY_IN_REPO=1
-. /opt/bash-git-prompt/gitprompt.sh
-END
         vcsrepo { '/opt/bash-git-prompt/':
           ensure   => present,
           provider => git,
@@ -44,7 +39,7 @@ END
 
         file { '/etc/bash_completion.d/bash-git-prompt':
           ensure  => file,
-          content => inline_template($bash_prompt_template),
+          source => 'puppet:///modules/software/vcsscm/git/bash-git-prompt',
         }
       }
     }

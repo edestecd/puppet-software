@@ -3,8 +3,9 @@
 #
 
 class software::vcsscm::git (
-  $ensure = $software::params::software_ensure,
-  $gui    = false,
+  $ensure          = $software::params::software_ensure,
+  $gui             = false,
+  $bash_completion = false,
 ) inherits software::params {
 
   validate_string($ensure)
@@ -17,6 +18,12 @@ class software::vcsscm::git (
 
       if $gui {
         package { ['gitk', 'git-gui']:
+          ensure => $ensure,
+        }
+      }
+
+      if $bash_completion {
+        package { 'bash-completion':
           ensure => $ensure,
         }
       }

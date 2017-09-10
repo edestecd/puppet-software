@@ -1,0 +1,3 @@
+# Show an informative bash prompt when working with Git repositories
+GIT_PROMPT_ONLY_IN_REPO=1
+. /opt/bash-git-prompt/gitprompt.sh

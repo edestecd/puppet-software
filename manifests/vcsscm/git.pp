@@ -3,8 +3,10 @@
 #
 
 class software::vcsscm::git (
-  $ensure = $software::params::software_ensure,
-  $gui    = false,
+  $ensure          = $software::params::software_ensure,
+  $gui             = false,
+  $bash_completion = false,
+  $bash_prompt     = false,
 ) inherits software::params {
 
   validate_string($ensure)
@@ -18,6 +20,26 @@ class software::vcsscm::git (
       if $gui {
         package { ['gitk', 'git-gui']:
           ensure => $ensure,
+        }
+      }
+
+      if $bash_completion {
+        package { 'bash-completion':
+          ensure => $ensure,
+        }
+      }
+
+      if $bash_prompt {
+        vcsrepo { '/opt/bash-git-prompt/':
+          ensure   => present,
+          provider => git,
+          source   => 'https://github.com/magicmonty/bash-git-prompt.git',
+          depth    => 1,
+        }
+
+        file { '/etc/bash_completion.d/bash-git-prompt':
+          ensure  => file,
+          source => 'puppet:///modules/software/vcsscm/git/bash-git-prompt',
         }
       }
     }

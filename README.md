@@ -6,7 +6,7 @@ software
 [![Puppet Forge Downloads](https://img.shields.io/puppetforge/dt/edestecd/software.svg)](https://forge.puppet.com/edestecd/software)
 [![Puppet Forge Score](https://img.shields.io/puppetforge/f/edestecd/software.svg)](https://forge.puppet.com/edestecd/software/scores)
 
-####Table of Contents
+#### Table of Contents
 
 1. [Overview](#overview)
 2. [Module Description - What the module does and why it is useful](#module-description)
@@ -20,11 +20,11 @@ software
 6. [Development - Guide for contributing to the module](#development)
 7. [Contributors](#contributors)
 
-##Overview
+## Overview
 
 Puppet Module to install various Desktop Software
 
-##Module Description
+## Module Description
 
 The software module provides classes to install many commonly needed Desktop Applications.  
 Many of these applications require little or no configuration and are mostly Graphical.  
@@ -40,17 +40,17 @@ as examples, but I prefer to manage these in one module.
 Each application has a class, which you may include separately to install
 exactly the applications you desire.
 
-##Setup
+## Setup
 
-###What software affects
+### What software affects
 
 only installs apps (OS X) and packages (Ubuntu, Windows)
 
-###Setup Requirements
+### Setup Requirements
 
 only need to install the module
 
-###Beginning with software
+### Beginning with software
 
 Install only Google Chrome browser:
 
@@ -58,9 +58,9 @@ Install only Google Chrome browser:
 include software::browsers::chrome
 ```
 
-##Usage
+## Usage
 
-###Install various apps
+### Install various apps
 
 ```puppet
 include software::browsers::chrome
@@ -89,13 +89,13 @@ include software::virtualization::vagrant
 include software::webstack::anvil
 ```
 
-###Install everything in the browser group
+### Install everything in the browser group
 
 ```puppet
 include software::browsers
 ```
 
-###Install apps with hiera yaml
+### Install apps with hiera yaml
 
 ```puppet
 hiera_include('classes')
@@ -120,7 +120,7 @@ software::editors::atom::themes:
 software::editors::atom::user: username
 ```
 
-##Reference
+## Reference
 
 ### Classes
 
@@ -136,7 +136,7 @@ software::editors::atom::user: username
 * virtualization
 * webstack
 
-##Limitations
+## Limitations
 
 Some proprietary software requires licenses.  
 You may need to pass these license keys and possibly urls to use those classes.
@@ -155,11 +155,12 @@ This module has been heavily tested on:
 
 Many classes also support older versions of OS X, Ubuntu, and Windows.
 
-##Development
+## Development
 
 Pull Requests welcome  
 Please at least make sure ```rake test``` passes.
 
-##Contributors
+## Contributors
 
-Chris Edester (edestecd)
+* Chris Edester ([edestecd](https://github.com/edestecd))
+* comsolit AG ([comsolit](https://github.com/comsolit)) via Peter Bittner ([bittner](https://github.com/bittner))

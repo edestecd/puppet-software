@@ -61,7 +61,7 @@ Puppet::Type.type(:package).provide(:apm, :parent => Puppet::Provider::Package) 
     command = [command(:apm), :install]
 
     should = @resource.should(:ensure)
-    command << if [:latest, :installed, :present].include?(should)
+    command << if %i[latest installed present].include?(should)
                  @resource[:name]
                else
                  "#{@resource[:name]}@#{should}"

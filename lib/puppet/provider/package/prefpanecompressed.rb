@@ -4,7 +4,7 @@ require 'puppet/provider/package'
 Puppet::Type.type(:package).provide(:prefpanecompressed, :parent => Puppet::Provider::Package) do
   desc 'Installs a compressed .prefPane. Supports zip, tar.gz, tar.bz2'
 
-  FLAVORZ = %w(zip tgz tar.gz tbz tbz2 tar.bz2).freeze
+  FLAVORZ = %w[zip tgz tar.gz tbz tbz2 tar.bz2].freeze
 
   confine :operatingsystem => :darwin
 

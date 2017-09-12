@@ -4,7 +4,7 @@ require 'puppet/provider/package'
 Puppet::Type.type(:package).provide(:appcompressed, :parent => Puppet::Provider::Package) do
   desc 'Installs a compressed .app. Supports zip, tar.gz, tar.bz2'
 
-  FLAVORS = %w(zip tgz tar.gz tbz tbz2 tar.bz2).freeze
+  FLAVORS = %w[zip tgz tar.gz tbz tbz2 tar.bz2].freeze
 
   confine :operatingsystem => :darwin
 

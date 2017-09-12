@@ -38,7 +38,10 @@ class software::vcsscm::git (
         }
 
         file { '/etc/bash_completion.d/bash-git-prompt':
-          ensure  => file,
+          ensure => file,
+          owner  => 'root',
+          group  => 'root',
+          mode   => '0644',
           source => 'puppet:///modules/software/vcsscm/git/bash-git-prompt',
         }
       }

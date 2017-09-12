@@ -18,7 +18,7 @@ exclude_paths = [
 Rake::Task[:lint].clear
 PuppetLint::RakeTask.new :lint do |config|
   config.ignore_paths = exclude_paths
-  config.disable_checks = %w(class_inherits_from_params_class 80chars)
+  config.disable_checks = %w[class_inherits_from_params_class 80chars]
   config.fail_on_warnings = true
 end
 # Puppet-Lint 1.1.0 as well ...
@@ -43,17 +43,17 @@ task :success do
 end
 
 desc 'Run all'
-task :all => [
-  :clean,
-  :test,
-  :success
+task :all => %i[
+  clean
+  test
+  success
 ]
 
 desc 'Run rubocop, syntax, lint, and spec tests'
-task :test => [
-  :rubocop,
-  :syntax,
-  :lint,
-  :metadata_lint,
-  :spec
+task :test => %i[
+  rubocop
+  syntax
+  lint
+  metadata_lint
+  spec
 ]

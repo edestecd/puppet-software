@@ -7,6 +7,8 @@ class software::vcsscm::git (
   $gui             = false,
   $bash_completion = false,
   $bash_prompt     = false,
+  $gitconfig       = false,
+  $gitignore       = false,
 ) inherits software::params {
 
   validate_string($ensure)
@@ -43,6 +45,34 @@ class software::vcsscm::git (
           group  => 'root',
           mode   => '0644',
           source => 'puppet:///modules/software/vcsscm/git/bash-git-prompt',
+        }
+      }
+
+      if $gitconfig {
+        file { '/etc/gitconfig':
+          ensure => file,
+          owner  => 'root',
+          group  => 'root',
+          mode   => '0644',
+          source => 'puppet:///modules/software/vcsscm/git/system-gitconfig',
+        }
+
+        file { '/etc/skel/.config/git/config':
+          ensure => file,
+          owner  => 'root',
+          group  => 'root',
+          mode   => '0644',
+          source => 'puppet:///modules/software/vcsscm/git/user-gitconfig',
+        }
+      }
+
+      if $gitignore {
+        file { '/etc/skel/.config/git/ignore':
+          ensure => file,
+          owner  => 'root',
+          group  => 'root',
+          mode   => '0644',
+          source => 'puppet:///modules/software/vcsscm/git/user-gitignore',
         }
       }
     }

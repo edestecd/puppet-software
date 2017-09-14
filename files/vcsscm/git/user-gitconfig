@@ -1,0 +1,4 @@
+# User-global Git configuration. See /etc/gitconfig for system-global settings.
+
+[sequence]
+	editor = emacs -nw

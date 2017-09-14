@@ -5,27 +5,22 @@
 
 class software::social::slack (
   $ensure  = $software::params::software_ensure,
-  $version = $software::params::slack_version,
-  $url     = $software::params::slack_url,
 ) inherits software::params {
 
   validate_string($ensure)
 
   case $::operatingsystem {
     'Ubuntu': {
-      $package = "slack-desktop-${version}-${::architecture}.deb"
+      # from https://packagecloud.io/slacktechnologies/slack/install#puppet
+      include '::apt'
+      include packagecloud
 
-      archive { $package:
-        source  => $url,
-        path    => "/tmp/${package}",
-        extract => false,
-        cleanup => false,
-      }
+      packagecloud::repo { 'slacktechnologies/slack':
+        type => 'deb',
+      } -> Class['apt::update'] ->
 
       package { 'slack-desktop':
-        ensure   => $ensure,
-        source   => "/tmp/${package}",
-        provider => 'dpkg',
+        ensure => $ensure,
       }
     }
     default: {

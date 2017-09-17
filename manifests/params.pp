@@ -21,6 +21,7 @@ class software::params (
 
     #### browsers ####
     $chrome_url      = 'https://dl.google.com/chrome/mac/stable/CHFA/googlechrome.dmg'
+    $chrome_channel  = 'stable'
     $firefox_version = '50.1.0'
     $firefox_url     = "https://download-installer.cdn.mozilla.net/pub/firefox/releases/${firefox_version}/mac/en-US/Firefox%20${firefox_version}.dmg"
 
@@ -93,6 +94,7 @@ class software::params (
     $virtualbox_version = '5.1.12'
     $virtualbox_build   = '112440'
     $virtualbox_url     = "http://download.virtualbox.org/virtualbox/${virtualbox_version}/VirtualBox-${virtualbox_version}-${virtualbox_build}-OSX.dmg"
+    $virtualbox_key     = undef
 
 
     #### webstack ####
@@ -150,7 +152,7 @@ class software::params (
         'source' => 'https://www.virtualbox.org/download/oracle_vbox.asc',
       }
     }
-  } elsif ($::operatingsystem == 'windows') and (versioncmp($::operatingsystemrelease, '7.0') >= 0) {
+  } elsif ($::operatingsystem == 'windows') and (versioncmp($::operatingsystemrelease, '7') >= 0) {
     #### init ####
     include '::chocolatey'
     $software_ensure = $ensure ? {

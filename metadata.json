@@ -20,7 +20,7 @@
   "operatingsystem_support": [
     {
       "operatingsystem": "Darwin",
-      "operatingsystemrelease": ["14.x", "15.x", "16.x"]
+      "operatingsystemrelease": ["14", "15", "16"]
     },
     {
       "operatingsystem": "Ubuntu",
@@ -29,10 +29,9 @@
     {
       "operatingsystem": "Windows",
       "operatingsystemrelease": [
-        "Server 2003", "Server 2003 R2",
         "Server 2008", "Server 2008 R2",
         "Server 2012", "Server 2012 R2",
-        "7", "8", "10"
+        "7", "8.1", "10"
       ]
     }
   ],

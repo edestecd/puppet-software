@@ -7,7 +7,12 @@
   "source": "https://github.com/edestecd/puppet-software.git",
   "project_page": "https://github.com/edestecd/puppet-software",
   "issues_url": "https://github.com/edestecd/puppet-software/issues",
-  "tags": ["desktop", "software", "graphical", "gui", "browser", "chrome", "firefox", "editors", "atom", "textmate"],
+  "tags": [
+    "desktop", "software", "graphical", "gui",
+    "browser", "chrome", "firefox",
+    "editors", "atom", "textmate",
+    "social", "chat", "skype", "slack"
+  ],
   "description": "The software module provides classes to install many commonly needed Desktop Applications",
   "dependencies": [
     {"name": "puppetlabs/stdlib", "version_requirement": ">= 4.2.0 < 5.0.0"},
@@ -24,7 +29,7 @@
     },
     {
       "operatingsystem": "Ubuntu",
-      "operatingsystemrelease": ["12.04", "14.04", "16.04"]
+      "operatingsystemrelease": ["12.04", "14.04", "16.04", "17.04"]
     },
     {
       "operatingsystem": "Windows",

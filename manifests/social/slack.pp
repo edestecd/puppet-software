@@ -28,7 +28,7 @@ class software::social::slack (
           'id'     => 'C6ABDCF64DB9A0B2',
           'source' => 'https://packagecloud.io/slacktechnologies/slack/gpgkey',
         },
-      }
+      } -> Class['apt::update'] ->
 
       package { 'slack-desktop':
         ensure => $ensure,

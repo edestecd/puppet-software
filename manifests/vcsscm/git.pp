@@ -48,6 +48,15 @@ class software::vcsscm::git (
         }
       }
 
+      if $gitconfig or $gitignore {
+        file { ['/etc/skel', '/etc/skel/.config', '/etc/skel/.config/git']:
+          ensure => directory,
+          owner  => 'root',
+          group  => 'root',
+          mode   => '0755',
+        }
+      }
+
       if $gitconfig {
 
         if $gitconfig =~ Boolean {

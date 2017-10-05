@@ -1,5 +1,5 @@
 # git.pp
-# Install git cli
+# Install git cli, optional tab completion, config and ignore files
 #
 
 class software::vcsscm::git (
@@ -49,30 +49,61 @@ class software::vcsscm::git (
       }
 
       if $gitconfig {
-        file { '/etc/gitconfig':
-          ensure => file,
-          owner  => 'root',
-          group  => 'root',
-          mode   => '0644',
-          source => 'puppet:///modules/software/vcsscm/git/system-gitconfig',
+
+        if $gitconfig =~ Boolean {
+          $gitconfig = {
+            'system' =>  'puppet:///modules/software/vcsscm/git/system-gitconfig',
+            'user'   =>  'puppet:///modules/software/vcsscm/git/user-gitconfig',
+          }
+        }
+        elsif $gitconfig =~ String {
+          $gitconfig = {
+            'user' => $gitconfig,
+          }
         }
 
-        file { '/etc/skel/.config/git/config':
-          ensure => file,
-          owner  => 'root',
-          group  => 'root',
-          mode   => '0644',
-          source => 'puppet:///modules/software/vcsscm/git/user-gitconfig',
+        if $gitconfig['system'] {
+          file { '/etc/gitconfig':
+            ensure => file,
+            owner  => 'root',
+            group  => 'root',
+            mode   => '0644',
+            source => $gitconfig['system'],
+          }
+        }
+
+        if $gitconfig['user'] {
+          file { '/etc/skel/.config/git/config':
+            ensure => file,
+            owner  => 'root',
+            group  => 'root',
+            mode   => '0644',
+            source => $gitconfig['user'],
+          }
         }
       }
 
       if $gitignore {
-        file { '/etc/skel/.config/git/ignore':
-          ensure => file,
-          owner  => 'root',
-          group  => 'root',
-          mode   => '0644',
-          source => 'puppet:///modules/software/vcsscm/git/user-gitignore',
+
+        if $gitignore =~ Boolean {
+          $gitignore = {
+            'user' => 'puppet:///modules/software/vcsscm/git/user-gitignore',
+          }
+        }
+        elsif $gitignore =~ String {
+          $gitignore = {
+            'user' => $gitignore,
+          }
+        }
+
+        if $gitignore['user'] {
+          file { '/etc/skel/.config/git/ignore':
+            ensure => file,
+            owner  => 'root',
+            group  => 'root',
+            mode   => '0644',
+            source => $gitignore['user'],
+          }
         }
       }
     }

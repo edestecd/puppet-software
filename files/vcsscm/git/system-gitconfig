@@ -1,5 +1,4 @@
 # System-global Git configuration. https://git-scm.com/docs/git-config#FILES
 
 [alias]
-	permission-reset = "!git diff -p | grep -E \"^(diff|old mode|new mode)\" | sed -e \"s/^old/NEW/;s/^new/old/;s/^NEW/new/\" | git apply"
 	undo-commit = reset --soft HEAD^

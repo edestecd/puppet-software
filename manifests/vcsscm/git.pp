@@ -51,34 +51,35 @@ class software::vcsscm::git (
       if $gitconfig {
 
         if $gitconfig =~ Boolean {
-          $gitconfig = {
-            'system' =>  'puppet:///modules/software/vcsscm/git/system-gitconfig',
-            'user'   =>  'puppet:///modules/software/vcsscm/git/user-gitconfig',
-          }
+          $gitconfig_system = 'puppet:///modules/software/vcsscm/git/system-gitconfig'
+          $gitconfig_user = 'puppet:///modules/software/vcsscm/git/user-gitconfig'
         }
         elsif $gitconfig =~ String {
-          $gitconfig = {
-            'user' => $gitconfig,
-          }
+          $gitconfig_system = false
+          $gitconfig_user = $gitconfig
+        }
+        else {  # must be associative Array otherwise
+          $gitconfig_system = $gitconfig['system']
+          $gitconfig_user = $gitconfig['user']
         }
 
-        if $gitconfig['system'] {
+        if $gitconfig_system {
           file { '/etc/gitconfig':
             ensure => file,
             owner  => 'root',
             group  => 'root',
             mode   => '0644',
-            source => $gitconfig['system'],
+            source => $gitconfig_system,
           }
         }
 
-        if $gitconfig['user'] {
+        if $gitconfig_user {
           file { '/etc/skel/.config/git/config':
             ensure => file,
             owner  => 'root',
             group  => 'root',
             mode   => '0644',
-            source => $gitconfig['user'],
+            source => $gitconfig_user,
           }
         }
       }
@@ -86,23 +87,22 @@ class software::vcsscm::git (
       if $gitignore {
 
         if $gitignore =~ Boolean {
-          $gitignore = {
-            'user' => 'puppet:///modules/software/vcsscm/git/user-gitignore',
-          }
+          $gitignore_user = 'puppet:///modules/software/vcsscm/git/user-gitignore'
         }
         elsif $gitignore =~ String {
-          $gitignore = {
-            'user' => $gitignore,
-          }
+          $gitignore_user = $gitignore
+        }
+        else {  # must be associative Array otherwise
+          $gitignore_user = $gitignore['user']
         }
 
-        if $gitignore['user'] {
+        if $gitignore_user {
           file { '/etc/skel/.config/git/ignore':
             ensure => file,
             owner  => 'root',
             group  => 'root',
             mode   => '0644',
-            source => $gitignore['user'],
+            source => $gitignore_user,
           }
         }
       }

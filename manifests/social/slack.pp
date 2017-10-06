@@ -25,7 +25,7 @@ class software::social::slack (
         release  => 'jessie',
         repos    => 'main',
         key      => {
-          'id'     => 'C6ABDCF64DB9A0B2',
+          'id'     => 'DB085A08CA13B8ACB917E0F6D938EC0D038651BD',
           'source' => 'https://packagecloud.io/slacktechnologies/slack/gpgkey',
         },
       } -> Class['apt::update'] ->

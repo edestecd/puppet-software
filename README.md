@@ -119,6 +119,13 @@ software::editors::atom::packages:
 software::editors::atom::themes:
   twilight-syntax: {}
 software::editors::atom::user: username
+
+software::vcsscm::git:
+  gui: true
+  bash_completion: true
+  bash_prompt: true
+  gitconfig: true
+  gitignore: puppet:///modules/custom/user/gitignore
 ```
 
 ## Reference

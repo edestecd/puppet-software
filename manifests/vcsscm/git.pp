@@ -49,7 +49,12 @@ class software::vcsscm::git (
       }
 
       if $gitconfig or $gitignore {
-        file { ['/etc/skel', '/etc/skel/.config', '/etc/skel/.config/git']:
+        # Ensure target path (avoiding to manage base path)
+        exec { 'mkdir -p /etc/skel/.config':
+          creates => '/etc/skel/.config',
+          path    => ['/usr/bin'],
+        }
+        -> file { '/etc/skel/.config/git':
           ensure => directory,
           owner  => 'root',
           group  => 'root',

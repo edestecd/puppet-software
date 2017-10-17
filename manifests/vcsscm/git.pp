@@ -32,6 +32,7 @@ class software::vcsscm::git (
       }
 
       if $bash_prompt {
+
         vcsrepo { '/opt/bash-git-prompt/':
           ensure   => present,
           provider => git,
@@ -49,35 +50,38 @@ class software::vcsscm::git (
       }
 
       if $gitconfig or $gitignore {
-        # Ensure target path (avoiding to manage base path)
-        exec { 'mkdir -p /etc/skel/.config':
-          creates => '/etc/skel/.config',
-          path    => ['/usr/bin'],
+
+        if !defined(File['/etc/skel/.config']) {
+          file { '/etc/skel/.config':
+            ensure => directory,
+            owner  => 'root',
+            group  => 'root',
+            mode   => '0755',
+          }
         }
-        -> file { '/etc/skel/.config/git':
-          ensure => directory,
-          owner  => 'root',
-          group  => 'root',
-          mode   => '0755',
+
+        if !defined(File['/etc/skel/.config/git']) {
+          file { '/etc/skel/.config/git':
+            ensure  => directory,
+            owner   => 'root',
+            group   => 'root',
+            mode    => '0755',
+            require => File['/etc/skel/.config'],
+          }
         }
       }
 
       if $gitconfig {
 
-        if $gitconfig =~ Boolean {
-          $gitconfig_system = 'puppet:///modules/software/vcsscm/git/system-gitconfig'
-          $gitconfig_user = 'puppet:///modules/software/vcsscm/git/user-gitconfig'
-        }
-        elsif $gitconfig =~ String {
-          $gitconfig_system = false
-          $gitconfig_user = $gitconfig
-        }
-        else {  # must be associative Array otherwise
-          $gitconfig_system = $gitconfig['system']
-          $gitconfig_user = $gitconfig['user']
+        $gitconfig_system = $gitconfig ? {
+          Boolean => 'puppet:///modules/software/vcsscm/git/system-gitconfig',
+          String  => false,  # a string will only set user config
+          Hash    => $gitconfig['system'],
+          default => fail('$gitconfig must be one of (Boolean, String, Hash)'),
         }
 
         if $gitconfig_system {
+
           file { '/etc/gitconfig':
             ensure => file,
             owner  => 'root',
@@ -87,36 +91,44 @@ class software::vcsscm::git (
           }
         }
 
+        $gitconfig_user = $gitconfig ? {
+          Boolean => 'puppet:///modules/software/vcsscm/git/user-gitconfig',
+          String  => $gitconfig,
+          Hash    => $gitconfig['user'],
+          default => fail('$gitconfig must be one of (Boolean, String, Hash)'),
+        }
+
         if $gitconfig_user {
+
           file { '/etc/skel/.config/git/config':
-            ensure => file,
-            owner  => 'root',
-            group  => 'root',
-            mode   => '0644',
-            source => $gitconfig_user,
+            ensure  => file,
+            owner   => 'root',
+            group   => 'root',
+            mode    => '0644',
+            source  => $gitconfig_user,
+            require => File['/etc/skel/.config/git'],
           }
         }
       }
 
       if $gitignore {
 
-        if $gitignore =~ Boolean {
-          $gitignore_user = 'puppet:///modules/software/vcsscm/git/user-gitignore'
-        }
-        elsif $gitignore =~ String {
-          $gitignore_user = $gitignore
-        }
-        else {  # must be associative Array otherwise
-          $gitignore_user = $gitignore['user']
+        $gitignore_user = $gitignore ? {
+          Boolean => 'puppet:///modules/software/vcsscm/git/user-gitignore',
+          String  => $gitignore,
+          Hash    => $gitignore['user'],
+          default => fail('$gitignore must be one of (Boolean, String, Hash)'),
         }
 
         if $gitignore_user {
+
           file { '/etc/skel/.config/git/ignore':
-            ensure => file,
-            owner  => 'root',
-            group  => 'root',
-            mode   => '0644',
-            source => $gitignore_user,
+            ensure  => file,
+            owner   => 'root',
+            group   => 'root',
+            mode    => '0644',
+            source  => $gitignore_user,
+            require => File['/etc/skel/.config/git'],
           }
         }
       }

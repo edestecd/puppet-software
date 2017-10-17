@@ -108,6 +108,7 @@ classes:
 - software::editors::atom
 - software::entertainment::vlc
 - software::social::skype
+- software::vcsscm::git
 
 software::browsers::chrome::channel: stable
 

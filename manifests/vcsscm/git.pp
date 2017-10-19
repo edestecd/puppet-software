@@ -62,11 +62,10 @@ class software::vcsscm::git (
 
         if !defined(File['/etc/skel/.config/git']) {
           file { '/etc/skel/.config/git':
-            ensure  => directory,
-            owner   => 'root',
-            group   => 'root',
-            mode    => '0755',
-            require => File['/etc/skel/.config'],
+            ensure => directory,
+            owner  => 'root',
+            group  => 'root',
+            mode   => '0755',
           }
         }
       }
@@ -101,12 +100,11 @@ class software::vcsscm::git (
         if $gitconfig_user {
 
           file { '/etc/skel/.config/git/config':
-            ensure  => file,
-            owner   => 'root',
-            group   => 'root',
-            mode    => '0644',
-            source  => $gitconfig_user,
-            require => File['/etc/skel/.config/git'],
+            ensure => file,
+            owner  => 'root',
+            group  => 'root',
+            mode   => '0644',
+            source => $gitconfig_user,
           }
         }
       }
@@ -123,12 +121,11 @@ class software::vcsscm::git (
         if $gitignore_user {
 
           file { '/etc/skel/.config/git/ignore':
-            ensure  => file,
-            owner   => 'root',
-            group   => 'root',
-            mode    => '0644',
-            source  => $gitignore_user,
-            require => File['/etc/skel/.config/git'],
+            ensure => file,
+            owner  => 'root',
+            group  => 'root',
+            mode   => '0644',
+            source => $gitignore_user,
           }
         }
       }

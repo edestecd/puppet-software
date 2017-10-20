@@ -137,6 +137,11 @@ class software::params (
     $atom_url = 'https://atom.io/download/deb'
 
 
+    #### social ####
+    $skype_version = undef
+    $skype_url     = undef
+
+
     #### virtualization ####
     $virtualbox_version = '5.1'
     $virtualbox_build   = '112440'

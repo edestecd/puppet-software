@@ -31,10 +31,9 @@ class software::social::skype (
 
       include '::apt'
       apt::source { 'skype-partner':
-        ensure      => $apt_source_ensure,
-        location    => 'http://archive.canonical.com/ubuntu',
-        repos       => 'partner',
-        include_src => false,
+        ensure   => $apt_source_ensure,
+        location => 'http://archive.canonical.com/ubuntu',
+        repos    => 'partner',
       } -> Class['apt::update'] ->
 
       package { 'skype':

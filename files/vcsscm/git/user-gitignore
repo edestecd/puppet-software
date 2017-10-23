@@ -1,0 +1,58 @@
+# Global Git Ignore. https://git-scm.com/docs/gitignore
+
+# Special files and folder of various OSes
+.AppleDesktop
+.AppleDB
+.AppleDouble
+.apdisk
+.com.apple.timemachine.donotpresent
+Desktop.ini
+.directory
+*.DS_Store
+.fseventsd
+.fuse_hidden*
+.LSOverride
+Network Trash Folder
+.nfs*
+$RECYCLE.BIN/
+.Spotlight-V100
+.TemporaryItems
+Temporary Items
+.Trash-*
+.Trashes
+.VolumeIcon.icns
+
+# Various cache files and folders
+.cache
+.eggs/
+*.egg-info/
+.eslintcache
+Thumbs.db
+webassets-cache
+
+# Build files and folders
+**/material-design-icons/*/ios/*.imageset/Contents.json
+**/material-design-icons/sprites/
+**/material-design-icons/iconfont/
+**/material-design-icons/*/drawable-anydpi-v21/*.xml
+**/material-design-icons/**/*.png
+**/material-design-icons/*/svg/design/*.svg
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Editor and IDE files and folders
+.idea
+*.stTheme.cache
+*.sublime-project
+*.sublime-workspace
+*.tmlanguage.cache
+*.tmPreferences.cache
+GitHub.sublime-settings
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/

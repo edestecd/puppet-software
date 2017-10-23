@@ -28,6 +28,7 @@ modules/
 spec/fixtures/
 .vagrant
 coverage/
+.rake_tasks~
 
 # tmp & log contents #
 ######################

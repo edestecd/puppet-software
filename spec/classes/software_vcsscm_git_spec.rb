@@ -91,8 +91,8 @@ describe 'software::vcsscm::git' do
       context 'with strings for gitconfig and gitignore' do
         let :params do
           {
-            :gitconfig => 'puppet:///modules/software/vcsscm/git/user-gitconfig',
-            :gitignore => 'puppet:///modules/software/vcsscm/git/user-gitignore'
+            :gitconfig => 'puppet:///modules/user-supplied/custom/user-gitconfig',
+            :gitignore => 'puppet:///modules/user-supplied/custom/user-gitignore'
           }
         end
         if facts[:operatingsystem] == 'Darwin'
@@ -103,11 +103,11 @@ describe 'software::vcsscm::git' do
           it { is_expected.not_to contain_file('/etc/gitconfig') }
           it {
             is_expected.to contain_file('/etc/skel/.config/git/config')
-              .with_source('puppet:///modules/software/vcsscm/git/user-gitconfig')
+              .with_source('puppet:///modules/user-supplied/custom/user-gitconfig')
           }
           it {
             is_expected.to contain_file('/etc/skel/.config/git/ignore')
-              .with_source('puppet:///modules/software/vcsscm/git/user-gitignore')
+              .with_source('puppet:///modules/user-supplied/custom/user-gitignore')
           }
         end
       end
@@ -116,11 +116,11 @@ describe 'software::vcsscm::git' do
         let :params do
           {
             :gitconfig => {
-              :system => 'puppet:///modules/software/vcsscm/git/system-gitconfig',
-              :user   => 'puppet:///modules/software/vcsscm/git/user-gitconfig'
+              :system => 'puppet:///modules/user-supplied/custom/system-gitconfig',
+              :user   => 'puppet:///modules/user-supplied/custom/user-gitconfig'
             },
             :gitignore => {
-              :user => 'puppet:///modules/software/vcsscm/git/user-gitignore'
+              :user => 'puppet:///modules/user-supplied/custom/user-gitignore'
             }
           }
         end
@@ -131,15 +131,15 @@ describe 'software::vcsscm::git' do
           it { is_expected.to contain_package('git') }
           it {
             is_expected.to contain_file('/etc/gitconfig')
-              .with_source('puppet:///modules/software/vcsscm/git/system-gitconfig')
+              .with_source('puppet:///modules/user-supplied/custom/system-gitconfig')
           }
           it {
             is_expected.to contain_file('/etc/skel/.config/git/config')
-              .with_source('puppet:///modules/software/vcsscm/git/user-gitconfig')
+              .with_source('puppet:///modules/user-supplied/custom/user-gitconfig')
           }
           it {
             is_expected.to contain_file('/etc/skel/.config/git/ignore')
-              .with_source('puppet:///modules/software/vcsscm/git/user-gitignore')
+              .with_source('puppet:///modules/user-supplied/custom/user-gitignore')
           }
         end
       end

@@ -28,10 +28,10 @@ class software::utilities::iterm (
         ensure   => $ensure,
         provider => appcompressed,
         source   => $url,
-      } ->
+      }
 
       # Move to /Applications/Utilities/
-      exec { "iTerm-${version}->Utilities":
+      -> exec { "iTerm-${version}->Utilities":
         command => "rm -rf '${util_path}' && mv '${app_path}' '${util_path}'",
         onlyif  => "test -e '${app_path}'",
         path    => ['/bin', '/usr/bin', '/sbin', '/usr/sbin', '/usr/local/bin', '/usr/local/sbin'],

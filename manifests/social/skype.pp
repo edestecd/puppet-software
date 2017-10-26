@@ -41,9 +41,10 @@ class software::social::skype (
           'id'     => 'D4040146BE3972509FD57FC71F3045A5DF7587C3',
           'source' => 'https://repo.skype.com/data/SKYPE-GPG-KEY',
         },
-      } -> Class['apt::update'] ->
+      }
+      -> Class['apt::update']
 
-      package { 'skypeforlinux':
+      -> package { 'skypeforlinux':
         ensure => $ensure,
       }
     }

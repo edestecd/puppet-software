@@ -27,10 +27,10 @@ class software::utilities::onyx (
           ensure   => $ensure,
           provider => appdmg,
           source   => $url,
-        } ->
+        }
 
         # Move to /Applications/Utilities/
-        exec { "OnyX-${::macosx_productversion_major}->Utilities":
+        -> exec { "OnyX-${::macosx_productversion_major}->Utilities":
           command => "rm -rf '${util_path}' && mv '${app_path}' '${util_path}'",
           onlyif  => "test -e '${app_path}'",
           path    => ['/bin', '/usr/bin', '/sbin', '/usr/sbin', '/usr/local/bin', '/usr/local/sbin'],

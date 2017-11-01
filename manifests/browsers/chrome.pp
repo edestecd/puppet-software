@@ -22,7 +22,7 @@ class software::browsers::chrome (
         source   => $url,
       }
     }
-    'Ubuntu': {
+    'Debian', 'Ubuntu': {
       validate_string($url)
       validate_string($channel)
 

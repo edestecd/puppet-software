@@ -31,7 +31,7 @@ class software::virtualization::virtualbox (
         require  => Exec['KillVirtualBoxProcesses'],
       }
     }
-    'Ubuntu': {
+    'Debian', 'Ubuntu': {
       validate_string($version, $build, $url)
       $apt_source_ensure = $ensure ? {
         'installed' => present,

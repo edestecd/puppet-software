@@ -22,7 +22,7 @@ class software::browsers::firefox (
         source   => $url,
       }
     }
-    'Ubuntu': {
+    'Debian', 'Ubuntu': {
       package { 'firefox':
         ensure => $ensure,
       }

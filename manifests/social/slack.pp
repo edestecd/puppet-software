@@ -10,7 +10,7 @@ class software::social::slack (
   validate_string($ensure)
 
   case $::operatingsystem {
-    'Ubuntu': {
+    'Debian', 'Ubuntu': {
       $apt_source_ensure = $ensure ? {
         'installed' => present,
         'latest'    => present,

@@ -14,7 +14,7 @@ class software::vcsscm::git (
   validate_string($ensure)
 
   case $::operatingsystem {
-    'Ubuntu': {
+    'Debian', 'Ubuntu': {
       package { 'git':
         ensure => $ensure,
       }

@@ -120,7 +120,10 @@ class software::params (
     } else {
       fail("The ${module_name} module only supports 'Mountain Lion', 'Mavericks', 'Yosemite', 'El Capitan', 'Sierra'.")
     }
-  } elsif ($::operatingsystem == 'Ubuntu') and (versioncmp($::operatingsystemrelease, '12.04') >= 0) {
+  } elsif (
+    ($::operatingsystem == 'Debian') and (versioncmp($::operatingsystemrelease, '7') >= 0) or
+    ($::operatingsystem == 'Ubuntu') and (versioncmp($::operatingsystemrelease, '12.04') >= 0)
+  ) {
     #### init ####
     $software_ensure = $ensure ? {
       undef   => latest,

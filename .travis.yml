@@ -1,13 +1,9 @@
 ---
 language: ruby
-cache: bundler
-bundler_args: --without system_tests development
-script: bundle exec rake test SPEC_OPTS='--format documentation'
-sudo: false
-matrix:
-  fast_finish: true
-  include:
-  - rvm: 2.1.9
-    env: PUPPET_GEM_VERSION="~> 4.0" STRICT_VARIABLES="yes"
-notifications:
-  email: false
+
+install:
+  - wget 'https://pm.puppetlabs.com/cgi-bin/pdk_download.cgi?dist=ubuntu&rel=16.04&arch=amd64&ver=latest' -q -O pdk.deb && sudo dpkg -i pdk.deb && rm pdk.deb
+
+script:
+  - pdk validate 2> /dev/null
+  - pdk test unit 2> /dev/null

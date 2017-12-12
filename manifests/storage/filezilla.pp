@@ -23,7 +23,7 @@ class software::storage::filezilla (
         source   => $url,
       }
     }
-    'Ubuntu': {
+    'Debian', 'Ubuntu': {
       package { 'filezilla':
         ensure => $ensure,
       }

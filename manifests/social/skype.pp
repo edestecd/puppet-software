@@ -22,7 +22,7 @@ class software::social::skype (
         source   => $url,
       }
     }
-    'Ubuntu': {
+    'Debian', 'Ubuntu': {
       $apt_source_ensure = $ensure ? {
         'installed' => present,
         'latest'    => present,
@@ -30,13 +30,20 @@ class software::social::skype (
       }
 
       include '::apt'
-      apt::source { 'skype-partner':
-        ensure   => $apt_source_ensure,
-        location => 'http://archive.canonical.com/ubuntu',
-        repos    => 'partner',
+      apt::source { 'skype-stable':
+        ensure       => $apt_source_ensure,
+        comment      => 'Skype APT sources for any Debian-based distribution, including Ubuntu',
+        location     => 'https://repo.skype.com/deb',
+        release      => 'stable',
+        repos        => 'main',
+        architecture => 'amd64',
+        key          => {
+          'id'     => 'D4040146BE3972509FD57FC71F3045A5DF7587C3',
+          'source' => 'https://repo.skype.com/data/SKYPE-GPG-KEY',
+        },
       } -> Class['apt::update'] ->
 
-      package { 'skype':
+      package { 'skypeforlinux':
         ensure => $ensure,
       }
     }

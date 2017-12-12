@@ -8,7 +8,7 @@ describe 'software::social::slack' do
       end
 
       context 'with defaults' do
-        if facts[:operatingsystem] == 'Ubuntu'
+        if facts[:operatingsystem] =~ /^(Debian|Ubuntu)$/
           it { is_expected.to compile.with_all_deps }
           it {
             is_expected.to contain_apt__source('slack')

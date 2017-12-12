@@ -150,16 +150,22 @@ software::vcsscm::git:
 Some proprietary software requires licenses.  
 You may need to pass these license keys and possibly urls to use those classes.
 
-This module has been built on and tested against Puppet 3.2.4 and higher.  
+This module has been built on and tested against Puppet 3.2.4 and higher.
 While I am sure other versions work, I have not tested them.
 
-This module supports modern OS X, Ubuntu, and Windows systems.  
+This module supports modern OS X, Debian, Ubuntu, and Windows systems.
 This module has been heavily tested on:
 * OS X 10.10 Yosemite
 * OS X 10.11 El Capitan
 * OS X 10.12 Sierra
-* Ubuntu Desktop 14.04
-* Ubuntu Desktop 16.04
+* Debian 7 (Wheezy)
+* Debian 8 (Jessie)
+* Debian 9 (Stretch)
+* Ubuntu Desktop 12.04 LTS (Precise)
+* Ubuntu Desktop 14.04 LTS (Trusty)
+* Ubuntu Desktop 16.04 LTS (Xenial)
+* Ubuntu Desktop 17.04 (Zesty)
+* Ubuntu Desktop 17.10 (Artful)
 * Windows 10
 
 Many classes also support older versions of OS X, Ubuntu, and Windows.

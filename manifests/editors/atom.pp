@@ -52,6 +52,24 @@ class software::editors::atom (
         require => Package['Atom'],
       }
     }
+    'Debian': {
+      validate_string($url)
+      $apm_require = Package['atom']
+
+      package { 'atom':
+        ensure   => $ensure,
+        source   => '/tmp/atom-amd64.deb',
+        provider => 'dpkg',
+      }
+
+      file { '/tmp/atom-amd64.deb':
+        source => 'https://atom.io/download/deb',
+        owner  => 'root',
+        group  => 'root',
+        mode   => '0644',
+        before => Package['atom'],
+      }
+    }
     'Ubuntu': {
       validate_string($url)
       $apm_require = Package['atom']

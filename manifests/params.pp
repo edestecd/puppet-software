@@ -120,7 +120,10 @@ class software::params (
     } else {
       fail("The ${module_name} module only supports 'Mountain Lion', 'Mavericks', 'Yosemite', 'El Capitan', 'Sierra'.")
     }
-  } elsif ($::operatingsystem == 'Ubuntu') and (versioncmp($::operatingsystemrelease, '12.04') >= 0) {
+  } elsif (
+    ($::operatingsystem == 'Debian') and (versioncmp($::operatingsystemrelease, '7') >= 0) or
+    ($::operatingsystem == 'Ubuntu') and (versioncmp($::operatingsystemrelease, '12.04') >= 0)
+  ) {
     #### init ####
     $software_ensure = $ensure ? {
       undef   => latest,
@@ -129,8 +132,10 @@ class software::params (
 
 
     #### browsers ####
-    $chrome_url     = 'http://dl.google.com/linux/chrome/deb/'
-    $chrome_channel = 'stable'
+    $chrome_url      = 'http://dl.google.com/linux/chrome/deb/'
+    $chrome_channel  = 'stable'
+    $firefox_version = undef
+    $firefox_url     = undef
 
 
     #### editors ####
@@ -140,6 +145,11 @@ class software::params (
     #### social ####
     $skype_version = undef
     $skype_url     = undef
+
+
+    #### storage ####
+    $filezilla_version = undef
+    $filezilla_url     = undef
 
 
     #### virtualization ####
@@ -164,6 +174,23 @@ class software::params (
       undef   => latest,
       default => $ensure,
     }
+
+
+    #### browsers ####
+    $chrome_url      = undef
+    $chrome_channel  = undef
+    $firefox_version = undef
+    $firefox_url     = undef
+
+
+    #### social ####
+    $skype_version = undef
+    $skype_url     = undef
+
+
+    #### storage ####
+    $filezilla_version = undef
+    $filezilla_url     = undef
   } else {
     fail("The ${module_name} module is not supported on ${::operatingsystem} with version ${::operatingsystemrelease}.")
   }

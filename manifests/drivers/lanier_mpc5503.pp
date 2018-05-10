@@ -29,16 +29,16 @@ class software::drivers::lanier_mpc5503 (
         ensure   => $ensure,
         provider => pkgdmg,
         source   => $url,
-      } ->
+      }
 
-      printer { 'BIO-PBD009-mpc5503':
+      -> printer { 'BIO-PBD009-mpc5503':
         ensure      => $printer_ensure,
         enabled     => true,
         uri         => 'smb://kepler.it.muohio.edu/BIO-PBD009-mpc5503',
         location    => 'PBD009',
         ppd         => '/Library/Printers/PPDs/Contents/Resources/LANIER MP C5503',
         shared      => false,
-        #options     => { },
+        # options     => { },
         ppd_options => {
           'OptionTray' => 'LCT',
           'Finisher'   => 'FinVOLGABBK',

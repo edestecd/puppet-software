@@ -45,10 +45,13 @@ class software::virtualization::virtualbox (
         location => $url,
         repos    => 'contrib',
         key      => $key,
-      } -> Class['apt::update'] ->
+      }
+      -> Class['apt::update']
 
-      package { 'dkms': } ->
-      package { "virtualbox-${version}": ensure => $ensure }
+      -> package { 'dkms': }
+      -> package { "virtualbox-${version}":
+        ensure => $ensure,
+      }
     }
     'windows': {
       package { 'virtualbox':

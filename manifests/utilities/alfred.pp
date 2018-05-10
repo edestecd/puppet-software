@@ -32,10 +32,10 @@ class software::utilities::alfred (
         ensure   => $ensure,
         provider => appcompressed,
         source   => $url,
-      } ->
+      }
 
       # Move to /Applications/Utilities/
-      exec { "Alfred-${version}->Utilities":
+      -> exec { "Alfred-${version}->Utilities":
         command => "rm -rf '${util_path}' && mv '${app_path}' '${util_path}'",
         onlyif  => "test -e '${app_path}'",
         path    => ['/bin', '/usr/bin', '/sbin', '/usr/sbin', '/usr/local/bin', '/usr/local/sbin'],
@@ -52,9 +52,10 @@ class software::utilities::alfred (
       apt::ppa { 'ppa:mutate/ppa':
         ensure         => $apt_ppa_ensure,
         package_manage => true,
-      } -> Class['apt::update'] ->
+      }
+      -> Class['apt::update']
 
-      package { 'mutate':
+      -> package { 'mutate':
         ensure => $ensure,
       }
     }

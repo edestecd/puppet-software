@@ -32,20 +32,14 @@ class software::editors::atom (
         source   => $url,
       }
 
-      # homebrew manages this now
-      # ensure_resource('file', '/usr/local/bin', {
-      #     ensure  => directory,
-      #     require => Package['Atom'],
-      # })
-
       file { '/usr/local/bin/apm':
         ensure  => link,
         target  => '/Applications/Atom.app/Contents/Resources/app/apm/node_modules/.bin/apm',
         mode    => '0755',
         require => Package['Atom'],
-      } ->
+      }
 
-      file { '/usr/local/bin/atom':
+      -> file { '/usr/local/bin/atom':
         ensure  => link,
         target  => '/Applications/Atom.app/Contents/Resources/app/atom.sh',
         mode    => '0755',
@@ -83,9 +77,10 @@ class software::editors::atom (
       apt::ppa { 'ppa:webupd8team/atom':
         ensure         => $apt_ppa_ensure,
         package_manage => true,
-      } -> Class['apt::update'] ->
+      }
+      -> Class['apt::update']
 
-      package { 'atom':
+      -> package { 'atom':
         ensure => $ensure,
       }
     }

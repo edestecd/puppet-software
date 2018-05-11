@@ -1,17 +1,53 @@
 ---
+sudo: false
+dist: trusty
 language: ruby
-
-install:
-  - wget 'https://pm.puppetlabs.com/cgi-bin/pdk_download.cgi?dist=ubuntu&rel=16.04&arch=amd64&ver=latest' -q -O pdk.deb && sudo dpkg -i pdk.deb && rm pdk.deb
-
-stages:
-  - validate
-  - test
-
-jobs:
+cache: bundler
+before_install:
+  - bundle -v
+  - rm -f Gemfile.lock
+  - gem update --system
+  - gem update bundler
+  - gem --version
+  - bundle -v
+script:
+  - 'bundle exec rake $CHECK'
+bundler_args: --without system_tests
+rvm:
+  - 2.4.1
+env:
+  - PUPPET_GEM_VERSION="~> 5.0" CHECK=spec
+matrix:
+  fast_finish: true
   include:
-    - stage: validate
-      script: pdk validate 2> /dev/null
-
-    - stage: test
-      script: pdk test unit 2> /dev/null
+    -
+      env: CHECK=rubocop
+    -
+      env: CHECK="syntax lint"
+    -
+      env: CHECK=metadata_lint
+    -
+      env: CHECK=release_checks
+    -
+      env: CHECK=spec
+    -
+      env: PUPPET_GEM_VERSION="~> 4.0" CHECK=spec
+      rvm: 2.1.9
+    -
+      env: PUPPET_GEM_VERSION="~> 5.0" CHECK=build DEPLOY_TO_FORGE=yes
+branches:
+  only:
+    - master
+    - /^v\d/
+    - /^\d/
+notifications:
+  email: false
+deploy:
+  provider: puppetforge
+  user: edestecd
+  password:
+    secure: "IjN9ysQ9O67n+XmfXQgQ5t30ZEu/d/3Cc/aavyN4OrKDwNCDBrnT1B6Gv83jf1F9z6moqnNe/D7tJJmsu6w56ATk7vErrqvPvSufI65BmzDmjVZDhyUpOGIe2QwgVDTAqmkwMiCP5+VEUxGikoamGH2FJxmAlhw24JRksHgS4fIReM16RmHZVt1y9mQyHSXWWMsx7EHsATGPu1QoiZ0MugJGOUT+dNk3ZZOxTWCrNqTcpzItU85zkw7z6n5GTdHpZepaHShIf0UCCnTv7sUz4a20Ozwe0P+Wb7UwmcpwQH8IRCUl2b58KCSC5n/4ZSFC9Et+/2zAnJOaRvW251vMMJlvftJfduKBZklVVCdunbXWr/gh6o/W3uSixgnZrRmPjK05TR6lFX5DQlYeLMvJVO3i98tYeIeqSTrstwS92ITl1pG87h2TOoZ78nHVwASI9jh3QxKej8BAGjSIhrECQ93n0o3PPQ14ePmOa2hPWY7V6hIihUctoOqJ8XCJNGPb24yVZmRS7RVL3SnLr57YtfMfcU228MuaPcEhZ93DfirvCgeQqBfux3kCFoNE3rg5noc3UOfpupGwCPpiH9B3U5f1ZmkEw4omIw7CAjb+6OTMPrgBkcChe4HQ67PWrYlfJ0kfAO7DmQIJ5j4A0jZ4RbTp2i7PyaVAZaB4Ja5x/RA="
+  on:
+    tags: true
+    all_branches: true
+    condition: "$DEPLOY_TO_FORGE = yes"

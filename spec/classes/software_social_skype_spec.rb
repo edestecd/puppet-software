@@ -8,10 +8,11 @@ describe 'software::social::skype' do
       end
 
       context 'with defaults' do
+        # rubocop:disable RSpec/RepeatedExample
         if facts[:operatingsystem] == 'Darwin'
           it { is_expected.to compile.with_all_deps }
           it { is_expected.to contain_package('Skype-7.33.206').with_provider('appdmg') }
-        elsif facts[:operatingsystem] =~ /^(Debian|Ubuntu)$/
+        elsif facts[:operatingsystem] =~ %r{^(Debian|Ubuntu)$}
           it { is_expected.to compile.with_all_deps }
           it {
             is_expected.to contain_apt__source('skype-stable')
@@ -25,8 +26,9 @@ describe 'software::social::skype' do
           it { is_expected.to compile.with_all_deps }
           it { is_expected.to contain_package('skype').with_provider('chocolatey') }
         else
-          it { is_expected.to compile.and_raise_error(/is not supported on /) }
+          it { is_expected.to compile.and_raise_error(%r{is not supported on }) }
         end
+        # rubocop:enable RSpec/RepeatedExample
       end
     end
   end

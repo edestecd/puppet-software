@@ -85,6 +85,8 @@ class software::editors::atom (
       }
     }
     'windows': {
+      $apm_require = undef
+
       package { 'atom':
         ensure   => $ensure,
         provider => chocolatey,

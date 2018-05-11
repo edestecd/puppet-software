@@ -1,0 +1,6 @@
+# Use default_module_facts.yml for module specific facts.
+#
+# Facts specified here will override the values provided by rspec-puppet-facts.
+---
+choco_install_path: C:\ProgramData\chocolatey
+chocolateyversion: 0.9.9

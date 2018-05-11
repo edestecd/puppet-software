@@ -47,3 +47,7 @@ Gemfile:
       - gem: puppet-lint-unquoted_string-check
       - gem: puppet-lint-variable_contains_upcase
       - gem: puppet-lint-version_comparison-check
+
+Rakefile:
+  extra_disabled_lint_checks:
+    - disable_security_package_pinned_version

@@ -2,17 +2,17 @@
 
 require 'puppet/provider/package'
 
-Puppet::Type.type(:package).provide(:apm, :parent => Puppet::Provider::Package) do
+Puppet::Type.type(:package).provide(:apm, parent: Puppet::Provider::Package) do
   desc 'Atom packages via `apm`.'
 
   has_feature :installable, :uninstallable, :upgradeable, :versionable
 
-  commands :apm => 'apm'
+  commands apm: 'apm'
 
   def self.parse(line, user)
-    return unless line.chomp =~ / (\S+)@(\d+\.\d+\.\d+)/
-    { :name => Regexp.last_match(1), :provider => :apm,
-      :ensure => Regexp.last_match(2), :source => user }
+    return unless line.chomp =~ %r{ (\S+)@(\d+\.\d+\.\d+)}
+    { name: Regexp.last_match(1), provider: :apm,
+      ensure: Regexp.last_match(2), source: user }
   end
 
   def self.instances_by_user(user)
@@ -20,21 +20,21 @@ Puppet::Type.type(:package).provide(:apm, :parent => Puppet::Provider::Package) 
 
     begin
       output = execute(command, command_opts(user))
-      [].tap do |a|
+      [].tap { |a|
         output.lines.each do |line|
           next unless (package = parse(line, user))
           a << new(package)
         end
-      end.compact
+      }.compact
     rescue Puppet::ExecutionFailure => e
       raise Puppet::Error, "Could not list atom packages: #{e}"
     end
   end
 
   def self.instances
-    Dir.entries(home_prefix).reject { |u| u.start_with?('.') || u.eql?('Shared') }.collect do |user|
+    Dir.entries(home_prefix).reject { |u| u.start_with?('.') || u.eql?('Shared') }.map { |user|
       instances_by_user(user)
-    end.flatten
+    }.flatten
   end
 
   def query
@@ -50,7 +50,7 @@ Puppet::Type.type(:package).provide(:apm, :parent => Puppet::Provider::Package) 
     command = [command(:apm), :upgrade, '--list', '--no-color']
     output = execute(command, self.class.command_opts(@resource[:source]))
 
-    if output =~ / #{Regexp.escape @resource[:name]} (\d+\.\d+\.\d+) -> (\d+\.\d+\.\d+)/
+    if output =~ %r{ #{Regexp.escape @resource[:name]} (\d+\.\d+\.\d+) -> (\d+\.\d+\.\d+)}
       Regexp.last_match(2)
     else
       @property_hash[:ensure]
@@ -61,7 +61,7 @@ Puppet::Type.type(:package).provide(:apm, :parent => Puppet::Provider::Package) 
     command = [command(:apm), :install]
 
     should = @resource.should(:ensure)
-    command << if %i[latest installed present].include?(should)
+    command << if [:latest, :installed, :present].include?(should)
                  @resource[:name]
                else
                  "#{@resource[:name]}@#{should}"
@@ -101,13 +101,13 @@ Puppet::Type.type(:package).provide(:apm, :parent => Puppet::Provider::Package) 
   def self.command_opts(user)
     Dir.chdir(home(user).to_s)
     @command_opts ||= {
-      :combine            => true,
-      :custom_environment => {
-        'HOME'            => home(user).to_s,
-        'PATH'            => '/usr/local/bin:/usr/bin:/usr/sbin:/bin:/sbin'
+      combine: true,
+      custom_environment: {
+        'HOME' => home(user).to_s,
+        'PATH' => '/usr/local/bin:/usr/bin:/usr/sbin:/bin:/sbin',
       },
-      :failonfail         => true,
-      :uid                => default_user(user)
+      failonfail: true,
+      uid: default_user(user),
     }
   end
 end

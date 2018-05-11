@@ -1,43 +1,43 @@
 # lib/puppet/provider/package/appcompressed.rb
 
 require 'puppet/provider/package'
-Puppet::Type.type(:package).provide(:appcompressed, :parent => Puppet::Provider::Package) do
+Puppet::Type.type(:package).provide(:appcompressed, parent: Puppet::Provider::Package) do
   desc 'Installs a compressed .app. Supports zip, tar.gz, tar.bz2'
 
   FLAVORS = %w[zip tgz tar.gz tbz tbz2 tar.bz2].freeze
 
-  confine :operatingsystem => :darwin
+  confine operatingsystem: :darwin
 
-  commands :curl  => '/usr/bin/curl'
-  commands :ditto => '/usr/bin/ditto'
-  commands :tar   => '/usr/bin/tar'
+  commands curl: '/usr/bin/curl'
+  commands ditto: '/usr/bin/ditto'
+  commands tar: '/usr/bin/tar'
   # commands :rm    => '/bin/rm'
 
   # JJM We store a cookie for each installed .app.compressed in /var/db
   def self.instances_by_name
     # Allow this gross code....
-    # rubocop:disable Style/BlockDelimiters, Style/MultilineBlockChain
-    Dir.entries('/var/db').find_all { |f|
-      f =~ /^\.puppet_appcompressed_installed_/
-    }.collect do |f|
-      name = f.sub(/^\.puppet_appcompressed_installed_/, '')
+    # rubocop:disable Style/MultilineBlockChain
+    Dir.entries('/var/db').select { |f|
+      f =~ %r{^\.puppet_appcompressed_installed_}
+    }.map do |f|
+      name = f.sub(%r{^\.puppet_appcompressed_installed_}, '')
       yield name if block_given?
       name
     end
-    # rubocop:enable Style/BlockDelimiters, Style/MultilineBlockChain
+    # rubocop:enable Style/MultilineBlockChain
   end
 
   def self.instances
-    instances_by_name.collect do |name|
-      new(:name => name, :provider => :appcompressed, :ensure => :installed)
+    instances_by_name.map do |name|
+      new(name: name, provider: :appcompressed, ensure: :installed)
     end
   end
 
   def query
     return unless File.exist?(receipt_path)
     {
-      :name   => @resource[:name],
-      :ensure => :installed
+      name: @resource[:name],
+      ensure: :installed,
     }
   end
 
@@ -86,7 +86,7 @@ Puppet::Type.type(:package).provide(:appcompressed, :parent => Puppet::Provider:
   private
 
   def flavor
-    @resource[:flavor] || @resource[:source].match(/\.(#{FLAVORS.join('|')})$/i) { |m| m[1] }
+    @resource[:flavor] || @resource[:source].match(%r{\.(#{FLAVORS.join('|')})$}i) { |m| m[1] }
   end
 
   # This is not always correct...

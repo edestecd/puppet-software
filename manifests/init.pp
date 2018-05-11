@@ -16,8 +16,5 @@ class software (
 ) inherits software::params {
 
   # Not Used
-  fail("The ${module_name} module does not use the ${name} class.
-  Just include the software or group classes you want like this:
-  include software::browsers::chrome (just chrome) include software::browsers (all browsers in group)")
-
+  fail("The ${module_name} module does not use the ${name} class. Just include the software or group classes you want.")
 }

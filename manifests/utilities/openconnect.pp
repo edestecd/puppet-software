@@ -11,7 +11,6 @@ class software::utilities::openconnect (
 
   case $::operatingsystem {
     'Darwin': {
-      include '::homebrew'
       package { 'openconnect':
         ensure   => $ensure,
         provider => brew,

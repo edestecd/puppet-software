@@ -6,5 +6,6 @@ fixtures:
     powershell: "https://github.com/puppetlabs/puppetlabs-powershell.git"
     registry: "https://github.com/puppetlabs/puppetlabs-registry.git"
     vcsrepo: "https://github.com/puppetlabs/puppetlabs-vcsrepo.git"
+    homebrew: "https://github.com/TheKevJames/puppet-homebrew.git"
   symlinks:
     software: "#{source_dir}"

@@ -10,21 +10,16 @@ class software::browsers::chrome (
   $channel = $software::params::chrome_channel,
 ) inherits software::params {
 
-  validate_string($ensure)
-
-  case $::operatingsystem {
+  case $facts['os']['name'] {
     'Darwin': {
-      validate_string($url)
-
-      package { 'GoogleChrome':
+      package { 'google-chrome':
         ensure   => $ensure,
-        provider => appdmg,
-        source   => $url,
+        provider => brewcask,
       }
     }
     'Debian', 'Ubuntu': {
-      validate_string($url)
-      validate_string($channel)
+      assert_type(Stdlib::HTTPUrl, $url)
+      assert_type(String[1], $channel)
 
       $apt_source_ensure = $ensure ? {
         'installed' => present,
@@ -57,7 +52,7 @@ class software::browsers::chrome (
       }
     }
     default: {
-      fail("The ${name} class is not supported on ${::operatingsystem}.")
+      fail("The ${name} class is not supported on ${facts['os']['name']}.")
     }
   }
 

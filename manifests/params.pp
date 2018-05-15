@@ -5,6 +5,8 @@
 
 class software::params (
   $ensure = getvar('::software-ensure'),
+  Boolean $manage_homebrew   = false,
+  Boolean $manage_chocolatey = true,
 ) {
 
   # At least OSX 10.8 "Mountain Lion"
@@ -14,16 +16,15 @@ class software::params (
       undef   => installed,
       default => $ensure,
     }
+    if $manage_homebrew { include '::homebrew' }
     $applications_path     = '/Applications'
     $utilities_path        = "${applications_path}/Utilities"
     $preference_panes_path = '/Library/PreferencePanes'
 
 
     # ### browsers ####
-    $chrome_url      = 'https://dl.google.com/chrome/mac/stable/CHFA/googlechrome.dmg'
-    $chrome_channel  = 'stable'
-    $firefox_version = '50.1.0'
-    $firefox_url     = "https://download-installer.cdn.mozilla.net/pub/firefox/releases/${firefox_version}/mac/en-US/Firefox%20${firefox_version}.dmg"
+    $chrome_url     = undef
+    $chrome_channel = undef
 
 
     # ### database ####
@@ -132,10 +133,8 @@ class software::params (
 
 
     # ### browsers ####
-    $chrome_url      = 'http://dl.google.com/linux/chrome/deb/'
-    $chrome_channel  = 'stable'
-    $firefox_version = undef
-    $firefox_url     = undef
+    $chrome_url     = 'http://dl.google.com/linux/chrome/deb/'
+    $chrome_channel = 'stable'
 
 
     # ### editors ####
@@ -169,18 +168,16 @@ class software::params (
     }
   } elsif ($::operatingsystem == 'windows') and (versioncmp($::operatingsystemrelease, '7') >= 0) {
     # ### init ####
-    include '::chocolatey'
     $software_ensure = $ensure ? {
       undef   => latest,
       default => $ensure,
     }
+    if $manage_chocolatey { include '::chocolatey' }
 
 
     # ### browsers ####
-    $chrome_url      = undef
-    $chrome_channel  = undef
-    $firefox_version = undef
-    $firefox_url     = undef
+    $chrome_url     = undef
+    $chrome_channel = undef
 
 
     # ### editors ####

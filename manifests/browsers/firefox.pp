@@ -4,38 +4,18 @@
 #
 
 class software::browsers::firefox (
-  $ensure  = $software::params::software_ensure,
-  $version = $software::params::firefox_version,
-  $url     = $software::params::firefox_url,
+  $ensure = $software::params::software_ensure,
 ) inherits software::params {
 
-  validate_string($ensure)
-
-  case $::operatingsystem {
-    'Darwin': {
-      validate_string($version)
-      validate_string($url)
-
-      package { "Firefox-${version}":
-        ensure   => $ensure,
-        provider => appdmg,
-        source   => $url,
-      }
-    }
-    'Debian', 'Ubuntu': {
-      package { 'firefox':
-        ensure => $ensure,
-      }
-    }
-    'windows': {
-      package { 'firefox':
-        ensure   => $ensure,
-        provider => chocolatey,
-      }
-    }
-    default: {
-      fail("The ${name} class is not supported on ${::operatingsystem}.")
-    }
+  $provider = $facts['os']['name'] ? {
+    'Darwin'          => brewcask,
+    /(Debian|Ubuntu)/ => undef,
+    'windows'         => chocolatey,
+    default           => fail("The ${name} class is not supported on ${facts['os']['name']}."),
   }
 
+  package { 'firefox':
+    ensure   => $ensure,
+    provider => $provider,
+  }
 }

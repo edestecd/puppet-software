@@ -37,7 +37,7 @@ describe 'software::vcsscm::git' do
 
         if facts[:operatingsystem] == 'Darwin'
           it { is_expected.to compile.and_raise_error(%r{is not supported on Darwin.}) }
-        elsif %w[Debian Ubuntu].include?(facts[:operatingsystem])
+        elsif ['Debian', 'Ubuntu'].include?(facts[:operatingsystem])
           it { is_expected.to compile.with_all_deps }
           it { is_expected.to contain_package('git') }
           it { is_expected.to contain_package('gitk') }
@@ -55,7 +55,7 @@ describe 'software::vcsscm::git' do
 
         if facts[:operatingsystem] == 'Darwin'
           it { is_expected.to compile.and_raise_error(%r{is not supported on Darwin.}) }
-        elsif %w[Debian Ubuntu].include?(facts[:operatingsystem])
+        elsif ['Debian', 'Ubuntu'].include?(facts[:operatingsystem])
           it { is_expected.to compile.with_all_deps }
           it { is_expected.to contain_package('git') }
           it { is_expected.to contain_package('bash-completion') }
@@ -77,7 +77,7 @@ describe 'software::vcsscm::git' do
 
         if facts[:operatingsystem] == 'Darwin'
           it { is_expected.to compile.and_raise_error(%r{is not supported on Darwin.}) }
-        elsif %w[Debian Ubuntu].include?(facts[:operatingsystem])
+        elsif ['Debian', 'Ubuntu'].include?(facts[:operatingsystem])
           it { is_expected.to compile.with_all_deps }
           it { is_expected.to contain_package('git') }
           it {
@@ -105,7 +105,7 @@ describe 'software::vcsscm::git' do
 
         if facts[:operatingsystem] == 'Darwin'
           it { is_expected.to compile.and_raise_error(%r{is not supported on Darwin.}) }
-        elsif %w[Debian Ubuntu].include?(facts[:operatingsystem])
+        elsif ['Debian', 'Ubuntu'].include?(facts[:operatingsystem])
           it { is_expected.to compile.with_all_deps }
           it { is_expected.to contain_package('git') }
           it { is_expected.not_to contain_file('/etc/gitconfig') }
@@ -135,7 +135,7 @@ describe 'software::vcsscm::git' do
 
         if facts[:operatingsystem] == 'Darwin'
           it { is_expected.to compile.and_raise_error(%r{is not supported on Darwin.}) }
-        elsif %w[Debian Ubuntu].include?(facts[:operatingsystem])
+        elsif ['Debian', 'Ubuntu'].include?(facts[:operatingsystem])
           it { is_expected.to compile.with_all_deps }
           it { is_expected.to contain_package('git') }
           it {

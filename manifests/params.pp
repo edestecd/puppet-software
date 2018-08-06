@@ -118,8 +118,11 @@ class software::params (
     } elsif versioncmp($::macosx_productversion_major, '10.12') == 0 {
       # ### utilities ####
       $onyx_url = 'http://joel.barriere.pagesperso-orange.fr/download/1012/OnyX.dmg'
+    } elsif versioncmp($::macosx_productversion_major, '10.13') == 0 {
+      # ### utilities ####
+      $onyx_url = 'https://www.titanium-software.fr/download/1013/OnyX.dmg'
     } else {
-      fail("The ${module_name} module only supports 'Mountain Lion', 'Mavericks', 'Yosemite', 'El Capitan', 'Sierra'.")
+      fail("The ${module_name} module only supports 'Mountain Lion', 'Mavericks', 'Yosemite', 'El Capitan', 'Sierra', 'High Sierra'.")
     }
   } elsif (
     ($::operatingsystem == 'Debian') and (versioncmp($::operatingsystemrelease, '7') >= 0) or

@@ -27,11 +27,6 @@ class software::params (
     $chrome_channel = undef
 
 
-    # ### idesdk ####
-    $android_studio_version = '145.3537739'
-    $android_studio_url     = "https://dl.google.com/dl/android/studio/install/2.2.3.0/android-studio-ide-${android_studio_version}-mac.dmg"
-
-
     # ### prefpanes ####
     $hosts_version        = '1.3'
     $hosts_url            = "https://github.com/downloads/specialunderwear/Hosts.prefpane/Hosts-${hosts_version}.pkg"

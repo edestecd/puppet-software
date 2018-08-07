@@ -7,9 +7,7 @@ class software::idesdk::android_tools (
   $ensure = $software::params::software_ensure,
 ) inherits software::params {
 
-  validate_string($ensure)
-
-  case $::operatingsystem {
+  case $facts['os']['name'] {
     'Ubuntu': {
       package { ['android-tools-adb', 'android-tools-fastboot']:
         ensure => $ensure,
@@ -22,7 +20,7 @@ class software::idesdk::android_tools (
       }
     }
     default: {
-      fail("The ${name} class is not supported on ${::operatingsystem}.")
+      fail("The ${name} class is not supported on ${facts['os']['name']}.")
     }
   }
 

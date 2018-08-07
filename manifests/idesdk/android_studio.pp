@@ -4,22 +4,14 @@
 #
 
 class software::idesdk::android_studio (
-  $ensure  = $software::params::software_ensure,
-  $version = $software::params::android_studio_version,
-  $url     = $software::params::android_studio_url,
+  $ensure = $software::params::software_ensure,
 ) inherits software::params {
 
-  validate_string($ensure)
-
-  case $::operatingsystem {
+  case $facts['os']['name'] {
     'Darwin': {
-      validate_string($version)
-      validate_string($url)
-
-      package { "Android-Studio-${version}":
+      package { 'android-studio':
         ensure   => $ensure,
-        provider => appdmg,
-        source   => $url,
+        provider => brewcask,
       }
     }
     'windows': {
@@ -29,7 +21,7 @@ class software::idesdk::android_studio (
       }
     }
     default: {
-      fail("The ${name} class is not supported on ${::operatingsystem}.")
+      fail("The ${name} class is not supported on ${facts['os']['name']}.")
     }
   }
 

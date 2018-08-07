@@ -6,48 +6,40 @@
 #
 
 class software::editors::atom (
-  $ensure   = $software::params::software_ensure,
-  $url      = $software::params::atom_url,
-  $packages = {},
-  $themes   = {},
-  $user     = undef,
+  $ensure        = $software::params::software_ensure,
+  Hash $packages = {},
+  Hash $themes   = {},
+  $user          = undef,
 ) inherits software::params {
 
-  validate_string($ensure)
-  validate_hash($packages, $themes)
-
   unless empty(merge($packages, $themes)) {
-    validate_string($user)
+    assert_type(String[1], $user)
   }
 
-  case $::operatingsystem {
+  case $facts['os']['name'] {
     'Darwin': {
-      validate_string($url)
       $apm_require = File['/usr/local/bin/apm']
 
-      package { 'Atom':
+      package { 'atom':
         ensure   => $ensure,
-        provider => appcompressed,
-        flavor   => zip,
-        source   => $url,
+        provider => brewcask,
       }
 
       file { '/usr/local/bin/apm':
         ensure  => link,
         target  => '/Applications/Atom.app/Contents/Resources/app/apm/node_modules/.bin/apm',
         mode    => '0755',
-        require => Package['Atom'],
+        require => Package['atom'],
       }
 
       -> file { '/usr/local/bin/atom':
         ensure  => link,
         target  => '/Applications/Atom.app/Contents/Resources/app/atom.sh',
         mode    => '0755',
-        require => Package['Atom'],
+        require => Package['atom'],
       }
     }
     'Debian': {
-      validate_string($url)
       $apm_require = Package['atom']
 
       package { 'atom':
@@ -65,7 +57,6 @@ class software::editors::atom (
       }
     }
     'Ubuntu': {
-      validate_string($url)
       $apm_require = Package['atom']
       $apt_ppa_ensure = $ensure ? {
         'installed' => present,
@@ -93,7 +84,7 @@ class software::editors::atom (
       }
     }
     default: {
-      fail("The ${name} class is not supported on ${::operatingsystem}.")
+      fail("The ${name} class is not supported on ${facts['os']['name']}.")
     }
   }
 
@@ -102,14 +93,11 @@ class software::editors::atom (
     default     => $ensure,
   }
 
-  # strict indent is wrong here...
-  # lint:ignore:strict_indent
   create_resources('package', merge($packages, $themes), {
-    ensure   => $apm_ensure,
-    provider => apm,
-    source   => $user,
-    require  => $apm_require,
+      ensure   => $apm_ensure,
+      provider => apm,
+      source   => $user,
+      require  => $apm_require,
   })
-  # lint:endignore
 
 }

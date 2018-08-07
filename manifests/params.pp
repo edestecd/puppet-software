@@ -27,13 +27,6 @@ class software::params (
     $chrome_channel = undef
 
 
-    # ### editors ####
-    $atom_url             = 'https://atom.io/download/mac'
-    $textmate_url         = 'https://api.textmate.org/downloads/release'
-    $textwrangler_version = '5.5.2'
-    $textwrangler_url     = "https://s3.amazonaws.com/BBSW-download/TextWrangler_${textwrangler_version}.dmg"
-
-
     # ### entertainment ####
     $vlc_version = '2.2.4'
     $vlc_url     = "https://get.videolan.org/vlc/${vlc_version}/macosx/vlc-${vlc_version}.dmg"
@@ -127,10 +120,6 @@ class software::params (
     $chrome_channel = 'stable'
 
 
-    # ### editors ####
-    $atom_url = 'https://atom.io/download/deb'
-
-
     # ### social ####
     $skype_version = undef
     $skype_url     = undef
@@ -168,10 +157,6 @@ class software::params (
     # ### browsers ####
     $chrome_url     = undef
     $chrome_channel = undef
-
-
-    # ### editors ####
-    $atom_url = undef
 
 
     # ### social ####

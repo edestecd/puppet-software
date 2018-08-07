@@ -6,23 +6,14 @@ class software::editors::vim (
   $ensure = $software::params::software_ensure,
 ) inherits software::params {
 
-  validate_string($ensure)
-
-  case $::operatingsystem {
-    'Ubuntu': {
-      package { 'vim':
-        ensure => $ensure,
-      }
-    }
-    'windows': {
-      package { 'vim':
-        ensure   => $ensure,
-        provider => chocolatey,
-      }
-    }
-    default: {
-      fail("The ${name} class is not supported on ${::operatingsystem}.")
-    }
+  $provider = $facts['os']['name'] ? {
+    /(Debian|Ubuntu)/ => undef,
+    'windows'         => chocolatey,
+    default           => fail("The ${name} class is not supported on ${facts['os']['name']}."),
   }
 
+  package { 'vim':
+    ensure   => $ensure,
+    provider => $provider,
+  }
 }

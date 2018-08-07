@@ -27,11 +27,6 @@ class software::params (
     $chrome_channel = undef
 
 
-    # ### entertainment ####
-    $vlc_version = '2.2.4'
-    $vlc_url     = "https://get.videolan.org/vlc/${vlc_version}/macosx/vlc-${vlc_version}.dmg"
-
-
     # ### idesdk ####
     $android_studio_version = '145.3537739'
     $android_studio_url     = "https://dl.google.com/dl/android/studio/install/2.2.3.0/android-studio-ide-${android_studio_version}-mac.dmg"

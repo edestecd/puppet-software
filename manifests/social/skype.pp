@@ -4,22 +4,14 @@
 #
 
 class software::social::skype (
-  $ensure  = $software::params::software_ensure,
-  $version = $software::params::skype_version,
-  $url     = $software::params::skype_url,
+  $ensure = $software::params::software_ensure,
 ) inherits software::params {
 
-  validate_string($ensure)
-
-  case $::operatingsystem {
+  case $facts['os']['name'] {
     'Darwin': {
-      validate_string($version)
-      validate_string($url)
-
-      package { "Skype-${version}":
+      package { 'skype':
         ensure   => $ensure,
-        provider => appdmg,
-        source   => $url,
+        provider => brewcask,
       }
     }
     'Debian', 'Ubuntu': {
@@ -55,7 +47,7 @@ class software::social::skype (
       }
     }
     default: {
-      fail("The ${name} class is not supported on ${::operatingsystem}.")
+      fail("The ${name} class is not supported on ${facts['os']['name']}.")
     }
   }
 

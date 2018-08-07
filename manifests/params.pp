@@ -27,11 +27,6 @@ class software::params (
     $chrome_channel = undef
 
 
-    # ### social ####
-    $skype_version = '7.33.206'
-    $skype_url     = "http://download.skype.com/macosx/59bb2e5bac07f54c8d4ade192fa36d1c/Skype_${skype_version}.dmg"
-
-
     # ### storage ####
     $drive_url         = 'https://dl.google.com/drive/installgoogledrive.dmg'
     $fetch_version     = '5.7.6'
@@ -103,11 +98,6 @@ class software::params (
     $chrome_channel = 'stable'
 
 
-    # ### social ####
-    $skype_version = undef
-    $skype_url     = undef
-
-
     # ### storage ####
     $filezilla_version = undef
     $filezilla_url     = undef
@@ -140,11 +130,6 @@ class software::params (
     # ### browsers ####
     $chrome_url     = undef
     $chrome_channel = undef
-
-
-    # ### social ####
-    $skype_version = undef
-    $skype_url     = undef
 
 
     # ### storage ####

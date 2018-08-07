@@ -27,15 +27,6 @@ class software::params (
     $chrome_channel = undef
 
 
-    # ### utilities ####
-    $alfred_version       = '3.2.1_768'
-    $alfred_url           = "https://cachefly.alfredapp.com/Alfred_${alfred_version}.zip"
-    $controlplane_version = '1.6.4'
-    $controlplane_url     = "https://dl.dropboxusercontent.com/u/12850/ControlPlane/ControlPlane-${controlplane_version}.dmg"
-    $iterm_version        = '3_0_13'
-    $iterm_url            = "https://iterm2.com/downloads/stable/iTerm2-${iterm_version}.zip"
-
-
     # ### vcsscm ####
     $sourcetree_version = '2.4e'
     $sourcetree_url     = "https://downloads.atlassian.com/software/sourcetree/SourceTree_${sourcetree_version}.zip"
@@ -51,29 +42,6 @@ class software::params (
     # ### webstack ####
     $anvil_url = 'http://s3.amazonaws.com/sparkler_versions/versions/uploads/000/000/129/original/Anvil_2016-02-24_11-50-56.zip'
     $pow_url   = 'get.pow.cx'
-
-
-    if versioncmp($::macosx_productversion_major, '10.8') == 0 {
-      # ### utilities ####
-      $onyx_url = 'http://www.titanium.free.fr/download/108/OnyX.dmg'
-    } elsif versioncmp($::macosx_productversion_major, '10.9') == 0 {
-      # ### utilities ####
-      $onyx_url = 'http://www.titanium.free.fr/download/109/OnyX.dmg'
-    } elsif versioncmp($::macosx_productversion_major, '10.10') == 0 {
-      # ### utilities ####
-      $onyx_url = 'http://www.titanium.free.fr/download/1010/OnyX.dmg'
-    } elsif versioncmp($::macosx_productversion_major, '10.11') == 0 {
-      # ### utilities ####
-      $onyx_url = 'http://joel.barriere.pagesperso-orange.fr/download/1011/OnyX.dmg'
-    } elsif versioncmp($::macosx_productversion_major, '10.12') == 0 {
-      # ### utilities ####
-      $onyx_url = 'http://joel.barriere.pagesperso-orange.fr/download/1012/OnyX.dmg'
-    } elsif versioncmp($::macosx_productversion_major, '10.13') == 0 {
-      # ### utilities ####
-      $onyx_url = 'https://www.titanium-software.fr/download/1013/OnyX.dmg'
-    } else {
-      fail("The ${module_name} module only supports 'Mountain Lion', 'Mavericks', 'Yosemite', 'El Capitan', 'Sierra', 'High Sierra'.")
-    }
   } elsif (
     ($::operatingsystem == 'Debian') and (versioncmp($::operatingsystemrelease, '7') >= 0) or
     ($::operatingsystem == 'Ubuntu') and (versioncmp($::operatingsystemrelease, '12.04') >= 0)

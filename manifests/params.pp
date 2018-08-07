@@ -27,13 +27,6 @@ class software::params (
     $chrome_channel = undef
 
 
-    # ### prefpanes ####
-    $hosts_version        = '1.3'
-    $hosts_url            = "https://github.com/downloads/specialunderwear/Hosts.prefpane/Hosts-${hosts_version}.pkg"
-    $launchrocket_version = '0.7'
-    $launchrocket_url     = "https://github.com/jimbojsb/launchrocket/releases/download/v${launchrocket_version}/LaunchRocket.prefPane.zip"
-
-
     # ### social ####
     $skype_version = '7.33.206'
     $skype_url     = "http://download.skype.com/macosx/59bb2e5bac07f54c8d4ade192fa36d1c/Skype_${skype_version}.dmg"

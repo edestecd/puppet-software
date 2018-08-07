@@ -72,7 +72,6 @@ include software::editors::textmate
 include software::entertainment::vlc
 include software::idesdk::android_studio
 include software::idesdk::android_tools
-include software::prefpanes::hosts
 include software::prefpanes::launchrocket
 include software::social::skype
 include software::social::slack

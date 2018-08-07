@@ -4,26 +4,18 @@
 #
 
 class software::prefpanes::launchrocket (
-  $ensure  = $software::params::software_ensure,
-  $version = $software::params::launchrocket_version,
-  $url     = $software::params::launchrocket_url,
+  $ensure = $software::params::software_ensure,
 ) inherits software::params {
 
-  validate_string($ensure)
-
-  case $::operatingsystem {
+  case $facts['os']['name'] {
     'Darwin': {
-      validate_string($version)
-      validate_string($url)
-
-      package { "LaunchRocket-${version}":
+      package { 'launchrocket':
         ensure   => $ensure,
-        provider => prefpanecompressed,
-        source   => $url,
+        provider => brewcask,
       }
     }
     default: {
-      fail("The ${name} class is not supported on ${::operatingsystem}.")
+      fail("The ${name} class is not supported on ${facts['os']['name']}.")
     }
   }
 

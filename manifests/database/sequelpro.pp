@@ -4,26 +4,18 @@
 #
 
 class software::database::sequelpro (
-  $ensure  = $software::params::software_ensure,
-  $version = $software::params::sequelpro_version,
-  $url     = $software::params::sequelpro_url,
+  $ensure = $software::params::software_ensure,
 ) inherits software::params {
 
-  validate_string($ensure)
-
-  case $::operatingsystem {
+  case $facts['os']['name'] {
     'Darwin': {
-      validate_string($version)
-      validate_string($url)
-
-      package { "Sequel-Pro-${version}":
+      package { 'sequel-pro':
         ensure   => $ensure,
-        provider => appdmg,
-        source   => $url,
+        provider => brewcask,
       }
     }
     default: {
-      fail("The ${name} class is not supported on ${::operatingsystem}.")
+      fail("The ${name} class is not supported on ${facts['os']['name']}.")
     }
   }
 

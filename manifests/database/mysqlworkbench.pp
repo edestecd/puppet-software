@@ -5,22 +5,14 @@
 #
 
 class software::database::mysqlworkbench (
-  $ensure  = $software::params::software_ensure,
-  $version = $software::params::mysqlworkbench_version,
-  $url     = $software::params::mysqlworkbench_url,
+  $ensure = $software::params::software_ensure,
 ) inherits software::params {
 
-  validate_string($ensure)
-
-  case $::operatingsystem {
+  case $facts['os']['name'] {
     'Darwin': {
-      validate_string($version)
-      validate_string($url)
-
-      package { "MySQLWorkbench-${version}":
+      package { 'mysqlworkbench':
         ensure   => $ensure,
-        provider => appdmg,
-        source   => $url,
+        provider => brewcask,
       }
     }
     'Ubuntu': {
@@ -36,7 +28,7 @@ class software::database::mysqlworkbench (
       }
     }
     default: {
-      fail("The ${name} class is not supported on ${::operatingsystem}.")
+      fail("The ${name} class is not supported on ${facts['os']['name']}.")
     }
   }
 

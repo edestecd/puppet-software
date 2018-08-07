@@ -7,26 +7,18 @@
 #
 
 class software::database::pgcommander (
-  $ensure  = $software::params::software_ensure,
-  $version = $software::params::pgcommander_version,
-  $url     = $software::params::pgcommander_url,
+  $ensure = $software::params::software_ensure,
 ) inherits software::params {
 
-  validate_string($ensure)
-
-  case $::operatingsystem {
+  case $facts['os']['name'] {
     'Darwin': {
-      validate_string($version)
-      validate_string($url)
-
-      package { "PGCommander-${version}":
+      package { 'pg-commander':
         ensure   => $ensure,
-        provider => appcompressed,
-        source   => $url,
+        provider => brewcask,
       }
     }
     default: {
-      fail("The ${name} class is not supported on ${::operatingsystem}.")
+      fail("The ${name} class is not supported on ${facts['os']['name']}.")
     }
   }
 

@@ -27,19 +27,6 @@ class software::params (
     $chrome_channel = undef
 
 
-    # ### database ####
-    $mysqlworkbench_version = '6.3.8'
-    $mysqlworkbench_url     = "http://cdn.mysql.com/Downloads/MySQLGUITools/mysql-workbench-community-${mysqlworkbench_version}-osx-x86_64.dmg"
-    $pgcommander_version    = '1.5.9'
-    $pgcommander_url        = "https://eggerapps-downloads.s3.amazonaws.com/pgcommander-${pgcommander_version}.zip"
-    $sequelpro_version      = '1.1.2'
-    $sequelpro_url          = "https://github.com/sequelpro/sequelpro/releases/download/release-${sequelpro_version}/sequel-pro-${sequelpro_version}.dmg"
-
-    # ### drivers ####
-    $lanier_mpc5503_version = '2.2.0.0'
-    $lanier_mpc5503_url     = "http://support.ricoh.com/bb/pub_e/dr_ut_e/0001269/0001269425/V2200/LANIER_PS_Printers_Vol3_EXP_LIO_${lanier_mpc5503_version}.dmg"
-
-
     # ### editors ####
     $atom_url             = 'https://atom.io/download/mac'
     $textmate_url         = 'https://api.textmate.org/downloads/release'

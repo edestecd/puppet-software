@@ -75,7 +75,6 @@ include software::idesdk::android_tools
 include software::prefpanes::launchrocket
 include software::social::skype
 include software::social::slack
-include software::storage::drive
 include software::storage::fetch
 include software::storage::filezilla
 include software::utilities::alfred

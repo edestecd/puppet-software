@@ -27,14 +27,6 @@ class software::params (
     $chrome_channel = undef
 
 
-    # ### storage ####
-    $drive_url         = 'https://dl.google.com/drive/installgoogledrive.dmg'
-    $fetch_version     = '5.7.6'
-    $fetch_url         = "http://getfetch.com/Fetch_${fetch_version}.dmg"
-    $filezilla_version = '3.23.0.2'
-    $filezilla_url     = "https://sourceforge.net/projects/filezilla/files/FileZilla_Client/${filezilla_version}/FileZilla_${filezilla_version}_macosx-x86.app.tar.bz2/download"
-
-
     # ### utilities ####
     $alfred_version       = '3.2.1_768'
     $alfred_url           = "https://cachefly.alfredapp.com/Alfred_${alfred_version}.zip"
@@ -98,11 +90,6 @@ class software::params (
     $chrome_channel = 'stable'
 
 
-    # ### storage ####
-    $filezilla_version = undef
-    $filezilla_url     = undef
-
-
     # ### virtualization ####
     $virtualbox_version = '5.1'
     $virtualbox_build   = '112440'
@@ -130,11 +117,6 @@ class software::params (
     # ### browsers ####
     $chrome_url     = undef
     $chrome_channel = undef
-
-
-    # ### storage ####
-    $filezilla_version = undef
-    $filezilla_url     = undef
 
 
     # ### virtualization ####

@@ -10,10 +10,10 @@ class software::params (
 ) {
 
   # At least OSX 10.8 "Mountain Lion"
-  if ($::operatingsystem == 'Darwin') and (versioncmp($::macosx_productversion, '10.8') >= 0) {
+  if ($facts['os']['name'] == 'Darwin') and (versioncmp($facts['os']['release']['full'], '14') >= 0) {
     # ### init ####
     $software_ensure = $ensure ? {
-      undef   => latest,
+      undef   => installed,
       default => $ensure,
     }
     if $manage_homebrew { include '::homebrew' }
@@ -29,8 +29,8 @@ class software::params (
     $virtualbox_url     = undef
     $virtualbox_key     = undef
   } elsif (
-    ($::operatingsystem == 'Debian') and (versioncmp($::operatingsystemrelease, '7') >= 0) or
-    ($::operatingsystem == 'Ubuntu') and (versioncmp($::operatingsystemrelease, '12.04') >= 0)
+    ($facts['os']['name'] == 'Debian') and (versioncmp($facts['os']['release']['full'], '7') >= 0) or
+    ($facts['os']['name'] == 'Ubuntu') and (versioncmp($facts['os']['release']['full'], '12.04') >= 0)
   ) {
     # ### init ####
     $software_ensure = $ensure ? {
@@ -47,7 +47,7 @@ class software::params (
     # ### virtualization ####
     $virtualbox_version = '5.2'
     $virtualbox_url     = 'http://download.virtualbox.org/virtualbox/debian'
-    if versioncmp($::operatingsystemrelease, '16.04') >= 0 {
+    if versioncmp($facts['os']['release']['full'], '16.04') >= 0 {
       $virtualbox_key = {
         'id'     => 'B9F8D658297AF3EFC18D5CDFA2F683C52980AECF',
         'source' => 'https://www.virtualbox.org/download/oracle_vbox_2016.asc',
@@ -58,7 +58,7 @@ class software::params (
         'source' => 'https://www.virtualbox.org/download/oracle_vbox.asc',
       }
     }
-  } elsif ($::operatingsystem == 'windows') and (versioncmp($::operatingsystemrelease, '7') >= 0) {
+  } elsif ($facts['os']['name'] == 'windows') and (versioncmp($facts['os']['release']['full'], '7') >= 0) {
     # ### init ####
     $software_ensure = $ensure ? {
       undef   => latest,
@@ -77,7 +77,7 @@ class software::params (
     $virtualbox_url     = undef
     $virtualbox_key     = undef
   } else {
-    fail("The ${module_name} module is not supported on ${::operatingsystem} with version ${::operatingsystemrelease}.")
+    fail("The ${module_name} module is not supported on ${facts['os']['name']} with version ${facts['os']['release']['full']}.")
   }
 
 }

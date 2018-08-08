@@ -5,23 +5,17 @@
 
 class software::webstack::anvil (
   $ensure = $software::params::software_ensure,
-  $url    = $software::params::anvil_url,
 ) inherits software::params {
 
-  validate_string($ensure)
-
-  case $::operatingsystem {
+  case $facts['os']['name'] {
     'Darwin': {
-      validate_string($url)
-
-      package { 'Anvil':
+      package { 'anvil':
         ensure   => $ensure,
-        provider => appcompressed,
-        source   => $url,
+        provider => brewcask,
       }
     }
     default: {
-      fail("The ${name} class is not supported on ${::operatingsystem}.")
+      fail("The ${name} class is not supported on ${facts['os']['name']}.")
     }
   }
 

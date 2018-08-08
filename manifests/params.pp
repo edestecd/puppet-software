@@ -13,7 +13,7 @@ class software::params (
   if ($::operatingsystem == 'Darwin') and (versioncmp($::macosx_productversion, '10.8') >= 0) {
     # ### init ####
     $software_ensure = $ensure ? {
-      undef   => installed,
+      undef   => latest,
       default => $ensure,
     }
     if $manage_homebrew { include '::homebrew' }
@@ -28,15 +28,9 @@ class software::params (
 
 
     # ### virtualization ####
-    $virtualbox_version = '5.1.12'
-    $virtualbox_build   = '112440'
-    $virtualbox_url     = "http://download.virtualbox.org/virtualbox/${virtualbox_version}/VirtualBox-${virtualbox_version}-${virtualbox_build}-OSX.dmg"
+    $virtualbox_version = undef
+    $virtualbox_url     = undef
     $virtualbox_key     = undef
-
-
-    # ### webstack ####
-    $anvil_url = 'http://s3.amazonaws.com/sparkler_versions/versions/uploads/000/000/129/original/Anvil_2016-02-24_11-50-56.zip'
-    $pow_url   = 'get.pow.cx'
   } elsif (
     ($::operatingsystem == 'Debian') and (versioncmp($::operatingsystemrelease, '7') >= 0) or
     ($::operatingsystem == 'Ubuntu') and (versioncmp($::operatingsystemrelease, '12.04') >= 0)
@@ -54,8 +48,7 @@ class software::params (
 
 
     # ### virtualization ####
-    $virtualbox_version = '5.1'
-    $virtualbox_build   = '112440'
+    $virtualbox_version = '5.2'
     $virtualbox_url     = 'http://download.virtualbox.org/virtualbox/debian'
     if versioncmp($::operatingsystemrelease, '16.04') >= 0 {
       $virtualbox_key = {
@@ -84,7 +77,6 @@ class software::params (
 
     # ### virtualization ####
     $virtualbox_version = undef
-    $virtualbox_build   = undef
     $virtualbox_url     = undef
     $virtualbox_key     = undef
   } else {

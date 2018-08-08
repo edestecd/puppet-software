@@ -8,10 +8,14 @@ class software::virtualization::vagrant (
   $ensure = $software::params::software_ensure,
 ) inherits software::params {
 
-  validate_string($ensure)
-
-  case $::operatingsystem {
-    'Darwin', 'Ubuntu': {
+  case $facts['os']['name'] {
+    'Darwin': {
+      package { 'vagrant':
+        ensure   => $ensure,
+        provider => brewcask,
+      }
+    }
+    'Ubuntu': {
       include '::vagrant'
     }
     'windows': {
@@ -22,7 +26,7 @@ class software::virtualization::vagrant (
       }
     }
     default: {
-      fail("The ${name} class is not supported on ${::operatingsystem}.")
+      fail("The ${name} class is not supported on ${facts['os']['name']}.")
     }
   }
 

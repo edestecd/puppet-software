@@ -7,32 +7,22 @@
 class software::virtualization::virtualbox (
   $ensure  = $software::params::software_ensure,
   $version = $software::params::virtualbox_version,
-  $build   = $software::params::virtualbox_build,
   $url     = $software::params::virtualbox_url,
   $key     = $software::params::virtualbox_key,
 ) inherits software::params {
 
-  validate_string($ensure)
-
-  case $::operatingsystem {
+  case $facts['os']['name'] {
     'Darwin': {
-      validate_string($version, $build, $url)
-
-      exec { 'KillVirtualBoxProcesses':
-        command     => 'pkill "VBoxXPCOMIPCD" || true && pkill "VBoxSVC" || true && pkill "VBoxHeadless" || true',
-        path        => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
-        refreshonly => true,
-      }
-
-      package { "VirtualBox-${version}-${build}":
+      package { 'virtualbox':
         ensure   => $ensure,
-        provider => pkgdmg,
-        source   => $url,
-        require  => Exec['KillVirtualBoxProcesses'],
+        provider => brewcask,
       }
     }
     'Debian', 'Ubuntu': {
-      validate_string($version, $build, $url)
+      assert_type(String[1], $version)
+      assert_type(Stdlib::HTTPUrl, $url)
+      assert_type(Hash, $key)
+
       $apt_source_ensure = $ensure ? {
         'installed' => present,
         'latest'    => present,
@@ -61,7 +51,7 @@ class software::virtualization::virtualbox (
       }
     }
     default: {
-      fail("The ${name} class is not supported on ${::operatingsystem}.")
+      fail("The ${name} class is not supported on ${facts['os']['name']}.")
     }
   }
 

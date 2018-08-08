@@ -17,6 +17,10 @@ class software::virtualization::virtualbox (
         ensure   => $ensure,
         provider => brewcask,
       }
+      -> package { 'virtualbox-extension-pack':
+        ensure   => $ensure,
+        provider => brewcask,
+      }
     }
     'Debian', 'Ubuntu': {
       assert_type(String[1], $version)

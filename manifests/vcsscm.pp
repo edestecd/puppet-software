@@ -8,15 +8,11 @@
 #
 
 class software::vcsscm (
-  $ensure             = $software::params::software_ensure,
-  $sourcetree_version = $software::params::sourcetree_version,
-  $sourcetree_url     = $software::params::sourcetree_url,
+  $ensure = $software::params::software_ensure,
 ) inherits software::params {
 
   class { '::software::vcsscm::sourcetree':
-    ensure  => $ensure,
-    version => $sourcetree_version,
-    url     => $sourcetree_url,
+    ensure => $ensure,
   }
 
 }

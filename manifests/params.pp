@@ -17,9 +17,6 @@ class software::params (
       default => $ensure,
     }
     if $manage_homebrew { include '::homebrew' }
-    $applications_path     = '/Applications'
-    $utilities_path        = "${applications_path}/Utilities"
-    $preference_panes_path = '/Library/PreferencePanes'
 
 
     # ### browsers ####

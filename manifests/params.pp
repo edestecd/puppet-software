@@ -27,11 +27,6 @@ class software::params (
     $chrome_channel = undef
 
 
-    # ### vcsscm ####
-    $sourcetree_version = '2.4e'
-    $sourcetree_url     = "https://downloads.atlassian.com/software/sourcetree/SourceTree_${sourcetree_version}.zip"
-
-
     # ### virtualization ####
     $virtualbox_version = '5.1.12'
     $virtualbox_build   = '112440'

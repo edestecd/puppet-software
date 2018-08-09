@@ -1,3 +1,10 @@
+2018-08-08 (2.0.0)  Chris Edester
+        * Puppet 4/5 supported
+        * Drop Puppet 3 supported
+        * PDK convert
+        * Move most macOS packages to brew or brew cask
+        * Ubuntu 18.04 and macOS High Sierra support
+
 2017-10-24 (1.2.0)  Chris Edester
         * Various version updates
         * Add OpenConnect

@@ -11,9 +11,7 @@ class software::vcsscm::git (
   $gitignore       = false,
 ) inherits software::params {
 
-  validate_string($ensure)
-
-  case $::operatingsystem {
+  case $facts['os']['name'] {
     'Debian', 'Ubuntu': {
       package { 'git':
         ensure => $ensure,
@@ -137,7 +135,7 @@ class software::vcsscm::git (
       }
     }
     default: {
-      fail("The ${name} class is not supported on ${::operatingsystem}.")
+      fail("The ${name} class is not supported on ${facts['os']['name']}.")
     }
   }
 

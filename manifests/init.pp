@@ -10,9 +10,6 @@
 #
 
 class software (
-  $applications_path     = $software::params::applications_path,
-  $preference_panes_path = $software::params::preference_panes_path,
-  $utilities_path        = $software::params::utilities_path,
 ) inherits software::params {
 
   # Not Used

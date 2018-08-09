@@ -72,14 +72,11 @@ include software::editors::textmate
 include software::entertainment::vlc
 include software::idesdk::android_studio
 include software::idesdk::android_tools
-include software::prefpanes::hosts
 include software::prefpanes::launchrocket
 include software::social::skype
 include software::social::slack
-include software::storage::drive
 include software::storage::fetch
 include software::storage::filezilla
-include software::utilities::alfred
 include software::utilities::controlplane
 include software::utilities::iterm
 include software::utilities::onyx
@@ -154,19 +151,6 @@ This module has been built on and tested against Puppet 3.2.4 and higher.
 While I am sure other versions work, I have not tested them.
 
 This module supports modern OS X, Debian, Ubuntu, and Windows systems.
-This module has been heavily tested on:
-* OS X 10.10 Yosemite
-* OS X 10.11 El Capitan
-* OS X 10.12 Sierra
-* Debian 7 (Wheezy)
-* Debian 8 (Jessie)
-* Debian 9 (Stretch)
-* Ubuntu Desktop 12.04 LTS (Precise)
-* Ubuntu Desktop 14.04 LTS (Trusty)
-* Ubuntu Desktop 16.04 LTS (Xenial)
-* Ubuntu Desktop 17.04 (Zesty)
-* Ubuntu Desktop 17.10 (Artful)
-* Windows 10
 
 Many classes also support older versions of OS X, Ubuntu, and Windows.
 

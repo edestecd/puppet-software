@@ -9,10 +9,10 @@ describe 'software::social::skype' do
 
       context 'with defaults' do
         # rubocop:disable RSpec/RepeatedExample
-        if facts[:operatingsystem] == 'Darwin'
+        if facts[:os]['name'] == 'Darwin'
           it { is_expected.to compile.with_all_deps }
-          it { is_expected.to contain_package('Skype-7.33.206').with_provider('appdmg') }
-        elsif facts[:operatingsystem] =~ %r{^(Debian|Ubuntu)$}
+          it { is_expected.to contain_package('skype').with_provider('brewcask') }
+        elsif facts[:os]['name'] =~ %r{^(Debian|Ubuntu)$}
           it { is_expected.to compile.with_all_deps }
           it {
             is_expected.to contain_apt__source('skype-stable')
@@ -22,7 +22,7 @@ describe 'software::social::skype' do
               .with_architecture('amd64')
           }
           it { is_expected.to contain_package('skypeforlinux') }
-        elsif facts[:operatingsystem] == 'windows'
+        elsif facts[:os]['name'] == 'windows'
           it { is_expected.to compile.with_all_deps }
           it { is_expected.to contain_package('skype').with_provider('chocolatey') }
         else

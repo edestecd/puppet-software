@@ -7,24 +7,17 @@
 
 class software::editors::textmate (
   $ensure = $software::params::software_ensure,
-  $url    = $software::params::textmate_url,
 ) inherits software::params {
 
-  validate_string($ensure)
-
-  case $::operatingsystem {
+  case $facts['os']['name'] {
     'Darwin': {
-      validate_string($url)
-
-      package { 'TextMate':
+      package { 'textmate':
         ensure   => $ensure,
-        provider => appcompressed,
-        flavor   => tbz,
-        source   => $url,
+        provider => brewcask,
       }
     }
     default: {
-      fail("The ${name} class is not supported on ${::operatingsystem}.")
+      fail("The ${name} class is not supported on ${facts['os']['name']}.")
     }
   }
 

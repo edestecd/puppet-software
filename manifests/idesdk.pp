@@ -8,15 +8,11 @@
 #
 
 class software::idesdk (
-  $ensure                 = $software::params::software_ensure,
-  $android_studio_version = $software::params::android_studio_version,
-  $android_studio_url     = $software::params::android_studio_url,
+  $ensure = $software::params::software_ensure,
 ) inherits software::params {
 
   class { '::software::idesdk::android_studio':
-    ensure  => $ensure,
-    version => $android_studio_version,
-    url     => $android_studio_url,
+    ensure => $ensure,
   }
 
   class { '::software::idesdk::android_tools':

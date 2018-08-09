@@ -6,11 +6,9 @@
 #
 
 class software::browsers (
-  $ensure          = $software::params::software_ensure,
-  $chrome_url      = $software::params::chrome_url,
-  $chrome_channel  = $software::params::chrome_channel,
-  $firefox_version = $software::params::firefox_version,
-  $firefox_url     = $software::params::firefox_url,
+  $ensure         = $software::params::software_ensure,
+  $chrome_url     = $software::params::chrome_url,
+  $chrome_channel = $software::params::chrome_channel,
 ) inherits software::params {
 
   class { '::software::browsers::chrome':
@@ -20,9 +18,7 @@ class software::browsers (
   }
 
   class { '::software::browsers::firefox':
-    ensure  => $ensure,
-    version => $firefox_version,
-    url     => $firefox_url,
+    ensure => $ensure,
   }
 
 }

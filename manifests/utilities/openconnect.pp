@@ -7,11 +7,8 @@ class software::utilities::openconnect (
   $ensure = $software::params::software_ensure,
 ) inherits software::params {
 
-  validate_string($ensure)
-
-  case $::operatingsystem {
+  case $facts['os']['name'] {
     'Darwin': {
-      include '::homebrew'
       package { 'openconnect':
         ensure   => $ensure,
         provider => brew,
@@ -23,7 +20,7 @@ class software::utilities::openconnect (
       }
     }
     default: {
-      fail("The ${name} class is not supported on ${::operatingsystem}.")
+      fail("The ${name} class is not supported on ${facts['os']['name']}.")
     }
   }
 

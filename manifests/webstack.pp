@@ -8,19 +8,11 @@
 #
 
 class software::webstack (
-  $ensure    = $software::params::software_ensure,
-  $pow_url   = $software::params::pow_url,
-  $anvil_url = $software::params::anvil_url,
+  $ensure = $software::params::software_ensure,
 ) inherits software::params {
-
-  # class { 'software::webstack::pow':
-  #   ensure => $ensure,
-  #   url    => $pow_url,
-  # }
 
   class { '::software::webstack::anvil':
     ensure => $ensure,
-    url    => $anvil_url,
   }
 
 }

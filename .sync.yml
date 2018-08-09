@@ -1,15 +1,5 @@
 ---
-.gitlab-ci.yml:
-  bundler_args: |
-    --without system_tests --path vendor/bundle
-
-    cache:
-      key: "$CI_JOB_STAGE-$CI_COMMIT_REF_NAME"
-      paths:
-        - vendor/bundle
-
 .travis.yml:
-  bundler_args: --without system_tests
   includes:
     - env: PUPPET_GEM_VERSION="~> 5.0" CHECK=build DEPLOY_TO_FORGE=yes
   branches:
@@ -24,6 +14,7 @@
 Gemfile:
   required:
     ':development':
+      - gem: puppet-blacksmith
       - gem: travis
     ':puppet_lint':
       - gem: puppet-lint-absolute_classname-check
@@ -50,4 +41,4 @@ Gemfile:
 
 Rakefile:
   extra_disabled_lint_checks:
-    - disable_security_package_pinned_version
+    - security_package_pinned_version

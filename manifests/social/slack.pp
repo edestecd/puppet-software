@@ -7,9 +7,13 @@ class software::social::slack (
   $ensure = $software::params::software_ensure,
 ) inherits software::params {
 
-  validate_string($ensure)
-
-  case $::operatingsystem {
+  case $facts['os']['name'] {
+    'Darwin': {
+      package { 'slack':
+        ensure   => $ensure,
+        provider => brewcask,
+      }
+    }
     'Debian', 'Ubuntu': {
       $apt_source_ensure = $ensure ? {
         'installed' => present,
@@ -35,8 +39,14 @@ class software::social::slack (
         ensure => $ensure,
       }
     }
+    'windows': {
+      package { 'slack':
+        ensure   => $ensure,
+        provider => chocolatey,
+      }
+    }
     default: {
-      fail("The ${name} class is not supported on ${::operatingsystem}.")
+      fail("The ${name} class is not supported on ${facts['os']['name']}.")
     }
   }
 

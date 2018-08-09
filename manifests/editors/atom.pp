@@ -18,30 +18,12 @@ class software::editors::atom (
 
   case $facts['os']['name'] {
     'Darwin': {
-      $apm_require = File['/usr/local/bin/apm']
-
       package { 'atom':
         ensure   => $ensure,
         provider => brewcask,
       }
-
-      file { '/usr/local/bin/apm':
-        ensure  => link,
-        target  => '/Applications/Atom.app/Contents/Resources/app/apm/node_modules/.bin/apm',
-        mode    => '0755',
-        require => Package['atom'],
-      }
-
-      -> file { '/usr/local/bin/atom':
-        ensure  => link,
-        target  => '/Applications/Atom.app/Contents/Resources/app/atom.sh',
-        mode    => '0755',
-        require => Package['atom'],
-      }
     }
     'Debian': {
-      $apm_require = Package['atom']
-
       package { 'atom':
         ensure   => $ensure,
         source   => '/tmp/atom-amd64.deb',
@@ -57,7 +39,6 @@ class software::editors::atom (
       }
     }
     'Ubuntu': {
-      $apm_require = Package['atom']
       $apt_ppa_ensure = $ensure ? {
         'installed' => present,
         'latest'    => present,
@@ -76,8 +57,6 @@ class software::editors::atom (
       }
     }
     'windows': {
-      $apm_require = undef
-
       package { 'atom':
         ensure   => $ensure,
         provider => chocolatey,
@@ -97,7 +76,7 @@ class software::editors::atom (
       ensure   => $apm_ensure,
       provider => apm,
       source   => $user,
-      require  => $apm_require,
+      require  => Package['atom'],
   })
 
 }

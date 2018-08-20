@@ -11,20 +11,29 @@ class software::vcsscm::git (
   $gitignore       = false,
 ) inherits software::params {
 
+  $provider = $facts['os']['name'] ? {
+    'Darwin'          => brew,
+    /(Debian|Ubuntu)/ => undef,
+    'windows'         => chocolatey,
+    default           => fail("The ${name} class is not supported on ${facts['os']['name']}."),
+  }
+
+  package { 'git':
+    ensure   => $ensure,
+    provider => $provider,
+  }
+
+  if $bash_completion and $facts['os']['name'] != 'windows' {
+    package { 'bash-completion':
+      ensure   => $ensure,
+      provider => $provider,
+    }
+  }
+
   case $facts['os']['name'] {
     'Debian', 'Ubuntu': {
-      package { 'git':
-        ensure => $ensure,
-      }
-
       if $gui {
         package { ['gitk', 'git-gui']:
-          ensure => $ensure,
-        }
-      }
-
-      if $bash_completion {
-        package { 'bash-completion':
           ensure => $ensure,
         }
       }
@@ -128,15 +137,7 @@ class software::vcsscm::git (
         }
       }
     }
-    'windows': {
-      package { 'git':
-        ensure   => $ensure,
-        provider => chocolatey,
-      }
-    }
-    default: {
-      fail("The ${name} class is not supported on ${facts['os']['name']}.")
-    }
+    default: {}
   }
 
 }

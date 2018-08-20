@@ -10,11 +10,14 @@ describe 'software::vcsscm::git' do
       # rubocop:disable RSpec/RepeatedExample
       context 'with defaults' do
         if facts[:os]['name'] == 'Darwin'
-          it { is_expected.to compile.and_raise_error(%r{is not supported on Darwin.}) }
+          it { is_expected.to compile.with_all_deps }
+          it { is_expected.to contain_package('git').with_provider('brew') }
+          it { is_expected.not_to contain_package('bash-completion') }
         elsif facts[:os]['name'] == 'windows'
           it { is_expected.to compile.with_all_deps }
-          it { is_expected.to contain_package('git') }
-        else
+          it { is_expected.to contain_package('git').with_provider('chocolatey') }
+          it { is_expected.not_to contain_package('bash-completion') }
+        elsif ['Debian', 'Ubuntu'].include?(facts[:os]['name'])
           it { is_expected.to compile.with_all_deps }
           it { is_expected.to contain_package('git') }
           it { is_expected.not_to contain_package('gitk') }
@@ -36,7 +39,10 @@ describe 'software::vcsscm::git' do
         end
 
         if facts[:os]['name'] == 'Darwin'
-          it { is_expected.to compile.and_raise_error(%r{is not supported on Darwin.}) }
+          it { is_expected.to compile.with_all_deps }
+          it { is_expected.to contain_package('git').with_provider('brew') }
+          it { is_expected.not_to contain_package('gitk') }
+          it { is_expected.not_to contain_package('git-gui') }
         elsif ['Debian', 'Ubuntu'].include?(facts[:os]['name'])
           it { is_expected.to compile.with_all_deps }
           it { is_expected.to contain_package('git') }
@@ -54,7 +60,13 @@ describe 'software::vcsscm::git' do
         end
 
         if facts[:os]['name'] == 'Darwin'
-          it { is_expected.to compile.and_raise_error(%r{is not supported on Darwin.}) }
+          it { is_expected.to compile.with_all_deps }
+          it { is_expected.to contain_package('git').with_provider('brew') }
+          it { is_expected.to contain_package('bash-completion').with_provider('brew') }
+        elsif facts[:os]['name'] == 'windows'
+          it { is_expected.to compile.with_all_deps }
+          it { is_expected.to contain_package('git').with_provider('chocolatey') }
+          it { is_expected.not_to contain_package('bash-completion') }
         elsif ['Debian', 'Ubuntu'].include?(facts[:os]['name'])
           it { is_expected.to compile.with_all_deps }
           it { is_expected.to contain_package('git') }
@@ -75,9 +87,7 @@ describe 'software::vcsscm::git' do
           }
         end
 
-        if facts[:os]['name'] == 'Darwin'
-          it { is_expected.to compile.and_raise_error(%r{is not supported on Darwin.}) }
-        elsif ['Debian', 'Ubuntu'].include?(facts[:os]['name'])
+        if ['Debian', 'Ubuntu'].include?(facts[:os]['name'])
           it { is_expected.to compile.with_all_deps }
           it { is_expected.to contain_package('git') }
           it {
@@ -103,9 +113,7 @@ describe 'software::vcsscm::git' do
           }
         end
 
-        if facts[:os]['name'] == 'Darwin'
-          it { is_expected.to compile.and_raise_error(%r{is not supported on Darwin.}) }
-        elsif ['Debian', 'Ubuntu'].include?(facts[:os]['name'])
+        if ['Debian', 'Ubuntu'].include?(facts[:os]['name'])
           it { is_expected.to compile.with_all_deps }
           it { is_expected.to contain_package('git') }
           it { is_expected.not_to contain_file('/etc/gitconfig') }
@@ -133,9 +141,7 @@ describe 'software::vcsscm::git' do
           }
         end
 
-        if facts[:os]['name'] == 'Darwin'
-          it { is_expected.to compile.and_raise_error(%r{is not supported on Darwin.}) }
-        elsif ['Debian', 'Ubuntu'].include?(facts[:os]['name'])
+        if ['Debian', 'Ubuntu'].include?(facts[:os]['name'])
           it { is_expected.to compile.with_all_deps }
           it { is_expected.to contain_package('git') }
           it {
